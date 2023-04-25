@@ -1,6 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Kwesi Commerce</string>
     <string name="login">Login</string>
-    <string name="channel_name">Messages</string>
-    <string name="select_category">Select Category</string>
+    <string name="channel_name">Kwesi Commerce Notification</string>
 </resources>
