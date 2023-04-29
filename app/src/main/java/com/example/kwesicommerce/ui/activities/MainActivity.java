@@ -16,12 +16,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         NotificationUtil notificationUtil = new NotificationUtil(getBaseContext());
-        notificationUtil.showNotification("Example Notification", "I don't like monday mornings");
+//        notificationUtil.showNotification("Example Notification", "I don't like monday mornings");
 
         Button button = findViewById(R.id.show);
         button.setOnClickListener(v -> {
             Intent intent = new Intent(this, ProductActivity.class);
             startActivity(intent);
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
     }
 }

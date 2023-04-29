@@ -3,61 +3,77 @@ package com.example.kwesicommerce.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.Button;
+import android.graphics.drawable.GradientDrawable;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
+import android.widget.LinearLayout;
 
 import com.example.kwesicommerce.R;
-import com.example.kwesicommerce.ui.activities.MainActivity;
+import com.example.kwesicommerce.ui.activities.AccountActivity;
+import com.example.kwesicommerce.ui.activities.HomeActivity;
+import com.example.kwesicommerce.ui.activities.ProductActivity;
+import com.example.kwesicommerce.ui.activities.WishlistActivity;
 
 public class NavigationUtils {
-    public static Context context;
-    public static Activity activity;
+    private final LinearLayout activeNavItem;
+    private final Context context;
+    private final Activity activity;
+    private final LinearLayout homeLayout;
+    private final LinearLayout shopLayout;
+    private final LinearLayout wishlistLayout;
+    private final LinearLayout accountLayout;
 
-    public NavigationUtils(Context context, Activity activity) {
-        NavigationUtils.context = context;
-        NavigationUtils.activity = activity;
+    public NavigationUtils(Context context, Activity activity, LinearLayout activeNavItem) {
+        this.context = context;
+        this.activity = activity;
+        this.activeNavItem = activeNavItem;
+
+        homeLayout = activity.findViewById(R.id.home_layout);
+        shopLayout = activity.findViewById(R.id.shop_layout);
+        wishlistLayout = activity.findViewById(R.id.wishlist_layout);
+        accountLayout = activity.findViewById(R.id.account_layout);
+
     }
 
-    public static void navigateToHomeActivity() {
-        Intent intent = new Intent(context, MainActivity.class);
-        context.startActivity(intent);
-    }
+    public void setNavigationItemClick() {
 
-    public static void navigateToShopActivity() {
-        Intent intent = new Intent(context, MainActivity.class);
-        context.startActivity(intent);
-    }
+        final float scaleValue = 1.2f; // Increase the size by 20%
+        final Animation clickAnimation = new ScaleAnimation(1f, scaleValue, 1f, scaleValue,
+                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        clickAnimation.setDuration(200);
 
-    public static void navigateToWishlistActivity() {
-        Intent intent = new Intent(context, MainActivity.class);
-        context.startActivity(intent);
-    }
+        activeNavItem.setBackgroundResource(R.drawable.round_layout_menu);
 
-    public static void navigateToAccountActivity() {
-        Intent intent = new Intent(context, MainActivity.class);
-        context.startActivity(intent);
-    }
+        homeLayout.setOnClickListener(v -> {
+            v.startAnimation(clickAnimation);
+            Intent intent = new Intent(context, HomeActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+            activity.overridePendingTransition(0, 0);
+        });
 
-    public static void navigateToMenuActivity() {
-        Intent intent = new Intent(context, MainActivity.class);
-        context.startActivity(intent);
-    }
+        shopLayout.setOnClickListener(v -> {
+            v.startAnimation(clickAnimation);
+            Intent intent = new Intent(context, ProductActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+            activity.overridePendingTransition(0, 0);
+        });
 
-    private void navigate() {
-        Button homeButton = activity.findViewById(R.id.home_layout);
-        homeButton.setOnClickListener(v -> navigateToHomeActivity());
+        wishlistLayout.setOnClickListener(v -> {
+            v.startAnimation(clickAnimation);
+            Intent intent = new Intent(context, WishlistActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+            activity.overridePendingTransition(0, 0);
+        });
 
-        Button shopButton = activity.findViewById(R.id.shop_layout);
-        shopButton.setOnClickListener(v -> navigateToShopActivity());
-
-        Button wishlistButton = activity.findViewById(R.id.wishlist_layout);
-        wishlistButton.setOnClickListener(v -> navigateToWishlistActivity());
-
-        Button accountButton = activity.findViewById(R.id.account_layout);
-        accountButton.setOnClickListener(v -> navigateToAccountActivity());
-
-        Button menuButton = activity.findViewById(R.id.menu_layout);
-        menuButton.setOnClickListener(v -> navigateToMenuActivity());
+        accountLayout.setOnClickListener(v -> {
+            v.startAnimation(clickAnimation);
+            Intent intent = new Intent(context, AccountActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+            activity.overridePendingTransition(0, 0);
+        });
     }
 }
-
-

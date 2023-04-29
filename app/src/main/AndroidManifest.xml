@@ -23,6 +23,11 @@
         <activity
             android:name=".ui.activities.AccountActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".ui.activities.MainActivity"
+            android:exported="false" />
+
         <activity
             android:name=".ui.activities.HomeActivity"
             android:exported="true">
