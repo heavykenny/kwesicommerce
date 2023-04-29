@@ -2,11 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/antiflash_white"
+    android:background="@drawable/background2"
     android:orientation="vertical">
 
     <RelativeLayout
-        android:id="@+id/login_register_button_layout"
+        android:id="@+id/relLayoutLoginRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -16,26 +16,181 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/login_button"
+                android:id="@+id/btnLogin"
                 android:layout_width="0dp"
                 android:layout_height="80dp"
                 android:layout_weight="1"
+                android:background="@drawable/custom_square_layout"
+                android:fontFamily="@font/alegreya_sans_sc_light"
                 android:padding="15dp"
-                android:text="Login" />
+                android:text="@string/string_login"
+                android:textSize="30sp" />
 
             <Button
                 android:id="@+id/register_button"
                 android:layout_width="0dp"
                 android:layout_height="80dp"
                 android:layout_weight="1"
+                android:background="@drawable/custom_square_layout"
+                android:fontFamily="@font/alegreya_sans_sc_light"
                 android:padding="15dp"
-                android:text="Register" />
+                android:text="@string/string_register"
+                android:textSize="30sp" />
 
         </LinearLayout>
     </RelativeLayout>
 
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/register_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+                    android:fontFamily="@font/alegreya_sans_sc"
+                    android:padding="8dp"
+                    android:text="@string/string_required_first_name"
+                    android:textColor="@color/antiflash_white"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:fontFamily="@font/alegreya_sans"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_border"
+                    android:hint="@string/string_enter_first_name"
+                    android:inputType="textCapWords|textPersonName"
+                    android:padding="15dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/faint_black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+                    android:fontFamily="@font/alegreya_sans_sc"
+                    android:padding="8dp"
+                    android:text="@string/string_required_last_name"
+                    android:textColor="@color/antiflash_white"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:fontFamily="@font/alegreya_sans"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_border"
+                    android:hint="@string/string_enter_last_name"
+                    android:inputType="textCapWords|textPersonName"
+                    android:padding="15dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/faint_black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:fontFamily="@font/alegreya_sans_sc"
+                    android:padding="8dp"
+                    android:text="@string/string_required_email"
+                    android:textColor="@color/antiflash_white"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:fontFamily="@font/alegreya_sans"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_border"
+                    android:hint="@string/string_enter_your_email"
+                    android:inputType="textEmailAddress"
+                    android:padding="15dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/faint_black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:fontFamily="@font/alegreya_sans_sc"
+                    android:padding="8dp"
+                    android:text="@string/string_required_password"
+                    android:textColor="@color/antiflash_white"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:fontFamily="@font/alegreya_sans"
+                    android:id="@+id/password_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_border"
+                    android:hint="@string/string_enter_your_password"
+                    android:inputType="textPassword"
+                    android:padding="15dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/faint_black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:fontFamily="@font/alegreya_sans_sc"
+                    android:padding="8dp"
+                    android:text="@string/string_required_confirm_password"
+                    android:textColor="@color/antiflash_white"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:fontFamily="@font/alegreya_sans"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_border"
+                    android:hint="@string/string_enter_password_again"
+                    android:inputType="textPassword"
+                    android:padding="15dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/faint_black"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_square_layout"
+                android:fontFamily="@font/alegreya_sans_sc_medium"
+                android:padding="15dp"
+                android:text="@string/string_register_new_account"
+                android:textColor="@color/white"
+                android:layout_marginBottom="30dp"
+                android:textSize="30sp" />
+        </LinearLayout>
+    </ScrollView>
+
     <LinearLayout
-        android:id="@+id/register_form"
+        android:id="@+id/login_form"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="30dp"
@@ -52,187 +207,59 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:padding="8dp"
-                android:text="*First name"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edittext_border"
-                android:hint="Enter first name"
-                android:inputType="textPersonName"
-                android:padding="15dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/faint_black"
-                android:textSize="15sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:padding="8dp"
-                android:text="*Last name"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edittext_border"
-                android:hint="Enter last name"
-                android:inputType="textPersonName"
-                android:padding="15dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/faint_black"
-                android:textSize="15sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
                 android:layout_marginBottom="1dp"
+                android:fontFamily="@font/alegreya_sans_sc"
                 android:padding="8dp"
-                android:text="*Email"
-                android:textColor="@color/black"
+                android:text="@string/string_email"
+                android:textColor="@color/antiflash_white"
                 android:textSize="15sp" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edittext_border"
-                android:hint="Enter your email"
-                android:inputType="textEmailAddress"
-                android:padding="15dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/faint_black"
-                android:textSize="15dp" />
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:layout_marginBottom="1dp"
-                android:padding="8dp"
-                android:text="*Password"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/password_edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edittext_border"
-                android:hint="Enter Password"
-                android:inputType="textPassword"
-                android:padding="15dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/faint_black"
-                android:textSize="15sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:layout_marginBottom="1dp"
-                android:padding="8dp"
-                android:text="*Confirm Password"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edittext_border"
-                android:hint="Enter Password Again"
-                android:inputType="textPassword"
-                android:padding="15dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/faint_black"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:fontFamily="sans-serif-condensed"
-            android:padding="15dp"
-            android:text="Register"
-            android:textColor="@color/white"
-            android:textSize="30dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/login_form"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="30dp"
-        android:orientation="vertical"
-        android:visibility="visible">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:layout_marginBottom="1dp"
-                android:padding="8dp"
-                android:text="Email"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
                 android:id="@+id/email_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittext_border"
-                android:hint="Enter your email"
+                android:hint="@string/string_enter_your_email"
                 android:inputType="textEmailAddress"
+                android:fontFamily="@font/alegreya_sans"
                 android:padding="15dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/faint_black"
-                android:textSize="15dp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
                 android:layout_marginBottom="1dp"
+                android:fontFamily="@font/alegreya_sans_sc"
                 android:padding="8dp"
-                android:text="Password"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
+                android:text="@string/string_password"
+                android:textColor="@color/antiflash_white"
+                android:textSize="15sp" />
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
+                android:fontFamily="@font/alegreya_sans"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittext_border"
-                android:hint="Enter Password"
+                android:hint="@string/string_enter_your_password"
                 android:inputType="textPassword"
                 android:padding="15dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/faint_black"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:fontFamily="@font/alegreya_sans_sc_bold"
                 android:padding="8dp"
-                android:text="Forgotten your Password?"
-                android:textColor="@color/black"
-                android:textSize="10dp" />
+                android:text="@string/string_forgotten_your_password"
+                android:textColor="@color/antiflash_white"
+                android:textSize="11sp" />
         </LinearLayout>
 
 
@@ -240,16 +267,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:fontFamily="sans-serif-condensed"
+            android:background="@drawable/custom_square_layout"
+            android:fontFamily="@font/alegreya_sans_sc_medium"
             android:padding="15dp"
-            android:text="Login"
+            android:text="@string/string_login_to_your_account"
             android:textSize="30sp" />
-        <!-- Add any additional logout form elements -->
 
     </LinearLayout>
 
 </LinearLayout>
-
-
-
-

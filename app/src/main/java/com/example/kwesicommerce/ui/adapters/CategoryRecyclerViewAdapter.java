@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kwesicommerce.R;
 import com.example.kwesicommerce.data.model.Category;
-import com.example.kwesicommerce.ui.activities.CategoryActivity;
 import com.example.kwesicommerce.ui.activities.ProductActivity;
 
 import java.util.List;
@@ -33,7 +32,7 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
     @NonNull
     @Override
     public CategoryRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_list, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_category_list, parent, false);
         return new ViewHolder(v);
     }
 

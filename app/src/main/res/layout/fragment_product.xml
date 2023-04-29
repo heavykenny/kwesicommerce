@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <GridView
-        android:id="@+id/quiz_gridView"
+        android:id="@+id/gridViewProduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:horizontalSpacing="0dp"

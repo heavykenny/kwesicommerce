@@ -1,8 +1,31 @@
 <resources>
     <string name="app_name">Kwesi Commerce</string>
-    <string name="login">Login</string>
     <string name="channel_name">Messages</string>
-    <string name="select_category" translatable="false">Select Category</string>
-    <string name="hello_login_fragment" translatable="false">Hello Login fragment</string>
-    <string name="hello_register_fragment" translatable="false">Hello Register fragment</string>
+    <string name="kwesi_shop" translatable="false">Kwesi\'s Shop</string>
+    <string name="string_home">Home</string>
+    <string name="string_shop">Shop</string>
+    <string name="string_menu">Menu</string>
+    <string name="string_account">Account</string>
+    <string name="string_wishlist">Wishlist</string>
+    <string name="string_back">Back</string>
+    <string name="string_edit_profile">Edit Profile</string>
+    <string name="string_add_to_cart">Add to Cart</string>
+    <string name="string_remove_from_cart">Remove from Cart</string>
+    <string name="string_login">Login</string>
+    <string name="string_register">Register</string>
+    <string name="string_login_to_your_account">Login to your Account</string>
+    <string name="string_forgotten_your_password">Forgotten your Password?</string>
+    <string name="string_email">Email Address</string>
+    <string name="string_enter_your_email">Enter your email</string>
+    <string name="string_password">Password</string>
+    <string name="string_enter_your_password">Enter your Password</string>
+    <string name="string_register_new_account">Register New Account</string>
+    <string name="string_enter_password_again">Enter Password Again</string>
+    <string name="string_enter_last_name">Enter last name</string>
+    <string name="string_required_email">*Email</string>
+    <string name="string_required_password">*Password</string>
+    <string name="string_enter_first_name">Enter first name</string>
+    <string name="string_required_first_name">*First name</string>
+    <string name="string_required_last_name">*Last name</string>
+    <string name="string_required_confirm_password">*Confirm Password</string>
 </resources>

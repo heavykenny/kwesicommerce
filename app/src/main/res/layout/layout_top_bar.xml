@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/top_bar"
+    android:id="@+id/linLayoutTopBar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:background="@color/oxford_blue"
     android:gravity="center_horizontal"
     android:orientation="horizontal">
 
@@ -13,52 +13,53 @@
         android:layout_height="wrap_content"
         android:background="#FFFFFF">
 
-        <!-- Back button icon -->
         <ImageView
-            android:id="@+id/back_button"
+            android:id="@+id/imgViewSearchIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
+            android:background="@color/faint_white"
             android:padding="16dp"
-            android:src="@drawable/search" />
+            android:src="@drawable/icon_search" />
 
         <ImageView
-            android:id="@+id/shop_icon"
+            android:id="@+id/imgViewShopIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:background="@color/faint_white"
             android:padding="16dp"
-            android:src="@drawable/shop_icon" />
+            android:src="@drawable/icon_shop" />
 
-        <!-- Counter badge -->
         <TextView
-            android:id="@+id/counter_text"
+            android:id="@+id/txtViewCartCounter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@id/shop_icon"
-            android:layout_alignTop="@id/shop_icon"
-            android:background="@drawable/round_layout_menu"
+            android:layout_alignTop="@id/imgViewShopIcon"
+            android:layout_alignEnd="@id/imgViewShopIcon"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/custom_round_layout"
+            android:fontFamily="@font/alegreya_sans_sc"
             android:gravity="center"
             android:minWidth="20dp"
             android:minHeight="20dp"
             android:padding="1dp"
-            android:layout_margin="1dp"
-            android:textColor="#FFFFFF"
             android:text="10"
-            android:textSize="10sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="11sp" />
 
-
-        <!-- Title text -->
         <TextView
-            android:id="@+id/title_text"
+            android:id="@+id/txtViewLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="Logo text"
-            android:textColor="#000000"
-            android:textSize="18sp" />
-
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/alegreya_sans_sc"
+            android:text="@string/kwesi_shop"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
     </RelativeLayout>
 
 

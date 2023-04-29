@@ -1,38 +1,39 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/top_bar"
-    android:gravity="start"
-    android:layout_marginTop="1dp"
-    android:layout_marginBottom="1dp"
+    android:id="@+id/linLayoutTopBar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:layout_marginTop="1dp"
+    android:layout_marginBottom="1dp"
+    android:background="@color/faint_white"
+    android:gravity="start"
     android:orientation="horizontal">
 
     <RelativeLayout
-        android:id="@+id/back_button_layout"
+        android:id="@+id/relLayoutBackButton"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginStart="8dp"
-        android:background="?android:attr/selectableItemBackground"
+        android:background="@color/white"
         android:clickable="true"
         android:focusable="true"
         android:padding="8dp">
 
         <ImageView
-            android:id="@+id/back_button_icon"
+            android:id="@+id/imgViewBackButton"
             android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:src="@drawable/arrow_back" />
 
         <TextView
-            android:id="@+id/back_button_text"
+            android:id="@+id/txtViewBackButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@id/back_button_icon"
-            android:text="Back"
-            android:textColor="#000000"
-            android:textSize="10sp" />
+            android:layout_toEndOf="@id/imgViewBackButton"
+            android:fontFamily="@font/alegreya_sans_sc_bold"
+            android:text="@string/string_back"
+            android:textColor="@color/black"
+            android:textSize="11sp" />
 
     </RelativeLayout>
 

@@ -18,7 +18,7 @@ public class AccountFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_auth_form, container, false);
 
-        Button loginButton = view.findViewById(R.id.login_button);
+        Button loginButton = view.findViewById(R.id.btnLogin);
         Button registerButton = view.findViewById(R.id.register_button);
         View loginForm = view.findViewById(R.id.login_form);
         View registerForm = view.findViewById(R.id.register_form);

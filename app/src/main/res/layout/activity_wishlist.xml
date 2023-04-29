@@ -3,12 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background2"
     android:orientation="vertical"
     tools:context=".ui.activities.WishlistActivity">
 
-    <include layout="@layout/top_bar" />
+    <include layout="@layout/layout_top_bar" />
 
-    <include layout="@layout/back_navigation" />
+    <include layout="@layout/layout_back_navigation" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,11 +17,11 @@
         android:layout_weight="1">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvTestList"
+            android:id="@+id/rvListWishList"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </RelativeLayout>
 
-    <include layout="@layout/navigation" />
+    <include layout="@layout/layout_bottom_navigation" />
 
 </LinearLayout>

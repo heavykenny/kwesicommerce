@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:background="@color/french_blue">
+
+    <ImageView
+        android:id="@+id/imgViewProductListImage"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/image_placeholder" />
+
+    <TextView
+        android:id="@+id/txtViewProductListTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/imgViewProductListImage"
+        android:fontFamily="@font/alegreya_sans_sc"
+        android:text="Product Title"
+        android:textSize="23sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtViewProductPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtViewProductListTitle"
+        android:layout_toEndOf="@+id/imgViewProductListImage"
+        android:fontFamily="@font/alegreya_sans_sc_light"
+        android:text="£ 0.00"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/btnWishListAddToCart"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_below="@+id/txtViewProductPrice"
+        android:layout_marginEnd="5dp"
+        android:layout_toEndOf="@+id/imgViewProductListImage"
+        android:background="@drawable/custom_round_layout"
+        android:fontFamily="@font/alegreya_sans_sc"
+        android:padding="10dp"
+        android:text="@string/string_add_to_cart"
+        android:textSize="10dp" />
+
+    <Button
+        android:id="@+id/btnWishListRemoveCart"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_below="@+id/txtViewProductPrice"
+        android:layout_toEndOf="@+id/btnWishListAddToCart"
+        android:background="@drawable/custom_round_layout"
+        android:fontFamily="@font/alegreya_sans_sc"
+        android:padding="10dp"
+        android:text="@string/string_remove_from_cart"
+        android:textSize="10dp" />
+
+</RelativeLayout>

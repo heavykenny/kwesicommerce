@@ -5,67 +5,66 @@
     android:id="@+id/navigation_bar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="bottom"
     android:layout_alignParentBottom="true"
-    android:background="@color/black"
+    android:layout_gravity="bottom"
+    android:background="@color/oxford_blue"
     android:orientation="horizontal">
 
     <LinearLayout
-        android:id="@+id/home_layout"
+        android:id="@+id/linLayoutHome"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_margin="10dp"
+        android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/home"
+            android:src="@drawable/icon_home"
             app:tint="@color/antiflash_white" />
 
         <TextView
-            android:textSize="10sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Home"
-            android:textColor="@color/antiflash_white" />
+            android:fontFamily="@font/alegreya_sans_sc_light"
+            android:text="@string/string_home"
+            android:textColor="@color/antiflash_white"
+            android:textSize="10sp" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/shop_layout"
+        android:id="@+id/linLayoutShop"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_margin="10dp"
+        android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/shop_icon"
+            android:src="@drawable/icon_shop"
             app:tint="@color/antiflash_white" />
 
         <TextView
-            android:textSize="10sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Shop"
-            android:textColor="@color/antiflash_white" />
-
+            android:fontFamily="@font/alegreya_sans_sc_light"
+            android:text="@string/string_shop"
+            android:textColor="@color/antiflash_white"
+            android:textSize="10sp" />
     </LinearLayout>
 
-    <!-- Other LinearLayouts (home_layout, shop_layout) -->
-
     <LinearLayout
-        android:id="@+id/wishlist_layout"
+        android:id="@+id/linLayoutWishlist"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_margin="10dp"
+        android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -74,21 +73,22 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/wishlist"
+                android:id="@+id/imgViewWishlist"
                 android:layout_width="57dp"
                 android:layout_height="wrap_content"
-                android:src="@drawable/wishlist"
+                android:src="@drawable/icon_wishlist"
                 app:tint="@color/antiflash_white" />
 
             <TextView
-                android:id="@+id/wishlist_item_count"
+                android:id="@+id/txtViewWishlistCounter"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:paddingTop="3dp"
-                android:paddingLeft="7dp"
-                android:paddingBottom="0dp"
                 android:layout_gravity="top|end"
-                android:background="@drawable/round_layout_menu"
+                android:background="@drawable/custom_round_layout"
+                android:fontFamily="@font/alegreya_sans_sc_light"
+                android:paddingStart="7dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="0dp"
                 android:text="0"
                 android:textColor="@color/antiflash_white"
                 android:textSize="10sp" />
@@ -96,23 +96,21 @@
         </FrameLayout>
 
         <TextView
-            android:id="@+id/wishlist_counter"
-            android:textSize="10sp"
+            android:id="@+id/txtViewWishlist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Wishlist"
-            android:textColor="@color/antiflash_white" />
+            android:fontFamily="@font/alegreya_sans_sc_light"
+            android:text="@string/string_wishlist"
+            android:textColor="@color/antiflash_white"
+            android:textSize="10sp" />
     </LinearLayout>
 
-    <!-- Other LinearLayouts (account_layout, menu_layout) -->
-
-
     <LinearLayout
-        android:id="@+id/profile_layout"
+        android:id="@+id/linLayoutProfile"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_margin="10dp"
+        android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -123,21 +121,21 @@
             app:tint="@color/antiflash_white" />
 
         <TextView
-            android:textSize="10sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Account"
-            android:textColor="@color/antiflash_white" />
-
+            android:fontFamily="@font/alegreya_sans_sc_light"
+            android:text="@string/string_account"
+            android:textColor="@color/antiflash_white"
+            android:textSize="10sp" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/menu_layout"
+        android:id="@+id/linLayoutMenu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:layout_margin="10dp"
         android:orientation="vertical">
 
         <ImageView
@@ -147,11 +145,12 @@
             app:tint="@color/antiflash_white" />
 
         <TextView
-            android:textSize="10sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Menu"
-            android:textColor="@color/antiflash_white" />
+            android:fontFamily="@font/alegreya_sans_sc_light"
+            android:text="@string/string_menu"
+            android:textColor="@color/antiflash_white"
+            android:textSize="10sp" />
 
     </LinearLayout>
 

@@ -10,7 +10,6 @@ import android.widget.RelativeLayout;
 
 import com.example.kwesicommerce.R;
 import com.example.kwesicommerce.ui.activities.AccountActivity;
-import com.example.kwesicommerce.ui.activities.ProfileActivity;
 import com.example.kwesicommerce.ui.activities.CategoryActivity;
 import com.example.kwesicommerce.ui.activities.HomeActivity;
 import com.example.kwesicommerce.ui.activities.WishlistActivity;
@@ -29,10 +28,10 @@ public class NavigationUtils {
         this.activity = activity;
         this.activeNavItem = activeNavItem;
 
-        homeLayout = activity.findViewById(R.id.home_layout);
-        categoryLayout = activity.findViewById(R.id.shop_layout);
-        wishlistLayout = activity.findViewById(R.id.wishlist_layout);
-        accountLayout = activity.findViewById(R.id.profile_layout);
+        homeLayout = activity.findViewById(R.id.linLayoutHome);
+        categoryLayout = activity.findViewById(R.id.linLayoutShop);
+        wishlistLayout = activity.findViewById(R.id.linLayoutWishlist);
+        accountLayout = activity.findViewById(R.id.linLayoutProfile);
 
     }
 
@@ -43,7 +42,7 @@ public class NavigationUtils {
                 Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         clickAnimation.setDuration(200);
 
-        activeNavItem.setBackgroundResource(R.drawable.round_layout_menu);
+        activeNavItem.setBackgroundResource(R.drawable.custom_round_layout);
 
         homeLayout.setOnClickListener(v -> {
             v.startAnimation(clickAnimation);
@@ -80,7 +79,7 @@ public class NavigationUtils {
 
     public void backNavigation() {
 
-        RelativeLayout backLayout = activity.findViewById(R.id.back_button_layout);
+        RelativeLayout backLayout = activity.findViewById(R.id.relLayoutBackButton);
         backLayout.setOnClickListener(v -> {
             activity.finish();
             activity.overridePendingTransition(0, 0);

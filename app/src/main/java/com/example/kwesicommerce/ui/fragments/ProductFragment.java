@@ -28,7 +28,7 @@ public class ProductFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_product, container, false);
 
-        quizView = view.findViewById(R.id.quiz_gridView);
+        quizView = view.findViewById(R.id.gridViewProduct);
 
 
         // Create a list of Product objects

@@ -17,13 +17,13 @@ public class AccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
 
-        LinearLayout active = findViewById(R.id.profile_layout);
+        LinearLayout active = findViewById(R.id.linLayoutProfile);
         NavigationUtils navigationUtils = new NavigationUtils(getBaseContext(), this, active);
         navigationUtils.setNavigationItemClick();
         navigationUtils.backNavigation();
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, new AccountFragment());
+        fragmentTransaction.replace(R.id.fragProductContainer, new AccountFragment());
         fragmentTransaction.commit();
     }
 

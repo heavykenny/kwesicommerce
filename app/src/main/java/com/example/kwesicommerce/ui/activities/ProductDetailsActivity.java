@@ -1,3 +1,4 @@
+
 package com.example.kwesicommerce.ui.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,27 +9,18 @@ import android.widget.LinearLayout;
 import com.example.kwesicommerce.R;
 import com.example.kwesicommerce.utils.NavigationUtils;
 
-public class HomeActivity extends AppCompatActivity {
+public class ProductDetailsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_product_details);
 
-        LinearLayout active = findViewById(R.id.linLayoutHome);
+        LinearLayout active = findViewById(R.id.linLayoutShop);
 
         NavigationUtils navigationUtils = new NavigationUtils(getBaseContext(), this, active);
         navigationUtils.setNavigationItemClick();
-    }
 
-    @Override
-    public void onBackPressed() {
-        finish();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        overridePendingTransition(0, 0);
+        navigationUtils.backNavigation();
     }
 }

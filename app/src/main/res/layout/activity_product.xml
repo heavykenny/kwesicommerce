@@ -1,49 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.activities.ProductActivity">
 
-    <include layout="@layout/top_bar" />
+    <include layout="@layout/layout_top_bar" />
 
     <RelativeLayout
-        android:id="@+id/back_navigation"
+        android:id="@+id/relLayoutBackNavigation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/top_bar">
+        android:layout_below="@+id/linLayoutTopBar">
 
-        <include layout="@layout/back_navigation" />
+        <include layout="@layout/layout_back_navigation" />
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/product_container"
+        android:id="@+id/relLayoutProductContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/back_navigation">
+        android:layout_below="@+id/relLayoutBackNavigation">
 
         <FrameLayout
-            android:id="@+id/fragment_container"
+            android:id="@+id/fragProductContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="70dp"
-             />
+            android:layout_marginBottom="70dp" />
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/navigation_container"
+        android:id="@+id/relLayoutNavigationContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/fragment_container">
+        android:layout_below="@+id/fragProductContainer">
 
-        <include layout="@layout/navigation" />
+        <include layout="@layout/layout_bottom_navigation" />
     </RelativeLayout>
-
-
-
-
 
 </RelativeLayout>
 

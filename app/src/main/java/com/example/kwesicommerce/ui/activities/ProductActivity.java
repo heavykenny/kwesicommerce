@@ -26,7 +26,7 @@ public class ProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
 
-        LinearLayout active = findViewById(R.id.shop_layout);
+        LinearLayout active = findViewById(R.id.linLayoutShop);
 
         NavigationUtils navigationUtils = new NavigationUtils(getBaseContext(), this, active);
         navigationUtils.setNavigationItemClick();
@@ -39,7 +39,7 @@ public class ProductActivity extends AppCompatActivity {
         // Create a new Fragment instance
         ProductFragment fragment = new ProductFragment();
         // Add the Fragment to the layout
-        fragmentManager.beginTransaction().add(R.id.fragment_container, fragment)
+        fragmentManager.beginTransaction().add(R.id.fragProductContainer, fragment)
                 .commit();
     }
 

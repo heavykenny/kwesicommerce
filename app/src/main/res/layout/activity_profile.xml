@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background1"
+    android:background="@drawable/background2"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".ui.activities.ProfileActivity">
 
-    <include layout="@layout/top_bar" />
+    <include layout="@layout/layout_top_bar" />
 
-    <include layout="@layout/back_navigation" />
+    <include layout="@layout/layout_back_navigation" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,66 +18,72 @@
         android:layout_weight="1">
 
         <ImageView
-            android:id="@+id/profile_photo"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:id="@+id/imgViewProductImage"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/circle_shape"
-            android:padding="16dp"
-            android:src="@drawable/favorite" />
+            android:src="@drawable/account" />
 
         <TextView
-            android:id="@+id/profile_name"
+            android:id="@+id/txtProfileName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/profile_photo"
+            android:layout_below="@+id/imgViewProductImage"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/alegreya_sans_sc"
             android:text="John Doe"
-            android:textColor="@android:color/black"
+            android:textColor="@color/antiflash_white"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/profile_email"
+            android:id="@+id/txtProfileEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/profile_name"
+            android:layout_below="@+id/txtProfileName"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/alegreya_sans_sc_light"
             android:text="john.doe@example.com"
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/address"
+            android:id="@+id/txtProfileAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/profile_email"
+            android:layout_below="@+id/txtProfileEmail"
             android:layout_centerHorizontal="true"
+            android:fontFamily="@font/alegreya_sans_sc_light"
             android:text="Marriott Hotel, Accra"
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/phone_number"
+            android:id="@+id/txtProfilePhoneNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/address"
+            android:layout_below="@+id/txtProfileAddress"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
-            android:text="07772837384"
+            android:fontFamily="@font/alegreya_sans_sc_light"
+            android:text="00000000000"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/profile_edit_button"
+            android:id="@+id/btnProfileEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/phone_number"
+            android:layout_below="@+id/txtProfilePhoneNumber"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="32dp"
-            android:text="Edit Profile" />
+            android:background="@drawable/custom_round_layout"
+            android:fontFamily="@font/alegreya_sans_sc"
+            android:padding="20dp"
+            android:text="@string/string_edit_profile" />
 
     </RelativeLayout>
 
-    <include layout="@layout/navigation" />
+    <include layout="@layout/layout_bottom_navigation" />
 </LinearLayout>

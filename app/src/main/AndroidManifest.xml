@@ -15,6 +15,9 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activities.ProductDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activities.WishlistActivity"
             android:exported="false" />
         <activity
@@ -23,11 +26,9 @@
         <activity
             android:name=".ui.activities.ProfileActivity"
             android:exported="false" />
-
         <activity
             android:name=".ui.activities.MainActivity"
             android:exported="false" />
-
         <activity
             android:name=".ui.activities.HomeActivity"
             android:exported="true">
@@ -52,11 +53,13 @@
         <activity
             android:name=".ui.activities.AccountActivity"
             android:exported="false" />
-
         <activity
             android:name=".ui.activities.OrderActivity"
             android:exported="false" />
 
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

@@ -21,7 +21,7 @@ public class CategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
 
-        LinearLayout active = findViewById(R.id.shop_layout);
+        LinearLayout active = findViewById(R.id.linLayoutShop);
 
         NavigationUtils navigationUtils = new NavigationUtils(getBaseContext(), this, active);
         navigationUtils.setNavigationItemClick();
@@ -38,7 +38,7 @@ public class CategoryActivity extends AppCompatActivity {
         data.add(new Category("Food"));
         data.add(new Category("Food"));
 
-        RecyclerView rvTestList = findViewById(R.id.rvTestList);
+        RecyclerView rvTestList = findViewById(R.id.rvListCategoryList);
         CategoryRecyclerViewAdapter adapter = new CategoryRecyclerViewAdapter(data, getApplicationContext(), this);
         rvTestList.setAdapter(adapter);
         rvTestList.setLayoutManager(new LinearLayoutManager(this));

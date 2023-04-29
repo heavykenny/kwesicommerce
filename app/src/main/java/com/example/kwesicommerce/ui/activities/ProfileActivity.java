@@ -15,7 +15,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        LinearLayout active = findViewById(R.id.profile_layout);
+        LinearLayout active = findViewById(R.id.linLayoutProfile);
 
         NavigationUtils navigationUtils = new NavigationUtils(getBaseContext(), this, active);
         navigationUtils.setNavigationItemClick();

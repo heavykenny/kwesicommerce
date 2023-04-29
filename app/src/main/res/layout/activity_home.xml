@@ -9,7 +9,7 @@
     android:orientation="vertical"
     tools:context=".ui.activities.HomeActivity">
 
-    <include layout="@layout/top_bar" />
+    <include layout="@layout/layout_top_bar" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -58,5 +58,5 @@
 
     </RelativeLayout>
 
-    <include layout="@layout/navigation" />
+    <include layout="@layout/layout_bottom_navigation" />
 </LinearLayout>

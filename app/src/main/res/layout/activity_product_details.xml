@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background2"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ui.activities.ProductDetailsActivity">
+
+    <include layout="@layout/layout_top_bar" />
+
+    <include layout="@layout/layout_back_navigation" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/imgViewProductImage"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_centerHorizontal="true"
+            android:background="@color/antiflash_white"
+            android:padding="16dp"
+            android:src="@drawable/image_placeholder" />
+
+        <RelativeLayout
+            android:id="@+id/relLayoutProductDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imgViewProductImage"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/txtViewProductListTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/alegreya_sans_sc"
+                android:text="Product Title"
+                android:textColor="@android:color/black"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/txtViewProductPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtViewProductListTitle"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/alegreya_sans_sc"
+                android:text="£ 99.00"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/txtViewProductListDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtViewProductPrice"
+                android:fontFamily="@font/alegreya_sans_sc_light"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod equat."
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_marginBottom="5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp">
+
+            <Button
+                android:backgroundTint="@color/oxford_blue"
+                android:id="@+id/btnDecrementCounter"
+                android:layout_width="50dp"
+                android:background="@drawable/custom_round_layout"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="0dp"
+                android:text="-"
+                android:textSize="20sp" />
+
+            <Button
+                android:background="@drawable/custom_round_layout"
+                android:id="@+id/btnQuantityCounter"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="0dp"
+                android:layout_toEndOf="@id/btnDecrementCounter"
+                android:text="0"
+                android:textSize="11sp" />
+
+            <Button
+                android:background="@drawable/custom_round_layout"
+                android:id="@+id/btnIncrementCounter"
+                android:backgroundTint="@color/oxford_blue"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="0dp"
+                android:layout_toEndOf="@id/btnQuantityCounter"
+                android:text="+"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/btnAddToCart"
+                android:background="@drawable/custom_round_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toEndOf="@id/btnIncrementCounter"
+                android:text="@string/string_add_to_cart"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <include layout="@layout/layout_bottom_navigation" />
+</LinearLayout>

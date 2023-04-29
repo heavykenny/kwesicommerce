@@ -5,7 +5,7 @@
     android:padding="6dp">
 
     <ImageView
-        android:id="@+id/product_image"
+        android:id="@+id/imgViewProductListImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
@@ -25,13 +25,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/product_image"
+        android:layout_below="@id/imgViewProductListImage"
         android:background="@color/black"
         android:orientation="vertical"
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/product_title"
+            android:id="@+id/txtViewProductListTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Product Title"
@@ -39,7 +39,7 @@
             android:textSize="8sp" />
 
         <TextView
-            android:id="@+id/product_description"
+            android:id="@+id/txtViewProductListDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="2"
@@ -48,7 +48,7 @@
             android:textSize="8sp" />
 
         <TextView
-            android:id="@+id/product_price"
+            android:id="@+id/txtViewProductPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="2dp"

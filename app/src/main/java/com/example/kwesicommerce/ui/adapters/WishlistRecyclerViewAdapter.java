@@ -29,7 +29,7 @@ public class WishlistRecyclerViewAdapter extends RecyclerView.Adapter<WishlistRe
     @NonNull
     @Override
     public WishlistRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.wishishlist_list, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_wishishlist_list, parent, false);
         return new ViewHolder(v);
     }
 
@@ -48,7 +48,7 @@ public class WishlistRecyclerViewAdapter extends RecyclerView.Adapter<WishlistRe
 
         public ViewHolder(View itemView) {
             super(itemView);
-            txtTitle = itemView.findViewById(R.id.product_title);
+            txtTitle = itemView.findViewById(R.id.txtViewProductListTitle);
 
             itemView.setOnClickListener(this);
         }

@@ -17,6 +17,7 @@
     <color name="antiflash_white">#EFF1F3</color>
     <color name="gunmetal">#1E2D3C</color>
     <color name="rich_black">#001021</color>
+    <color name="faint_white">#EDECEC</color>
 
     <color name="faint_black">#868686</color>
 </resources>
