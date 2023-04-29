@@ -9,16 +9,41 @@
 
     <include layout="@layout/top_bar" />
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:id="@+id/back_navigation"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/top_bar"
-        android:layout_marginBottom="60dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_below="@+id/top_bar">
 
-    <include layout="@layout/navigation" />
+        <include layout="@layout/back_navigation" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/product_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/back_navigation">
+
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="70dp"
+             />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/navigation_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_container">
+
+        <include layout="@layout/navigation" />
+    </RelativeLayout>
+
+
+
+
 
 </RelativeLayout>
 

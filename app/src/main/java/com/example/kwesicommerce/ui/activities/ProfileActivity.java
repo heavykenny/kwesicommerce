@@ -14,6 +14,13 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        LinearLayout active = findViewById(R.id.profile_layout);
+
+        NavigationUtils navigationUtils = new NavigationUtils(getBaseContext(), this, active);
+        navigationUtils.setNavigationItemClick();
+
+        navigationUtils.backNavigation();
     }
 
     @Override

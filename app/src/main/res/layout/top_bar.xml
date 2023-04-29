@@ -22,7 +22,6 @@
             android:padding="16dp"
             android:src="@drawable/search" />
 
-        <!-- Shop icon -->
         <ImageView
             android:id="@+id/shop_icon"
             android:layout_width="wrap_content"
@@ -30,6 +29,24 @@
             android:layout_alignParentEnd="true"
             android:padding="16dp"
             android:src="@drawable/shop_icon" />
+
+        <!-- Counter badge -->
+        <TextView
+            android:id="@+id/counter_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@id/shop_icon"
+            android:layout_alignTop="@id/shop_icon"
+            android:background="@drawable/round_layout_menu"
+            android:gravity="center"
+            android:minWidth="20dp"
+            android:minHeight="20dp"
+            android:padding="1dp"
+            android:layout_margin="1dp"
+            android:textColor="#FFFFFF"
+            android:text="10"
+            android:textSize="10sp" />
+
 
         <!-- Title text -->
         <TextView

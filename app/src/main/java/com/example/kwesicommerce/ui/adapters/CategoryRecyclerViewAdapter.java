@@ -1,6 +1,8 @@
 package com.example.kwesicommerce.ui.adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,19 +13,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kwesicommerce.R;
 import com.example.kwesicommerce.data.model.Category;
+import com.example.kwesicommerce.ui.activities.CategoryActivity;
+import com.example.kwesicommerce.ui.activities.ProductActivity;
 
 import java.util.List;
 
 // REFERENCE: https://developer.android.com/develop/ui/views/layout/recyclerview
 public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRecyclerViewAdapter.ViewHolder> {
     List<Category> categoryList;
+    static Context appContext;
+    static Activity activity;
 
-    Category category;
-    Context appContext;
-
-    public CategoryRecyclerViewAdapter(List<Category> categoryList, Context appContext) {
+        public CategoryRecyclerViewAdapter(List<Category> categoryList, Context appContext, Activity activity) {
         this.categoryList = categoryList;
         this.appContext = appContext;
+        this.activity = activity;
     }
 
     @NonNull
@@ -56,7 +60,12 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
         // Handle onClick events for the whole item view
         @Override
         public void onClick(View v) {
-            int index = getAdapterPosition();
+            Intent intent = new Intent(appContext, ProductActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            appContext.startActivity(intent);
+            // overridePendingTransition
+            activity.overridePendingTransition(0, 0);
+
         }
     }
 }

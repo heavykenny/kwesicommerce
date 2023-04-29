@@ -3,15 +3,16 @@ package com.example.kwesicommerce.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.GradientDrawable;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.example.kwesicommerce.R;
 import com.example.kwesicommerce.ui.activities.AccountActivity;
+import com.example.kwesicommerce.ui.activities.ProfileActivity;
+import com.example.kwesicommerce.ui.activities.CategoryActivity;
 import com.example.kwesicommerce.ui.activities.HomeActivity;
-import com.example.kwesicommerce.ui.activities.ProductActivity;
 import com.example.kwesicommerce.ui.activities.WishlistActivity;
 
 public class NavigationUtils {
@@ -19,7 +20,7 @@ public class NavigationUtils {
     private final Context context;
     private final Activity activity;
     private final LinearLayout homeLayout;
-    private final LinearLayout shopLayout;
+    private final LinearLayout categoryLayout;
     private final LinearLayout wishlistLayout;
     private final LinearLayout accountLayout;
 
@@ -29,9 +30,9 @@ public class NavigationUtils {
         this.activeNavItem = activeNavItem;
 
         homeLayout = activity.findViewById(R.id.home_layout);
-        shopLayout = activity.findViewById(R.id.shop_layout);
+        categoryLayout = activity.findViewById(R.id.shop_layout);
         wishlistLayout = activity.findViewById(R.id.wishlist_layout);
-        accountLayout = activity.findViewById(R.id.account_layout);
+        accountLayout = activity.findViewById(R.id.profile_layout);
 
     }
 
@@ -52,9 +53,9 @@ public class NavigationUtils {
             activity.overridePendingTransition(0, 0);
         });
 
-        shopLayout.setOnClickListener(v -> {
+        categoryLayout.setOnClickListener(v -> {
             v.startAnimation(clickAnimation);
-            Intent intent = new Intent(context, ProductActivity.class);
+            Intent intent = new Intent(context, CategoryActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
             activity.overridePendingTransition(0, 0);
@@ -73,6 +74,15 @@ public class NavigationUtils {
             Intent intent = new Intent(context, AccountActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
+            activity.overridePendingTransition(0, 0);
+        });
+    }
+
+    public void backNavigation() {
+
+        RelativeLayout backLayout = activity.findViewById(R.id.back_button_layout);
+        backLayout.setOnClickListener(v -> {
+            activity.finish();
             activity.overridePendingTransition(0, 0);
         });
     }

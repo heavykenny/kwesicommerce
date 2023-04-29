@@ -58,6 +58,8 @@
 
     </LinearLayout>
 
+    <!-- Other LinearLayouts (home_layout, shop_layout) -->
+
     <LinearLayout
         android:id="@+id/wishlist_layout"
         android:layout_width="0dp"
@@ -67,23 +69,46 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <ImageView
+        <FrameLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/wishlist"
-            app:tint="@color/antiflash_white" />
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/wishlist"
+                android:layout_width="57dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/wishlist"
+                app:tint="@color/antiflash_white" />
+
+            <TextView
+                android:id="@+id/wishlist_item_count"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:paddingTop="3dp"
+                android:paddingLeft="7dp"
+                android:paddingBottom="0dp"
+                android:layout_gravity="top|end"
+                android:background="@drawable/round_layout_menu"
+                android:text="0"
+                android:textColor="@color/antiflash_white"
+                android:textSize="10sp" />
+
+        </FrameLayout>
 
         <TextView
+            android:id="@+id/wishlist_counter"
             android:textSize="10sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Wishlist"
             android:textColor="@color/antiflash_white" />
-
     </LinearLayout>
 
+    <!-- Other LinearLayouts (account_layout, menu_layout) -->
+
+
     <LinearLayout
-        android:id="@+id/account_layout"
+        android:id="@+id/profile_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -129,5 +154,6 @@
             android:textColor="@color/antiflash_white" />
 
     </LinearLayout>
+
 </LinearLayout>
 

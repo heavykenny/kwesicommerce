@@ -28,21 +28,23 @@
         android:layout_toEndOf="@+id/product_image"
         android:maxLines="2"
         android:text="Product Description"
-        android:textSize="14sp" />
+        android:textSize="10sp" />
 
     <TextView
         android:id="@+id/product_price"
+        android:textSize="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/product_description"
         android:layout_toEndOf="@+id/product_image"
         android:text="£0.00"
-        android:textSize="18sp" />
+        />
 
     <Button
         android:id="@+id/add_to_basket_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="7dp"
         android:layout_below="@+id/product_price"
         android:layout_toEndOf="@+id/product_image"
         android:text="Add to Cart" />
@@ -51,6 +53,7 @@
         android:id="@+id/remove_from_basket_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="7dp"
         android:layout_below="@+id/product_price"
         android:layout_toEndOf="@+id/add_to_basket_button"
         android:text="Remove from Cart" />
