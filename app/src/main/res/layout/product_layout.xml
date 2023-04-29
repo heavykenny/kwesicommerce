@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@color/antiflash_white"
     android:layout_height="wrap_content"
-    android:padding="6dp">
+    android:padding="2dp">
 
     <ImageView
         android:id="@+id/imgViewProductListImage"
@@ -26,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/imgViewProductListImage"
-        android:background="@color/black"
+        android:background="@drawable/background2"
         android:orientation="vertical"
         android:padding="10dp">
 
@@ -34,27 +35,19 @@
             android:id="@+id/txtViewProductListTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/alegreya_sans_sc_bold"
             android:text="Product Title"
             android:textColor="@android:color/white"
-            android:textSize="8sp" />
-
-        <TextView
-            android:id="@+id/txtViewProductListDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxLines="2"
-            android:text="Product Description"
-            android:textColor="@android:color/white"
-            android:textSize="8sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/txtViewProductPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="2dp"
+            android:fontFamily="@font/alegreya_sans"
             android:text="£0.00"
             android:textColor="@android:color/white"
-            android:textSize="5sp" />
+            android:textSize="15sp" />
 
     </LinearLayout>
 

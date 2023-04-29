@@ -28,7 +28,7 @@ public class WishlistActivity extends AppCompatActivity {
         NavigationUtils navigationUtils = new NavigationUtils(getBaseContext(), this, active);
         navigationUtils.setNavigationItemClick();
 
-        navigationUtils.backNavigation();
+        navigationUtils.backNavigation("Wishlist");
 
         List<Product> data = new ArrayList<>();
         Category cat = new Category("Gadgets");

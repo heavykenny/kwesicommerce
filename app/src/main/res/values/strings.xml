@@ -28,4 +28,5 @@
     <string name="string_required_first_name">*First name</string>
     <string name="string_required_last_name">*Last name</string>
     <string name="string_required_confirm_password">*Confirm Password</string>
+    <string name="string_page_title">Page Title</string>
 </resources>

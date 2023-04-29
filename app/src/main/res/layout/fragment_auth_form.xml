@@ -27,7 +27,7 @@
                 android:textSize="30sp" />
 
             <Button
-                android:id="@+id/register_button"
+                android:id="@+id/btnRegister"
                 android:layout_width="0dp"
                 android:layout_height="80dp"
                 android:layout_weight="1"
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:id="@+id/register_form"
+            android:id="@+id/linLayRegisterForm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -70,10 +70,11 @@
                     android:textSize="15sp" />
 
                 <EditText
-                    android:fontFamily="@font/alegreya_sans"
+                    android:id="@+id/edtTxtFirstName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/edittext_border"
+                    android:background="@drawable/custom_edit_text_box"
+                    android:fontFamily="@font/alegreya_sans"
                     android:hint="@string/string_enter_first_name"
                     android:inputType="textCapWords|textPersonName"
                     android:padding="15dp"
@@ -92,10 +93,11 @@
                     android:textSize="15sp" />
 
                 <EditText
-                    android:fontFamily="@font/alegreya_sans"
+                    android:id="@+id/edtTxtLastName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/edittext_border"
+                    android:background="@drawable/custom_edit_text_box"
+                    android:fontFamily="@font/alegreya_sans"
                     android:hint="@string/string_enter_last_name"
                     android:inputType="textCapWords|textPersonName"
                     android:padding="15dp"
@@ -115,10 +117,11 @@
                     android:textSize="15sp" />
 
                 <EditText
-                    android:fontFamily="@font/alegreya_sans"
+                    android:id="@+id/edtTxtEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/edittext_border"
+                    android:background="@drawable/custom_edit_text_box"
+                    android:fontFamily="@font/alegreya_sans"
                     android:hint="@string/string_enter_your_email"
                     android:inputType="textEmailAddress"
                     android:padding="15dp"
@@ -138,11 +141,11 @@
                     android:textSize="15sp" />
 
                 <EditText
-                    android:fontFamily="@font/alegreya_sans"
-                    android:id="@+id/password_edit_text"
+                    android:id="@+id/edtTxtPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/edittext_border"
+                    android:background="@drawable/custom_edit_text_box"
+                    android:fontFamily="@font/alegreya_sans"
                     android:hint="@string/string_enter_your_password"
                     android:inputType="textPassword"
                     android:padding="15dp"
@@ -162,10 +165,11 @@
                     android:textSize="15sp" />
 
                 <EditText
-                    android:fontFamily="@font/alegreya_sans"
+                    android:id="@+id/edtTxtConfirmPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/edittext_border"
+                    android:background="@drawable/custom_edit_text_box"
+                    android:fontFamily="@font/alegreya_sans"
                     android:hint="@string/string_enter_password_again"
                     android:inputType="textPassword"
                     android:padding="15dp"
@@ -176,21 +180,22 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/btnAccountRegister"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp"
                 android:background="@drawable/custom_square_layout"
                 android:fontFamily="@font/alegreya_sans_sc_medium"
                 android:padding="15dp"
                 android:text="@string/string_register_new_account"
                 android:textColor="@color/white"
-                android:layout_marginBottom="30dp"
                 android:textSize="30sp" />
         </LinearLayout>
     </ScrollView>
 
     <LinearLayout
-        android:id="@+id/login_form"
+        android:id="@+id/linLayLoginForm"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="30dp"
@@ -216,13 +221,13 @@
                 android:textSize="15sp" />
 
             <EditText
-                android:id="@+id/email_edit_text"
+                android:id="@+id/edtTxtEmailLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/edittext_border"
+                android:background="@drawable/custom_edit_text_box"
+                android:fontFamily="@font/alegreya_sans"
                 android:hint="@string/string_enter_your_email"
                 android:inputType="textEmailAddress"
-                android:fontFamily="@font/alegreya_sans"
                 android:padding="15dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/faint_black"
@@ -240,10 +245,11 @@
                 android:textSize="15sp" />
 
             <EditText
-                android:fontFamily="@font/alegreya_sans"
+                android:id="@+id/edtTxtPasswordLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/edittext_border"
+                android:background="@drawable/custom_edit_text_box"
+                android:fontFamily="@font/alegreya_sans"
                 android:hint="@string/string_enter_your_password"
                 android:inputType="textPassword"
                 android:padding="15dp"
@@ -262,8 +268,8 @@
                 android:textSize="11sp" />
         </LinearLayout>
 
-
         <Button
+            android:id="@+id/btnAccountLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"

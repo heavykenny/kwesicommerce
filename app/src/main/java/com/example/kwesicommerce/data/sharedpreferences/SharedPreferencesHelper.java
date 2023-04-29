@@ -3,6 +3,8 @@ package com.example.kwesicommerce.data.sharedpreferences;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.kwesicommerce.data.model.User;
+
 public class SharedPreferencesHelper {
 
     private static final String PREF_NAME = "myapp_pref";
@@ -81,8 +83,8 @@ public class SharedPreferencesHelper {
         return sharedPreferences.getString(KEY_USER_LAST_UPDATED, "");
     }
 
-    public void setUserLastUpdated(String lastUpdated) {
-        sharedPreferences.edit().putString(KEY_USER_LAST_UPDATED, lastUpdated).apply();
+    public void setDateUpdated(String dateUpdated) {
+        sharedPreferences.edit().putString(KEY_USER_LAST_UPDATED, dateUpdated).apply();
     }
 
     public void clearUserData() {
@@ -94,5 +96,17 @@ public class SharedPreferencesHelper {
         sharedPreferences.edit().remove(KEY_USER_POSTCODE).apply();
         sharedPreferences.edit().remove(KEY_USER_ADDRESS).apply();
         sharedPreferences.edit().remove(KEY_USER_LAST_UPDATED).apply();
+    }
+
+
+    public void setUserDetails(User user) {
+        sharedPreferences.edit().putInt(KEY_USER_ID, user.getId()).apply();
+        sharedPreferences.edit().putString(KEY_USER_FULLNAME, user.getFullName()).apply();
+        sharedPreferences.edit().putString(KEY_USER_EMAIL, user.getEmail()).apply();
+        sharedPreferences.edit().putString(KEY_USER_PASSWORD, user.getPassword()).apply();
+        sharedPreferences.edit().putString(KEY_USER_HOBBIES, user.getHobbies()).apply();
+        sharedPreferences.edit().putString(KEY_USER_POSTCODE, user.getPostcode()).apply();
+        sharedPreferences.edit().putString(KEY_USER_ADDRESS, user.getAddress()).apply();
+        sharedPreferences.edit().putString(KEY_USER_LAST_UPDATED, user.getDateUpdated()).apply();
     }
 }

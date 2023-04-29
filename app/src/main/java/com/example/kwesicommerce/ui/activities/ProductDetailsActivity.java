@@ -21,6 +21,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
         NavigationUtils navigationUtils = new NavigationUtils(getBaseContext(), this, active);
         navigationUtils.setNavigationItemClick();
 
-        navigationUtils.backNavigation();
+        navigationUtils.backNavigation("Product Details");
     }
 }

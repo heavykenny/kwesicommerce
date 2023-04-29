@@ -26,11 +26,12 @@
         android:id="@+id/txtViewProductPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingBottom="2dp"
         android:layout_below="@+id/txtViewProductListTitle"
         android:layout_toEndOf="@+id/imgViewProductListImage"
         android:fontFamily="@font/alegreya_sans_sc_light"
         android:text="£ 0.00"
-        android:textSize="20dp" />
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/btnWishListAddToCart"
@@ -39,7 +40,7 @@
         android:layout_below="@+id/txtViewProductPrice"
         android:layout_marginEnd="5dp"
         android:layout_toEndOf="@+id/imgViewProductListImage"
-        android:background="@drawable/custom_round_layout"
+        android:background="@drawable/custom_square_layout"
         android:fontFamily="@font/alegreya_sans_sc"
         android:padding="10dp"
         android:text="@string/string_add_to_cart"
@@ -51,7 +52,7 @@
         android:layout_height="30dp"
         android:layout_below="@+id/txtViewProductPrice"
         android:layout_toEndOf="@+id/btnWishListAddToCart"
-        android:background="@drawable/custom_round_layout"
+        android:background="@drawable/custom_square_layout"
         android:fontFamily="@font/alegreya_sans_sc"
         android:padding="10dp"
         android:text="@string/string_remove_from_cart"

@@ -26,15 +26,10 @@ public class CategoryActivity extends AppCompatActivity {
         NavigationUtils navigationUtils = new NavigationUtils(getBaseContext(), this, active);
         navigationUtils.setNavigationItemClick();
 
-        navigationUtils.backNavigation();
+        navigationUtils.backNavigation("Category");
 
         List<Category> data = new ArrayList<>();
         data.add(new Category("Category Food"));
-        data.add(new Category("Food"));
-        data.add(new Category("Food"));
-        data.add(new Category("Food"));
-        data.add(new Category("Food"));
-        data.add(new Category("Food"));
         data.add(new Category("Food"));
         data.add(new Category("Food"));
 

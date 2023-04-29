@@ -7,6 +7,7 @@ import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.kwesicommerce.R;
 import com.example.kwesicommerce.ui.activities.AccountActivity;
@@ -37,12 +38,12 @@ public class NavigationUtils {
 
     public void setNavigationItemClick() {
 
-        final float scaleValue = 1.2f; // Increase the size by 20%
+        final float scaleValue = 1.2f;
         final Animation clickAnimation = new ScaleAnimation(1f, scaleValue, 1f, scaleValue,
                 Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         clickAnimation.setDuration(200);
 
-        activeNavItem.setBackgroundResource(R.drawable.custom_round_layout);
+        activeNavItem.setBackgroundResource(R.color.oxford_blue_dark);
 
         homeLayout.setOnClickListener(v -> {
             v.startAnimation(clickAnimation);
@@ -77,9 +78,12 @@ public class NavigationUtils {
         });
     }
 
-    public void backNavigation() {
+    public void backNavigation(String title) {
 
         RelativeLayout backLayout = activity.findViewById(R.id.relLayoutBackButton);
+        TextView txtViewPageTitleButton = activity.findViewById(R.id.txtViewPageTitle);
+
+        txtViewPageTitleButton.setText(title);
         backLayout.setOnClickListener(v -> {
             activity.finish();
             activity.overridePendingTransition(0, 0);

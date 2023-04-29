@@ -20,7 +20,7 @@ public class AccountActivity extends AppCompatActivity {
         LinearLayout active = findViewById(R.id.linLayoutProfile);
         NavigationUtils navigationUtils = new NavigationUtils(getBaseContext(), this, active);
         navigationUtils.setNavigationItemClick();
-        navigationUtils.backNavigation();
+        navigationUtils.backNavigation("User Account");
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragProductContainer, new AccountFragment());
