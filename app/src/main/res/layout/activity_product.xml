@@ -1,43 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/antiflash_white"
     android:orientation="vertical"
     tools:context=".ui.activities.ProductActivity">
 
     <include layout="@layout/layout_top_bar" />
 
-    <RelativeLayout
-        android:id="@+id/relLayoutBackNavigation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/linLayoutTopBar">
-
-        <include layout="@layout/layout_back_navigation" />
-    </RelativeLayout>
+    <include layout="@layout/layout_back_navigation" />
 
     <RelativeLayout
         android:id="@+id/relLayoutProductContainer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/relLayoutBackNavigation">
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <FrameLayout
             android:id="@+id/fragProductContainer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginBottom="70dp" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/relLayoutNavigationContainer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/fragProductContainer">
-
-        <include layout="@layout/layout_bottom_navigation" />
-    </RelativeLayout>
-
-</RelativeLayout>
+    <include layout="@layout/layout_bottom_navigation" />
+</LinearLayout>
 

@@ -24,9 +24,15 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 
     // Table names
     private static final String TABLE_USERS = "users";
+    private static final String TABLE_CATEGORIES = "categories";
+    private static final String TABLE_PRODUCTS = "products";
+    private static final String TABLE_CART = "cart";
+    private static final String TABLE_ORDERS = "orders";
+
 
     // User table columns
     private static final String COLUMN_ID = "id";
+    private static final String COLUMN_NAME = "name";
     private static final String COLUMN_FULL_NAME = "fullName";
     private static final String COLUMN_EMAIL = "email";
     private static final String COLUMN_DATE_REGISTERED = "dateRegistered";
@@ -59,7 +65,11 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         db.execSQL(createUserTableQuery);
 
         // Create the category table
-        db.execSQL("CREATE TABLE categories (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)");
+        String createCategoryTableQuery = "CREATE TABLE " + TABLE_CATEGORIES + "(" +
+                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                COLUMN_NAME + " TEXT" +
+                ")";
+        db.execSQL(createCategoryTableQuery);
 
         // Create the product table
         db.execSQL("CREATE TABLE products (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, price REAL, listPrice REAL, retailPrice REAL, dateCreated TEXT, dateUpdated TEXT, categoryId INTEGER, FOREIGN KEY(categoryId) REFERENCES categories(id))");
@@ -150,6 +160,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         values.put(COLUMN_POSTCODE, user.getPostcode());
         values.put(COLUMN_ADDRESS, user.getAddress());
         values.put(COLUMN_IS_ADMIN, user.isAdmin() ? 1 : 0);
+//        values.put(COLUMN_IS_ADMIN, user.isAdmin() ? 1 : 1);
 
         db.insert(TABLE_USERS, null, values);
         db.close();
@@ -206,9 +217,28 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    @SuppressLint("Range")
     public List<Category> getCategories() {
-        // Handle retrieving all categories from the database
-        return null;
+        List<Category> categoryList = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+
+        String query = "SELECT * FROM " + TABLE_CATEGORIES;
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                Category category = new Category();
+
+                category.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
+                category.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
+                categoryList.add(category);
+            } while (cursor.moveToNext());
+        }
+
+        db.close();
+
+
+        return categoryList;
     }
 
     public Category getCategory(int categoryId) {
@@ -337,8 +367,6 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 //                String productName = cursor.getString(cursor.getColumnIndex("name"));
 //                String productDescription = cursor.getString(cursor.getColumnIndex("description"));
 //                String productPrice = cursor.getString(cursor.getColumnIndex("price"));
-
-
 
 
                 int productId = cursor.getInt(cursor.getColumnIndex("id"));

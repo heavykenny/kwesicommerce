@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/oxford_blue_a"
+    android:orientation="vertical"
+    tools:context=".ui.activities.AdminCreateCategoryActivity">
+
+    <include layout="@layout/layout_top_bar" />
+
+    <include layout="@layout/layout_back_navigation" />
+
+    <LinearLayout
+        android:id="@+id/layoutEmptyCategory"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+
+        </RelativeLayout>
+
+
+        <include layout="@layout/layout_admin_bottom_navigation" />
+    </LinearLayout>
+
+</LinearLayout>

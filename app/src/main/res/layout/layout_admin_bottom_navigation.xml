@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_gravity="bottom"
+    android:background="@color/oxford_blue"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/linLayoutAdminHome"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_margin="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_home"
+            app:tint="@color/antiflash_white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/alegreya_sans_sc_light"
+            android:text="@string/string_home"
+            android:textColor="@color/antiflash_white"
+            android:textSize="10sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linLayoutAdminCategory"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_margin="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_shop"
+            app:tint="@color/antiflash_white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/alegreya_sans_sc_light"
+            android:gravity="center"
+            android:text="Manage Category"
+            android:textColor="@color/antiflash_white"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linLayoutAdminProduct"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_margin="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_shop"
+            app:tint="@color/antiflash_white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/alegreya_sans_sc_light"
+            android:gravity="center"
+            android:text="Manage Product"
+            android:textColor="@color/antiflash_white"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linLayoutAdminUsers"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_margin="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/account"
+            app:tint="@color/antiflash_white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/alegreya_sans_sc_light"
+            android:gravity="center"
+            android:text="Manage Users"
+            android:textColor="@color/antiflash_white"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linLayoutAdminOrders"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_margin="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/account"
+            app:tint="@color/antiflash_white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/alegreya_sans_sc_light"
+            android:gravity="center"
+            android:text="Manage Orders"
+            android:textColor="@color/antiflash_white"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linLayoutAdminMenu"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_margin="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/menu_icon"
+            app:tint="@color/antiflash_white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/alegreya_sans_sc_light"
+            android:text="@string/string_menu"
+            android:textColor="@color/antiflash_white"
+            android:textSize="10sp" />
+
+    </LinearLayout>
+
+</LinearLayout>
+

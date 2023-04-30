@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/antiflash_white"
     android:orientation="vertical"
-    tools:context=".ui.activities.CategoryActivity">
+    tools:context=".ui.activities.AdminViewCategoriesActivity">
 
     <include layout="@layout/layout_top_bar" />
 
@@ -44,13 +44,25 @@
                 android:fontFamily="@font/alegreya_sans_sc_bold"
                 android:gravity="center"
                 android:padding="30dp"
-                android:text="Sorry, we currently have no category.! Please check back later."
+                android:text="Sorry, there's no category! Since you are an Admin, Please create one."
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:visibility="visible" />
+
         </RelativeLayout>
 
-        <include layout="@layout/layout_bottom_navigation" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_square_layout"
+            android:fontFamily="@font/alegreya_sans_sc"
+            android:gravity="center"
+            android:padding="15dp"
+            android:text="Create Category"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <include layout="@layout/layout_admin_bottom_navigation" />
     </LinearLayout>
 
 </LinearLayout>

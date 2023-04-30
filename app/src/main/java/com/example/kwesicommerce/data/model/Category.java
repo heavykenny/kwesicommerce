@@ -13,6 +13,14 @@ public class Category {
         this.products = new ArrayList<>();
     }
 
+    public Category() {
+        this.id = 0;
+        this.name = "";
+        this.products = new ArrayList<>();
+    }
+
+
+
     public int getId() {
         return id;
     }

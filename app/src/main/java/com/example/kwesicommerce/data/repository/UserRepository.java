@@ -110,14 +110,6 @@ public class UserRepository {
         return user != null && user.isAdmin();
     }
 
-    public void setUserAdmin(boolean value) {
-        if (this.isUserAdmin()) {
-            preferencesHelper.setUserAdmin(value);
-        } else {
-            throw new RuntimeException("You are not an admin");
-        }
-    }
-
     // user login method
     public boolean isUserCredentialsValid(String email, String password) {
         return dbHelper.isUserCredentialsValid(email, password);
@@ -139,5 +131,21 @@ public class UserRepository {
 
     public boolean isUserLoggedIn() {
         return preferencesHelper.getUserId() > 0;
+    }
+
+    public boolean getUserAdmin() {
+        return preferencesHelper.getUserAdmin();
+    }
+
+    public void setUserAdmin(boolean value) {
+        if (value) {
+            if (this.isUserAdmin()) {
+                preferencesHelper.setUserAdmin(true);
+            } else {
+                throw new RuntimeException("You are not an admin");
+            }
+        } else {
+            preferencesHelper.setUserAdmin(false);
+        }
     }
 }

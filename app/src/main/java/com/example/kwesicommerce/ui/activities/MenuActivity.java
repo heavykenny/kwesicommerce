@@ -3,7 +3,6 @@ package com.example.kwesicommerce.ui.activities;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,20 +27,52 @@ public class MenuActivity extends AppCompatActivity {
         navigationUtil.setNavigationItemClick();
         navigationUtil.backNavigation("Menu");
 
-        LinearLayout linLayUserLoginCheck = findViewById(R.id.linLayUserLoginCheck);
-
-        if (userRepository.isUserLoggedIn()) {
-            linLayUserLoginCheck.setVisibility(LinearLayout.VISIBLE);
-        } else {
-            linLayUserLoginCheck.setVisibility(LinearLayout.GONE);
-        }
-
         LinearLayout linLayoutAdminAccount = findViewById(R.id.linLayoutAdminAccount);
-        if (userRepository.isUserAdmin()) {
-            linLayoutAdminAccount.setVisibility(LinearLayout.VISIBLE);
+        linLayoutAdminAccount.setVisibility(TextView.GONE);
+
+
+        TextView txtViewSwitchToUserAccount = findViewById(R.id.txtViewSwitchToUserAccount);
+
+        LinearLayout linLayUserLoginCheck = findViewById(R.id.linLayUserLoginCheck);
+        if (userRepository.isUserLoggedIn()) {
+            linLayUserLoginCheck.setVisibility(TextView.VISIBLE);
+            txtViewSwitchToUserAccount.setVisibility(TextView.GONE);
         } else {
-            linLayoutAdminAccount.setVisibility(LinearLayout.GONE);
+            linLayUserLoginCheck.setVisibility(TextView.GONE);
         }
+
+        TextView txtViewSwitchToAdminAccount = findViewById(R.id.txtViewSwitchToAdminAccount);
+        txtViewSwitchToAdminAccount.setOnClickListener(v -> {
+            try {
+                userRepository.setUserAdmin(true);
+                notificationUtil.showToast("Your account has been switched to admin account");
+                navigationUtil.goToActivity(AdminHomeActivity.class);
+            } catch (Exception e) {
+                notificationUtil.showToast(e.getMessage());
+            }
+        });
+
+        LinearLayout linLayoutUserAccount = findViewById(R.id.linLayoutUserAccount);
+        TextView txtViewPreviousOrders = findViewById(R.id.txtViewPreviousOrders);
+        if (userRepository.getUserAdmin() && userRepository.isUserLoggedIn()) {
+            linLayoutAdminAccount.setVisibility(TextView.VISIBLE);
+            linLayoutUserAccount.setVisibility(TextView.GONE);
+            txtViewPreviousOrders.setVisibility(TextView.GONE);
+            txtViewSwitchToUserAccount.setVisibility(TextView.VISIBLE);
+            txtViewSwitchToAdminAccount.setVisibility(TextView.GONE);
+        }
+
+
+        txtViewSwitchToUserAccount.setOnClickListener(v -> {
+            try {
+                userRepository.setUserAdmin(false);
+                notificationUtil.showToast("Your account has been switched to user account");
+                navigationUtil.goToActivity(HomeActivity.class);
+            } catch (Exception e) {
+                notificationUtil.showToast(e.getMessage());
+            }
+        });
+
 
         TextView txtViewLogout = findViewById(R.id.txtViewLogout);
         txtViewLogout.setOnClickListener(v -> {
@@ -49,16 +80,9 @@ public class MenuActivity extends AppCompatActivity {
             navigationUtil.goToActivity(HomeActivity.class);
         });
 
-        TextView txtViewSwitchToAdminAccount = findViewById(R.id.txtViewSwitchToAdminAccount);
-        txtViewSwitchToAdminAccount.setOnClickListener(v -> {
-            try {
-                userRepository.setUserAdmin(true);
-                navigationUtil.goToActivity(HomeActivity.class);
-            } catch (Exception e) {
-//                Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-                notificationUtil.showToast(e.getMessage());
-
-            }
+        TextView txtViewDashboard = findViewById(R.id.txtViewDashboard);
+        txtViewDashboard.setOnClickListener(v -> {
+            navigationUtil.goToActivity(AdminHomeActivity.class);
         });
     }
 }

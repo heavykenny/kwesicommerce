@@ -15,6 +15,8 @@ import com.example.kwesicommerce.R;
 import com.example.kwesicommerce.data.repository.CartRepository;
 import com.example.kwesicommerce.data.repository.UserRepository;
 import com.example.kwesicommerce.ui.activities.AccountActivity;
+import com.example.kwesicommerce.ui.activities.AdminHomeActivity;
+import com.example.kwesicommerce.ui.activities.AdminViewCategoriesActivity;
 import com.example.kwesicommerce.ui.activities.CartActivity;
 import com.example.kwesicommerce.ui.activities.CategoryActivity;
 import com.example.kwesicommerce.ui.activities.HomeActivity;
@@ -37,9 +39,15 @@ public class NavigationUtil {
     private final ImageView imgViewShopIcon;
     private final ImageView imgViewSearchIcon;
     private final TextView txtViewCartCounter;
-
     UserRepository userRepository;
     CartRepository cartRepository;
+    // admin navigation
+    private LinearLayout adminHomeLayout = null;
+    private LinearLayout adminCategoryLayout = null;
+    private LinearLayout adminProductLayout = null;
+    private LinearLayout adminOrdersLayout = null;
+    private LinearLayout linLayoutAdminUsers = null;
+    private LinearLayout adminMenuLayout = null;
 
     public NavigationUtil(Context context, Activity activity, LinearLayout activeNavItem) {
         this.context = context;
@@ -53,6 +61,15 @@ public class NavigationUtil {
         menuLayout = activity.findViewById(R.id.linLayoutMenu);
         imgViewShopIcon = activity.findViewById(R.id.imgViewShopIcon);
         imgViewSearchIcon = activity.findViewById(R.id.imgViewSearchIcon);
+
+
+        // admin navigation
+        adminHomeLayout = activity.findViewById(R.id.linLayoutAdminHome);
+        adminCategoryLayout = activity.findViewById(R.id.linLayoutAdminCategory);
+        adminProductLayout = activity.findViewById(R.id.linLayoutAdminProduct);
+        adminOrdersLayout = activity.findViewById(R.id.linLayoutAdminOrders);
+        linLayoutAdminUsers = activity.findViewById(R.id.linLayoutAdminUsers);
+        adminMenuLayout = activity.findViewById(R.id.linLayoutAdminMenu);
 
         txtViewCartCounter = activity.findViewById(R.id.txtViewCartCounter);
         clickAnimation.setDuration(200);
@@ -165,5 +182,59 @@ public class NavigationUtil {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
         activity.overridePendingTransition(0, 0);
+    }
+
+    public void setAdminNavigationItemClick() {
+        if (activeNavItem != null) {
+            activeNavItem.setBackgroundResource(R.color.oxford_blue_dark);
+        }
+
+        adminHomeLayout.setOnClickListener(v -> {
+            v.startAnimation(clickAnimation);
+            Intent intent = new Intent(context, AdminHomeActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+            activity.overridePendingTransition(0, 0);
+        });
+
+        adminCategoryLayout.setOnClickListener(v -> {
+            v.startAnimation(clickAnimation);
+            Intent intent = new Intent(context, AdminViewCategoriesActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+            activity.overridePendingTransition(0, 0);
+        });
+
+        adminProductLayout.setOnClickListener(v -> {
+            v.startAnimation(clickAnimation);
+            Intent intent = new Intent(context, AdminViewCategoriesActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+            activity.overridePendingTransition(0, 0);
+        });
+
+        adminOrdersLayout.setOnClickListener(v -> {
+            v.startAnimation(clickAnimation);
+            Intent intent = new Intent(context, AdminViewCategoriesActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+            activity.overridePendingTransition(0, 0);
+        });
+
+        linLayoutAdminUsers.setOnClickListener(v -> {
+            v.startAnimation(clickAnimation);
+            Intent intent = new Intent(context, AdminViewCategoriesActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+            activity.overridePendingTransition(0, 0);
+        });
+
+        adminMenuLayout.setOnClickListener(v -> {
+            v.startAnimation(clickAnimation);
+            Intent intent = new Intent(context, MenuActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+            activity.overridePendingTransition(0, 0);
+        });
     }
 }

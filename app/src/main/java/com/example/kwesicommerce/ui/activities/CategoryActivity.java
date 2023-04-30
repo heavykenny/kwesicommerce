@@ -1,18 +1,19 @@
 package com.example.kwesicommerce.ui.activities;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-import android.widget.LinearLayout;
-
 import com.example.kwesicommerce.R;
 import com.example.kwesicommerce.data.model.Category;
+import com.example.kwesicommerce.data.repository.CategoryRepository;
 import com.example.kwesicommerce.ui.adapters.CategoryRecyclerViewAdapter;
 import com.example.kwesicommerce.utils.NavigationUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryActivity extends AppCompatActivity {
@@ -29,14 +30,21 @@ public class CategoryActivity extends AppCompatActivity {
 
         navigationUtil.backNavigation("Category");
 
-        List<Category> data = new ArrayList<>();
-        data.add(new Category("Category Food"));
-        data.add(new Category("Food"));
-        data.add(new Category("Food"));
+        CategoryRepository categoryRepository = new CategoryRepository(getApplicationContext());
 
+        List<Category> categoryList = categoryRepository.getAllCategories();
         RecyclerView rvListCategory = findViewById(R.id.rvListCategoryList);
-        CategoryRecyclerViewAdapter adapter = new CategoryRecyclerViewAdapter(data, getApplicationContext(), this);
-        rvListCategory.setAdapter(adapter);
-        rvListCategory.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayout layoutEmptyCategory = findViewById(R.id.layoutEmptyCategory);
+
+        if (categoryList.isEmpty()) {
+            rvListCategory.setVisibility(View.GONE);
+            layoutEmptyCategory.setVisibility(View.VISIBLE);
+        } else {
+            rvListCategory.setVisibility(View.VISIBLE);
+            layoutEmptyCategory.setVisibility(View.GONE);
+            CategoryRecyclerViewAdapter adapter = new CategoryRecyclerViewAdapter(categoryList, getApplicationContext(), this);
+            rvListCategory.setAdapter(adapter);
+            rvListCategory.setLayoutManager(new LinearLayoutManager(this));
+        }
     }
 }

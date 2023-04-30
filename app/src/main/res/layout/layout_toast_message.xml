@@ -5,17 +5,19 @@
     android:layout_height="wrap_content"
     android:background="@layout/layout_toast_background"
     android:gravity="center"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:padding="5dp">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/information"
-        android:paddingEnd="10px"
+        android:paddingEnd="10dp"
         app:tint="@color/black" />
 
     <TextView
+        android:padding="10dp"
+        android:gravity="center"
         android:id="@+id/txtViewToastMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
