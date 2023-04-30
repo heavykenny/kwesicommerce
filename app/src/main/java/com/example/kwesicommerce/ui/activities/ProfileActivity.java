@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.kwesicommerce.R;
 import com.example.kwesicommerce.data.repository.UserRepository;
-import com.example.kwesicommerce.utils.NavigationUtils;
+import com.example.kwesicommerce.utils.NavigationUtil;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -21,10 +21,11 @@ public class ProfileActivity extends AppCompatActivity {
 
         LinearLayout active = findViewById(R.id.linLayoutProfile);
 
-        NavigationUtils navigationUtils = new NavigationUtils(getBaseContext(), this, active);
-        navigationUtils.setNavigationItemClick();
+        NavigationUtil navigationUtil = new NavigationUtil(getBaseContext(), this, active);
+        navigationUtil.setNavigationItemClick();
+        navigationUtil.setTopNavigationItemClick();
 
-        navigationUtils.backNavigation("User Profile");
+        navigationUtil.backNavigation("User Profile");
         userRepository = new UserRepository(getBaseContext());
 
         TextView txtViewFirstName = findViewById(R.id.txtProfileName);

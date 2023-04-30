@@ -7,11 +7,18 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.os.Build;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.example.kwesicommerce.R;
 
@@ -50,4 +57,19 @@ public class NotificationUtil {
             notificationManager.createNotificationChannel(channel);
         }
     }
+
+    public void showToast(String message) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View layout = inflater.inflate(R.layout.layout_toast_message, null);
+        TextView text = layout.findViewById(R.id.txtViewToastMessage);
+        Typeface customFont = ResourcesCompat.getFont(context, R.font.alegreya_sans);
+        text.setTypeface(customFont);
+        text.setText(message);
+        Toast toast = new Toast(context);
+        toast.setGravity(Gravity.TOP, 0, 100);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
+    }
+
 }

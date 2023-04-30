@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 
 import com.example.kwesicommerce.R;
 import com.example.kwesicommerce.ui.fragments.AccountFragment;
-import com.example.kwesicommerce.utils.NavigationUtils;
+import com.example.kwesicommerce.utils.NavigationUtil;
 
 public class AccountActivity extends AppCompatActivity {
 
@@ -18,9 +18,10 @@ public class AccountActivity extends AppCompatActivity {
         setContentView(R.layout.activity_account);
 
         LinearLayout active = findViewById(R.id.linLayoutProfile);
-        NavigationUtils navigationUtils = new NavigationUtils(getBaseContext(), this, active);
-        navigationUtils.setNavigationItemClick();
-        navigationUtils.backNavigation("User Account");
+        NavigationUtil navigationUtil = new NavigationUtil(getBaseContext(), this, active);
+        navigationUtil.setNavigationItemClick();
+        navigationUtil.setTopNavigationItemClick();
+        navigationUtil.backNavigation("User Account");
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragProductContainer, new AccountFragment());

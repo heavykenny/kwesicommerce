@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.kwesicommerce.data.model.CartItem;
 import com.example.kwesicommerce.data.model.Category;
 import com.example.kwesicommerce.data.model.Order;
 import com.example.kwesicommerce.data.model.Product;
@@ -65,6 +66,9 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 
         // Create the order table
         db.execSQL("CREATE TABLE orders (id INTEGER PRIMARY KEY AUTOINCREMENT, userId INTEGER, productId INTEGER, quantity INTEGER, status TEXT, dateCreated TEXT, dateUpdated TEXT, FOREIGN KEY(userId) REFERENCES users(id), FOREIGN KEY(productId) REFERENCES products(id))");
+
+        db.execSQL("CREATE TABLE cart (id INTEGER PRIMARY KEY AUTOINCREMENT, userId INTEGER, productId INTEGER, quantity INTEGER, FOREIGN KEY(userId) REFERENCES users(id), FOREIGN KEY(productId) REFERENCES products(id))");
+
     }
 
     @Override
@@ -183,7 +187,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
     public boolean isEmailUnique(String email) {
         SQLiteDatabase db = getReadableDatabase();
         String selection = COLUMN_EMAIL + " = ?";
-        String[] selectionArgs = { email };
+        String[] selectionArgs = {email};
         Cursor cursor = db.query(TABLE_USERS, null, selection, selectionArgs, null, null, null);
         boolean isUnique = cursor == null || cursor.getCount() == 0;
         if (cursor != null) {
@@ -293,5 +297,69 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         }
         db.close();
         return user;
+    }
+
+    public void addToCart(int userId, int productId) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("userId", userId);
+        values.put("productId", productId);
+        values.put("quantity", 1);
+
+        db.insert("cart", null, values);
+        db.close();
+    }
+
+    public void removeFromCart(int userId, int productId) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        String[] args = {String.valueOf(userId), String.valueOf(productId)};
+        db.delete("cart", "userId = ? AND productId = ?", args);
+        db.close();
+    }
+
+    @SuppressLint("Range")
+    public List<CartItem> getCartItems(int userId) {
+        List<CartItem> cartItems = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+
+        String query = "SELECT products.id, products.name, products.description, products.price, cart.quantity " +
+                "FROM cart " +
+                "JOIN products ON cart.productId = products.id " +
+                "WHERE cart.userId = ?";
+        String[] args = {String.valueOf(userId)};
+
+        Cursor cursor = db.rawQuery(query, args);
+
+        if (cursor.moveToFirst()) {
+            do {
+//                String productName = cursor.getString(cursor.getColumnIndex("name"));
+//                String productDescription = cursor.getString(cursor.getColumnIndex("description"));
+//                String productPrice = cursor.getString(cursor.getColumnIndex("price"));
+
+
+
+
+                int productId = cursor.getInt(cursor.getColumnIndex("id"));
+                int quantity = cursor.getInt(cursor.getColumnIndex("quantity"));
+
+                Product product = this.getProduct(productId);
+                CartItem cartItem = new CartItem(product, quantity);
+                cartItems.add(cartItem);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        return cartItems;
+    }
+
+    public void clearCart(int userId) {
+        SQLiteDatabase db = getWritableDatabase();
+        String[] args = {String.valueOf(userId)};
+        db.delete("cart", "userId = ?", args);
+        db.close();
     }
 }

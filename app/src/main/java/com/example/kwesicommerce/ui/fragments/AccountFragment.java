@@ -28,7 +28,7 @@ public class AccountFragment extends Fragment {
 
         userRepository = new UserRepository(getContext());
 
-        if (userRepository.getUserId() > 0) {
+        if (userRepository.isUserLoggedIn()) {
             Intent intent = new Intent(getContext(), ProfileActivity.class);
             startActivity(intent);
         }
@@ -64,7 +64,6 @@ public class AccountFragment extends Fragment {
 
         loginForm.setVisibility(View.VISIBLE);
         registerForm.setVisibility(View.GONE);
-
 
         btnAccountRegister.setOnClickListener(v -> {
             String firstName = edtTxtFirstName.getText().toString().trim();
@@ -116,7 +115,6 @@ public class AccountFragment extends Fragment {
             }
 
             User newUser = new User(firstName, lastName, email, password);
-
 
             userRepository.createUser(newUser);
 

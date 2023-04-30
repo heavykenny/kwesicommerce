@@ -5,21 +5,12 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kwesicommerce.R;
-import com.example.kwesicommerce.data.model.Product;
-import com.example.kwesicommerce.ui.adapters.ProductAdapter;
 import com.example.kwesicommerce.ui.fragments.ProductFragment;
-import com.example.kwesicommerce.utils.NavigationUtils;
-
-import java.util.List;
+import com.example.kwesicommerce.utils.NavigationUtil;
 
 public class ProductActivity extends AppCompatActivity {
-
-    private RecyclerView recyclerView;
-    private ProductAdapter adapter;
-    private List<Product> productList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +19,11 @@ public class ProductActivity extends AppCompatActivity {
 
         LinearLayout active = findViewById(R.id.linLayoutShop);
 
-        NavigationUtils navigationUtils = new NavigationUtils(getBaseContext(), this, active);
-        navigationUtils.setNavigationItemClick();
+        NavigationUtil navigationUtil = new NavigationUtil(getBaseContext(), this, active);
+        navigationUtil.setNavigationItemClick();
+        navigationUtil.setTopNavigationItemClick();
 
-        navigationUtils.backNavigation("Products");
+        navigationUtil.backNavigation("Products");
 
         // Get the FragmentManager
         FragmentManager fragmentManager = getSupportFragmentManager();

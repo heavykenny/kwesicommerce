@@ -11,7 +11,7 @@ import com.example.kwesicommerce.R;
 import com.example.kwesicommerce.data.model.Category;
 import com.example.kwesicommerce.data.model.Product;
 import com.example.kwesicommerce.ui.adapters.WishlistRecyclerViewAdapter;
-import com.example.kwesicommerce.utils.NavigationUtils;
+import com.example.kwesicommerce.utils.NavigationUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,16 +25,17 @@ public class WishlistActivity extends AppCompatActivity {
 
         LinearLayout active = findViewById(R.id.linLayoutWishlist);
 
-        NavigationUtils navigationUtils = new NavigationUtils(getBaseContext(), this, active);
-        navigationUtils.setNavigationItemClick();
+        NavigationUtil navigationUtil = new NavigationUtil(getBaseContext(), this, active);
+        navigationUtil.setNavigationItemClick();
+        navigationUtil.setTopNavigationItemClick();
 
-        navigationUtils.backNavigation("Wishlist");
+        navigationUtil.backNavigation("Wishlist");
 
         List<Product> data = new ArrayList<>();
         Category cat = new Category("Gadgets");
-        data.add(new Product("Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
-        data.add(new Product("Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
-        data.add(new Product("Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
+        data.add(new Product(1, "Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
+        data.add(new Product(1, "Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
+        data.add(new Product(1, "Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
 
         RecyclerView rvTestList = findViewById(R.id.rvListWishList);
         WishlistRecyclerViewAdapter adapter = new WishlistRecyclerViewAdapter(data, getApplicationContext());

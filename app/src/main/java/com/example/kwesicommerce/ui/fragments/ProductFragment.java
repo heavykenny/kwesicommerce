@@ -21,34 +21,30 @@ public class ProductFragment extends Fragment {
 
     private ProductAdapter adapter;
     private List<Product> productList;
-    private GridView quizView;
+    private GridView productView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_product, container, false);
 
-        quizView = view.findViewById(R.id.gridViewProduct);
-
+        productView = view.findViewById(R.id.gridViewProduct);
 
         // Create a list of Product objects
         productList = new ArrayList<>();
         Category cat = new Category("Gadgets");
-        productList.add(new Product("Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
-        productList.add(new Product("Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
-        productList.add(new Product("Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
-        productList.add(new Product("Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
-        productList.add(new Product("Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
-        productList.add(new Product("Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
-        productList.add(new Product("Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
-        productList.add(new Product("Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
+        productList.add(new Product(1, "Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
+        productList.add(new Product(1, "Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
+        productList.add(new Product(1, "Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
+        productList.add(new Product(1, "Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
+        productList.add(new Product(1, "Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
+        productList.add(new Product(1, "Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
+        productList.add(new Product(1, "Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
+        productList.add(new Product(1, "Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
         // Create a new ProductAdapter with the list of products
         adapter = new ProductAdapter(productList);
 
-//        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
-//        quizView.setLayoutManager(layoutManager);
-
-        quizView.setAdapter(adapter);
+        productView.setAdapter(adapter);
 
         return view;
     }

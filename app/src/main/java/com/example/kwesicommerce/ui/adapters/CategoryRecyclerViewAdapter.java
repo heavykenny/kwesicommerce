@@ -19,14 +19,14 @@ import java.util.List;
 
 // REFERENCE: https://developer.android.com/develop/ui/views/layout/recyclerview
 public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRecyclerViewAdapter.ViewHolder> {
-    List<Category> categoryList;
     static Context appContext;
     static Activity activity;
+    List<Category> categoryList;
 
-        public CategoryRecyclerViewAdapter(List<Category> categoryList, Context appContext, Activity activity) {
+    public CategoryRecyclerViewAdapter(List<Category> categoryList, Context appContext, Activity activity) {
         this.categoryList = categoryList;
-        this.appContext = appContext;
-        this.activity = activity;
+        CategoryRecyclerViewAdapter.appContext = appContext;
+        CategoryRecyclerViewAdapter.activity = activity;
     }
 
     @NonNull
@@ -62,7 +62,6 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
             Intent intent = new Intent(appContext, ProductActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             appContext.startActivity(intent);
-            // overridePendingTransition
             activity.overridePendingTransition(0, 0);
 
         }

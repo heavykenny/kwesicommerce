@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 
 import com.example.kwesicommerce.R;
-import com.example.kwesicommerce.utils.NavigationUtils;
+import com.example.kwesicommerce.utils.NavigationUtil;
 
 public class ProductDetailsActivity extends AppCompatActivity {
 
@@ -18,9 +18,10 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         LinearLayout active = findViewById(R.id.linLayoutShop);
 
-        NavigationUtils navigationUtils = new NavigationUtils(getBaseContext(), this, active);
-        navigationUtils.setNavigationItemClick();
+        NavigationUtil navigationUtil = new NavigationUtil(getBaseContext(), this, active);
+        navigationUtil.setNavigationItemClick();
+        navigationUtil.setTopNavigationItemClick();
 
-        navigationUtils.backNavigation("Product Details");
+        navigationUtil.backNavigation("Product Details");
     }
 }

@@ -17,7 +17,6 @@ import java.util.List;
 // REFERENCE: https://developer.android.com/develop/ui/views/layout/recyclerview
 public class WishlistRecyclerViewAdapter extends RecyclerView.Adapter<WishlistRecyclerViewAdapter.ViewHolder> {
     List<Product> productList;
-
     Product product;
     Context appContext;
 

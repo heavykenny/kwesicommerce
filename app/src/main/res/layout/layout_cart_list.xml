@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:background="@color/french_blue">
+
+    <ImageView
+        android:id="@+id/imgViewProductListImage"
+        android:layout_width="150dp"
+        android:layout_height="160dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:src="@drawable/image_placeholder" />
+
+    <TextView
+        android:id="@+id/txtViewProductListTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/imgViewProductListImage"
+        android:fontFamily="@font/alegreya_sans_sc"
+        android:text="Product Title"
+        android:textSize="23sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtViewProductPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="2dp"
+        android:layout_below="@+id/txtViewProductListTitle"
+        android:layout_toEndOf="@+id/imgViewProductListImage"
+        android:fontFamily="@font/alegreya_sans_sc_light"
+        android:text="£ 0.00"
+        android:textSize="20sp" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginBottom="5dp"
+        android:layout_below="@+id/txtViewProductPrice"
+        android:layout_toEndOf="@+id/imgViewProductListImage"
+        android:layout_centerHorizontal="true"
+        android:layout_alignBottom="@+id/imgViewProductListImage"
+        android:layout_marginTop="60dp">
+
+        <Button
+            android:backgroundTint="@color/oxford_blue"
+            android:id="@+id/btnDecrementCounter"
+            android:layout_width="50dp"
+            android:background="@drawable/custom_round_layout"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="0dp"
+            android:text="-"
+            android:textSize="20sp" />
+
+        <Button
+            android:background="@drawable/custom_round_layout"
+            android:id="@+id/btnQuantityCounter"
+            android:layout_width="50dp"
+            android:fontFamily="@font/alegreya_sans"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="0dp"
+            android:layout_toEndOf="@id/btnDecrementCounter"
+            android:text="0"
+            android:textSize="20sp" />
+
+        <Button
+            android:background="@drawable/custom_round_layout"
+            android:id="@+id/btnIncrementCounter"
+            android:backgroundTint="@color/oxford_blue"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="0dp"
+            android:layout_toEndOf="@id/btnQuantityCounter"
+            android:text="+"
+            android:textSize="20sp" />
+
+        <Button
+            android:background="@drawable/custom_square_layout"
+            android:fontFamily="@font/alegreya_sans_sc_light"
+            android:id="@+id/btnAddToCart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@id/btnIncrementCounter"
+            android:text="@string/string_add_to_cart"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -13,7 +13,9 @@ public class Product {
     private final String dateUpdated;
     private int id;
     private Category category;
-    public Product(String name, String description, String imageUrl, double price, double listPrice, double retailPrice, Category category) {
+
+    public Product(int productId, String name, String description, String imageUrl, double price, double listPrice, double retailPrice, Category category) {
+        this.id = productId;
         this.name = name;
         this.description = description;
         this.imageUrl = imageUrl;

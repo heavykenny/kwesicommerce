@@ -110,6 +110,14 @@ public class UserRepository {
         return user != null && user.isAdmin();
     }
 
+    public void setUserAdmin(boolean value) {
+        if (this.isUserAdmin()) {
+            preferencesHelper.setUserAdmin(value);
+        } else {
+            throw new RuntimeException("You are not an admin");
+        }
+    }
+
     // user login method
     public boolean isUserCredentialsValid(String email, String password) {
         return dbHelper.isUserCredentialsValid(email, password);
@@ -127,5 +135,9 @@ public class UserRepository {
     public User getUser() {
         int userId = preferencesHelper.getUserId();
         return dbHelper.getUser(userId);
+    }
+
+    public boolean isUserLoggedIn() {
+        return preferencesHelper.getUserId() > 0;
     }
 }

@@ -109,4 +109,12 @@ public class SharedPreferencesHelper {
         sharedPreferences.edit().putString(KEY_USER_ADDRESS, user.getAddress()).apply();
         sharedPreferences.edit().putString(KEY_USER_LAST_UPDATED, user.getDateUpdated()).apply();
     }
+
+    public void setUserAdmin(boolean value) {
+        sharedPreferences.edit().putBoolean("isAdmin", value).apply();
+    }
+
+    public boolean getUserAdmin() {
+        return sharedPreferences.getBoolean("isAdmin", false);
+    }
 }
