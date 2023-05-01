@@ -56,9 +56,9 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/alegreya_sans_sc_light"
             android:gravity="center"
-            android:text="Manage Category"
+            android:text="Manage Categories"
             android:textColor="@color/antiflash_white"
-            android:textSize="10sp" />
+            android:textSize="9sp" />
     </LinearLayout>
 
 
@@ -83,7 +83,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/alegreya_sans_sc_light"
             android:gravity="center"
-            android:text="Manage Product"
+            android:text="Manage Products"
             android:textColor="@color/antiflash_white"
             android:textSize="10sp" />
     </LinearLayout>

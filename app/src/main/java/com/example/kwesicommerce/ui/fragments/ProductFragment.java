@@ -23,6 +23,10 @@ public class ProductFragment extends Fragment {
     private List<Product> productList;
     private GridView productView;
 
+    public ProductFragment(List<Product> productList) {
+        this.productList = productList;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -30,22 +34,8 @@ public class ProductFragment extends Fragment {
 
         productView = view.findViewById(R.id.gridViewProduct);
 
-        // Create a list of Product objects
-        productList = new ArrayList<>();
-        Category cat = new Category("Gadgets");
-        productList.add(new Product(1, "Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
-        productList.add(new Product(1, "Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
-        productList.add(new Product(1, "Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
-        productList.add(new Product(1, "Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
-        productList.add(new Product(1, "Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
-        productList.add(new Product(1, "Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
-        productList.add(new Product(1, "Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
-        productList.add(new Product(1, "Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
-        // Create a new ProductAdapter with the list of products
         adapter = new ProductAdapter(productList);
-
         productView.setAdapter(adapter);
-
         return view;
     }
 }

@@ -12,15 +12,17 @@
     <include layout="@layout/layout_back_navigation" />
 
     <RelativeLayout
+        android:id="@+id/relLayoutCategoryList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:visibility="gone">
+        android:layout_weight="1">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvListCategoryList"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
+        <include layout="@layout/layout_bottom_navigation" />
     </RelativeLayout>
 
     <LinearLayout
@@ -28,6 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
+        android:visibility="gone"
         android:orientation="vertical">
 
         <RelativeLayout

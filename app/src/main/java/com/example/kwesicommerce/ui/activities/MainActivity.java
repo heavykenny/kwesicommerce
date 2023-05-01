@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         NotificationUtil notificationUtil = new NotificationUtil(getBaseContext());
-//        notificationUtil.showNotification("Example Notification", "I don't like monday mornings");
 
         Button button = findViewById(R.id.show);
         button.setOnClickListener(v -> {

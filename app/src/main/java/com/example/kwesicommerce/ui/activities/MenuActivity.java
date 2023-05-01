@@ -25,6 +25,7 @@ public class MenuActivity extends AppCompatActivity {
         NavigationUtil navigationUtil = new NavigationUtil(getBaseContext(), this, active);
         navigationUtil.setTopNavigationItemClick();
         navigationUtil.setNavigationItemClick();
+        navigationUtil.setAdminNavigationItemClick();
         navigationUtil.backNavigation("Menu");
 
         LinearLayout linLayoutAdminAccount = findViewById(R.id.linLayoutAdminAccount);
@@ -54,7 +55,12 @@ public class MenuActivity extends AppCompatActivity {
 
         LinearLayout linLayoutUserAccount = findViewById(R.id.linLayoutUserAccount);
         TextView txtViewPreviousOrders = findViewById(R.id.txtViewPreviousOrders);
+        LinearLayout linLayAdminBottomNavigation = findViewById(R.id.linLayAdminBottomNavigation);
+        LinearLayout linLayUserBottomNavigation = findViewById(R.id.linLayUserBottomNavigation);
+
         if (userRepository.getUserAdmin() && userRepository.isUserLoggedIn()) {
+            linLayAdminBottomNavigation.setVisibility(TextView.VISIBLE);
+            linLayUserBottomNavigation.setVisibility(TextView.GONE);
             linLayoutAdminAccount.setVisibility(TextView.VISIBLE);
             linLayoutUserAccount.setVisibility(TextView.GONE);
             txtViewPreviousOrders.setVisibility(TextView.GONE);

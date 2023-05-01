@@ -78,7 +78,7 @@
                     android:hint="@string/string_enter_first_name"
                     android:inputType="textCapWords|textPersonName"
                     android:padding="15dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/faint_white"
                     android:textColorHint="@color/faint_black"
                     android:textSize="20sp" />
 
@@ -101,7 +101,7 @@
                     android:hint="@string/string_enter_last_name"
                     android:inputType="textCapWords|textPersonName"
                     android:padding="15dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/faint_white"
                     android:textColorHint="@color/faint_black"
                     android:textSize="20sp" />
 
@@ -125,7 +125,7 @@
                     android:hint="@string/string_enter_your_email"
                     android:inputType="textEmailAddress"
                     android:padding="15dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/faint_white"
                     android:textColorHint="@color/faint_black"
                     android:textSize="20sp" />
 
@@ -149,7 +149,7 @@
                     android:hint="@string/string_enter_your_password"
                     android:inputType="textPassword"
                     android:padding="15dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/faint_white"
                     android:textColorHint="@color/faint_black"
                     android:textSize="20sp" />
 
@@ -173,7 +173,7 @@
                     android:hint="@string/string_enter_password_again"
                     android:inputType="textPassword"
                     android:padding="15dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/faint_white"
                     android:textColorHint="@color/faint_black"
                     android:textSize="20sp" />
 
@@ -229,7 +229,7 @@
                 android:hint="@string/string_enter_your_email"
                 android:inputType="textEmailAddress"
                 android:padding="15dp"
-                android:textColor="@color/black"
+                android:textColor="@color/faint_white"
                 android:textColorHint="@color/faint_black"
                 android:textSize="20sp" />
 
@@ -253,7 +253,7 @@
                 android:hint="@string/string_enter_your_password"
                 android:inputType="textPassword"
                 android:padding="15dp"
-                android:textColor="@color/black"
+                android:textColor="@color/faint_white"
                 android:textColorHint="@color/faint_black"
                 android:textSize="20sp" />
 

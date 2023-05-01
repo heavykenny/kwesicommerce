@@ -42,6 +42,7 @@ public class CategoryActivity extends AppCompatActivity {
         } else {
             rvListCategory.setVisibility(View.VISIBLE);
             layoutEmptyCategory.setVisibility(View.GONE);
+
             CategoryRecyclerViewAdapter adapter = new CategoryRecyclerViewAdapter(categoryList, getApplicationContext(), this);
             rvListCategory.setAdapter(adapter);
             rvListCategory.setLayoutManager(new LinearLayoutManager(this));

@@ -21,11 +21,65 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/alegreya_sans_sc_bold"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="Create Category"
+                    android:textColor="@color/antiflash_white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:fontFamily="@font/alegreya_sans_sc"
+                    android:padding="8dp"
+                    android:text="Category Name"
+                    android:textColor="@color/antiflash_white"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/edtTxtCategoryName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_edit_text_box"
+                    android:fontFamily="@font/alegreya_sans"
+                    android:hint="Enter Category Name"
+                    android:inputType="text"
+                    android:padding="15dp"
+                    android:textColor="@color/faint_white"
+                    android:textColorHint="@color/faint_black"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/btnCreateCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/custom_square_layout"
+                    android:fontFamily="@font/alegreya_sans_sc_medium"
+                    android:padding="15dp"
+                    android:text="Create Category"
+                    android:textSize="30sp" />
+            </LinearLayout>
 
 
         </RelativeLayout>
-
 
         <include layout="@layout/layout_admin_bottom_navigation" />
     </LinearLayout>

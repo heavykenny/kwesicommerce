@@ -15,8 +15,10 @@ import com.example.kwesicommerce.R;
 import com.example.kwesicommerce.data.repository.CartRepository;
 import com.example.kwesicommerce.data.repository.UserRepository;
 import com.example.kwesicommerce.ui.activities.AccountActivity;
+import com.example.kwesicommerce.ui.activities.AdminCreateProductActivity;
 import com.example.kwesicommerce.ui.activities.AdminHomeActivity;
 import com.example.kwesicommerce.ui.activities.AdminViewCategoriesActivity;
+import com.example.kwesicommerce.ui.activities.AdminViewProductsActivity;
 import com.example.kwesicommerce.ui.activities.CartActivity;
 import com.example.kwesicommerce.ui.activities.CategoryActivity;
 import com.example.kwesicommerce.ui.activities.HomeActivity;
@@ -177,8 +179,8 @@ public class NavigationUtil {
         });
     }
 
-    public void goToActivity(Class loginActivityClass) {
-        Intent intent = new Intent(context, loginActivityClass);
+    public void goToActivity(Class activityClass) {
+        Intent intent = new Intent(context, activityClass);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
         activity.overridePendingTransition(0, 0);
@@ -207,7 +209,7 @@ public class NavigationUtil {
 
         adminProductLayout.setOnClickListener(v -> {
             v.startAnimation(clickAnimation);
-            Intent intent = new Intent(context, AdminViewCategoriesActivity.class);
+            Intent intent = new Intent(context, AdminViewProductsActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
             activity.overridePendingTransition(0, 0);

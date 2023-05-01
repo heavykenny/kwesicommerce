@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 
 import com.example.kwesicommerce.R;
+import com.example.kwesicommerce.data.repository.UserRepository;
 import com.example.kwesicommerce.utils.NavigationUtil;
 
 public class HomeActivity extends AppCompatActivity {
@@ -20,6 +21,11 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUtil navigationUtil = new NavigationUtil(getBaseContext(), this, active);
         navigationUtil.setNavigationItemClick();
         navigationUtil.setTopNavigationItemClick();
+
+        UserRepository userRepository = new UserRepository(getBaseContext());
+        if (userRepository.isUserLoggedIn() && userRepository.getUserAdmin()) {
+            navigationUtil.goToActivity(AdminHomeActivity.class);
+        }
     }
 
     @Override

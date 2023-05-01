@@ -14,7 +14,6 @@ public class Category {
     }
 
     public Category() {
-        this.id = 0;
         this.name = "";
         this.products = new ArrayList<>();
     }
@@ -51,5 +50,10 @@ public class Category {
 
     public void setProducts(List<Product> products) {
         this.products = products;
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 }

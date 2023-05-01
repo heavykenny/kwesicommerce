@@ -7,11 +7,16 @@ import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kwesicommerce.R;
 import com.example.kwesicommerce.data.model.Product;
+import com.example.kwesicommerce.data.repository.UserRepository;
+import com.example.kwesicommerce.ui.activities.AdminCreateProductActivity;
 import com.example.kwesicommerce.ui.activities.ProductDetailsActivity;
+import com.example.kwesicommerce.utils.NavigationUtil;
 
 import java.util.List;
 

@@ -7,13 +7,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kwesicommerce.R;
 import com.example.kwesicommerce.data.model.Category;
+import com.example.kwesicommerce.data.repository.UserRepository;
+import com.example.kwesicommerce.ui.activities.AdminCreateProductActivity;
+import com.example.kwesicommerce.ui.activities.AdminEditCategoryActivity;
+import com.example.kwesicommerce.ui.activities.AdminViewProductsActivity;
 import com.example.kwesicommerce.ui.activities.ProductActivity;
+import com.example.kwesicommerce.ui.activities.ProductDetailsActivity;
 
 import java.util.List;
 
@@ -39,6 +45,7 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
     @Override
     public void onBindViewHolder(@NonNull CategoryRecyclerViewAdapter.ViewHolder holder, int index) {
         holder.txtTitle.setText(categoryList.get(index).getName());
+        holder.categoryId = categoryList.get(index).getId();
     }
 
     @Override
@@ -48,6 +55,7 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView txtTitle;
+        public int categoryId;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -59,11 +67,27 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
         // Handle onClick events for the whole item view
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(appContext, ProductActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            appContext.startActivity(intent);
-            activity.overridePendingTransition(0, 0);
+//            Intent intent = new Intent(appContext, ProductActivity.class);
+//            intent.putExtra("categoryId", categoryId);
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            appContext.startActivity(intent);
+//            activity.overridePendingTransition(0, 0);
 
+            UserRepository userRepository = new UserRepository(appContext);
+
+            if (userRepository.isUserLoggedIn() && userRepository.getUserAdmin()) {
+                Intent intent = new Intent(appContext, AdminEditCategoryActivity.class);
+                intent.putExtra("categoryId", categoryId);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                appContext.startActivity(intent);
+                activity.overridePendingTransition(0, 0);
+            } else {
+                Intent intent = new Intent(appContext, ProductActivity.class);
+                intent.putExtra("categoryId", categoryId);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                appContext.startActivity(intent);
+                activity.overridePendingTransition(0, 0);
+            }
         }
     }
 }

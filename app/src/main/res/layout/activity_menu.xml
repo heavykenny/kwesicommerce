@@ -231,5 +231,18 @@
         </ScrollView>
     </RelativeLayout>
 
-    <include layout="@layout/layout_bottom_navigation" />
+    <LinearLayout
+        android:id="@+id/linLayUserBottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/layout_bottom_navigation" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linLayAdminBottomNavigation"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/layout_admin_bottom_navigation" />
+    </LinearLayout>
 </LinearLayout>

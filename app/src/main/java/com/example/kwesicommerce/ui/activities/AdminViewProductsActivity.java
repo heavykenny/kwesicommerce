@@ -10,66 +10,57 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.kwesicommerce.R;
-import com.example.kwesicommerce.data.model.Category;
 import com.example.kwesicommerce.data.model.Product;
-import com.example.kwesicommerce.data.repository.CategoryRepository;
 import com.example.kwesicommerce.data.repository.ProductRepository;
 import com.example.kwesicommerce.ui.fragments.ProductFragment;
 import com.example.kwesicommerce.utils.NavigationUtil;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-public class ProductActivity extends AppCompatActivity {
+public class AdminViewProductsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product);
-
-        Intent intent = getIntent();
-        int categoryId = intent.getIntExtra("categoryId", 0);
-
-        CategoryRepository categoryRepository = new CategoryRepository(getBaseContext());
-        Category category = categoryRepository.getCategoryById(categoryId);
+        setContentView(R.layout.activity_admin_view_products);
 
         ProductRepository productRepository = new ProductRepository(getBaseContext());
 
-        List<Product> productList = productRepository.getProductsByCategoryId(categoryId);
+        List<Product> productList = productRepository.getAllProducts();
 
-        LinearLayout active = findViewById(R.id.linLayoutShop);
+        LinearLayout active = findViewById(R.id.linLayoutAdminProduct);
 
         NavigationUtil navigationUtil = new NavigationUtil(getBaseContext(), this, active);
-        navigationUtil.setNavigationItemClick();
+        navigationUtil.setAdminNavigationItemClick();
         navigationUtil.setTopNavigationItemClick();
 
-        navigationUtil.backNavigation(category.getName() + "'s Product");
+        navigationUtil.backNavigation("Admin View Products");
+
+        FloatingActionButton fabAddProduct = findViewById(R.id.fabAddProduct);
+        fabAddProduct.setOnClickListener(v -> {
+            Intent i = new Intent(getBaseContext(), AdminCreateProductActivity.class);
+            startActivity(i);
+        });
 
         // Get the FragmentManager
         FragmentManager fragmentManager = getSupportFragmentManager();
         RelativeLayout relLayoutProductList = findViewById(R.id.relLayoutProductList);
         FrameLayout relLayoutProductContainer = findViewById(R.id.fragProductContainer);
-        if (productList.isEmpty()){
+        if (productList.isEmpty()) {
+
+
             relLayoutProductList.setVisibility(LinearLayout.VISIBLE);
             relLayoutProductContainer.setVisibility(FrameLayout.GONE);
-        }else{
+        } else {
+
             relLayoutProductList.setVisibility(LinearLayout.GONE);
             relLayoutProductContainer.setVisibility(FrameLayout.VISIBLE);
+            // Create a new Fragment instance
+            ProductFragment fragment = new ProductFragment(productList);
+            // Add the Fragment to the layout
+            fragmentManager.beginTransaction().add(R.id.fragProductContainer, fragment)
+                    .commit();
         }
-        // Create a new Fragment instance
-        ProductFragment fragment = new ProductFragment(productList);
-        // Add the Fragment to the layout
-        fragmentManager.beginTransaction().add(R.id.fragProductContainer, fragment)
-                .commit();
-    }
-
-    @Override
-    public void onBackPressed() {
-        finish();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        overridePendingTransition(0, 0);
     }
 }

@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/oxford_blue_a"
+    android:orientation="vertical"
+    tools:context=".ui.activities.AdminCreateProductActivity">
+
+    <include layout="@layout/layout_top_bar" />
+
+    <include layout="@layout/layout_back_navigation" />
+
+    <LinearLayout
+        android:id="@+id/layoutEmptyCategory"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:fontFamily="@font/alegreya_sans_sc"
+                        android:padding="8dp"
+                        android:text="Product Name"
+                        android:textColor="@color/antiflash_white"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/edtTxtProductName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_edit_text_box"
+                        android:fontFamily="@font/alegreya_sans"
+                        android:hint="Enter Product Name"
+                        android:inputType="text"
+                        android:padding="15dp"
+                        android:textColor="@color/faint_white"
+                        android:textColorHint="@color/faint_black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:fontFamily="@font/alegreya_sans_sc"
+                        android:padding="8dp"
+                        android:text="Description"
+                        android:textColor="@color/antiflash_white"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/edtTxtDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_edit_text_box"
+                        android:fontFamily="@font/alegreya_sans"
+                        android:hint="Enter Description"
+                        android:inputType="text"
+                        android:padding="15dp"
+                        android:textColor="@color/faint_white"
+                        android:textColorHint="@color/faint_black"
+                        android:textSize="20sp" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:fontFamily="@font/alegreya_sans_sc"
+                        android:padding="8dp"
+                        android:text="Category"
+                        android:textColor="@color/antiflash_white"
+                        android:textSize="15sp" />
+
+                    <Spinner
+                        android:id="@+id/spinnerCategoryID"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_edit_text_box"
+                        android:fontFamily="@font/alegreya_sans"
+                        android:padding="15dp"
+                        android:textColor="@color/faint_white"
+                        android:textColorHint="@color/faint_black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:fontFamily="@font/alegreya_sans_sc"
+                        android:padding="8dp"
+                        android:text="Image"
+                        android:textColor="@color/antiflash_white"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:id="@+id/imageViewProductImage"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="8dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/image_placeholder"
+                        />
+
+                    <Button
+                        android:id="@+id/btnUploadImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/custom_edit_text_box"
+                        android:fontFamily="@font/alegreya_sans_sc_light"
+                        android:padding="10dp"
+                        android:text="Upload Product Image"
+                        android:textColor="@color/antiflash_white" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:fontFamily="@font/alegreya_sans_sc"
+                        android:padding="8dp"
+                        android:text="Quantity"
+                        android:textColor="@color/antiflash_white"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/edtTxtQuantity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_edit_text_box"
+                        android:fontFamily="@font/alegreya_sans"
+                        android:hint="Enter Quantity"
+                        android:inputType="numberDecimal"
+                        android:padding="15dp"
+                        android:textColor="@color/faint_white"
+                        android:textColorHint="@color/faint_black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:fontFamily="@font/alegreya_sans_sc"
+                        android:padding="8dp"
+                        android:text="Price"
+                        android:textColor="@color/antiflash_white"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/edtTxtPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_edit_text_box"
+                        android:fontFamily="@font/alegreya_sans"
+                        android:hint="Enter Price"
+                        android:inputType="numberDecimal"
+                        android:padding="15dp"
+                        android:textColor="@color/faint_white"
+                        android:textColorHint="@color/faint_black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:fontFamily="@font/alegreya_sans_sc"
+                        android:padding="8dp"
+                        android:text="List Price"
+                        android:textColor="@color/antiflash_white"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/edtTxtListPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_edit_text_box"
+                        android:fontFamily="@font/alegreya_sans"
+                        android:hint="Enter List Price"
+                        android:inputType="numberDecimal"
+                        android:padding="15dp"
+                        android:textColor="@color/faint_white"
+                        android:textColorHint="@color/faint_black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:fontFamily="@font/alegreya_sans_sc"
+                        android:padding="8dp"
+                        android:text="Retail Price"
+                        android:textColor="@color/antiflash_white"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/edtTxtRetailPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_edit_text_box"
+                        android:fontFamily="@font/alegreya_sans"
+                        android:hint="Enter Retail Price"
+                        android:inputType="numberDecimal"
+                        android:padding="15dp"
+                        android:textColor="@color/faint_white"
+                        android:textColorHint="@color/faint_black"
+                        android:textSize="20sp" />
+
+                    <Button
+                        android:id="@+id/btnCreateCategory"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/custom_square_layout"
+                        android:fontFamily="@font/alegreya_sans_sc_medium"
+                        android:padding="17dp"
+                        android:text="Create Product"
+                        android:textSize="30sp" />
+                </LinearLayout>
+            </ScrollView>
+
+        </RelativeLayout>
+
+        <include layout="@layout/layout_admin_bottom_navigation" />
+    </LinearLayout>
+
+</LinearLayout>

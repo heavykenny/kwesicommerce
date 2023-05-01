@@ -32,10 +32,11 @@ public class WishlistActivity extends AppCompatActivity {
         navigationUtil.backNavigation("Wishlist");
 
         List<Product> data = new ArrayList<>();
-        Category cat = new Category("Gadgets");
-        data.add(new Product(1, "Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
-        data.add(new Product(1, "Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
-        data.add(new Product(1, "Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, cat));
+
+//        Category cat = new Category("Gadgets");
+//        data.add(new Product(1, "Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, 1));
+//        data.add(new Product(1, "Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, 1));
+//        data.add(new Product(1, "Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, 1));
 
         RecyclerView rvTestList = findViewById(R.id.rvListWishList);
         WishlistRecyclerViewAdapter adapter = new WishlistRecyclerViewAdapter(data, getApplicationContext());

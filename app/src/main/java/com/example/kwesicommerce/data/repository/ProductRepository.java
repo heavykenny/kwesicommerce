@@ -34,4 +34,8 @@ public class ProductRepository {
     public List<Product> getAllProducts() {
         return dbHelper.getProducts();
     }
+
+    public List<Product> getProductsByCategoryId(int categoryId) {
+        return dbHelper.getProductsByCategoryId(categoryId);
+    }
 }

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.example.kwesicommerce.data.model.CartItem;
 import com.example.kwesicommerce.data.model.Category;
@@ -43,6 +44,29 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
     private static final String COLUMN_ADDRESS = "address";
     private static final String COLUMN_IS_ADMIN = "isAdmin";
 
+    // Category table columns
+    private static final String COLUMN_DESCRIPTION = "description";
+    private static final String COLUMN_IMAGE_URL = "imageUrl";
+
+    private static final String COLUMN_PRICE = "price";
+
+    private static final String COLUMN_LIST_PRICE = "listPrice";
+
+    private static final String COLUMN_RETAIL_PRICE = "retailPrice";
+
+    private static final String COLUMN_CATEGORY_ID = "categoryId";
+
+    private static final String COLUMN_QUANTITY = "quantity";
+
+    private static final String COLUMN_ORDER_ID = "orderId";
+
+    private static final String COLUMN_USER_ID = "userId";
+
+    private static final String COLUMN_PRODUCT_ID = "productId";
+
+    private static final String COLUMN_DATE_CREATED = "dateCreated";
+
+
     public SQLiteDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -72,7 +96,23 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         db.execSQL(createCategoryTableQuery);
 
         // Create the product table
-        db.execSQL("CREATE TABLE products (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, price REAL, listPrice REAL, retailPrice REAL, dateCreated TEXT, dateUpdated TEXT, categoryId INTEGER, FOREIGN KEY(categoryId) REFERENCES categories(id))");
+        String createProductTableQuery = "CREATE TABLE " + TABLE_PRODUCTS + "(" +
+                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                COLUMN_NAME + " TEXT," +
+                COLUMN_DESCRIPTION + " TEXT," +
+                COLUMN_QUANTITY + " REAL," +
+                COLUMN_PRICE + " REAL," +
+                COLUMN_LIST_PRICE + " REAL," +
+                COLUMN_IMAGE_URL + " TEXT," +
+                COLUMN_RETAIL_PRICE + " REAL," +
+                COLUMN_DATE_CREATED + " TEXT," +
+                COLUMN_DATE_UPDATED + " TEXT," +
+                COLUMN_CATEGORY_ID + " INTEGER," +
+                "FOREIGN KEY(" + COLUMN_CATEGORY_ID + ") REFERENCES " + TABLE_CATEGORIES + "(" + COLUMN_ID + ")" +
+                ")";
+
+        db.execSQL(createProductTableQuery);
+
 
         // Create the order table
         db.execSQL("CREATE TABLE orders (id INTEGER PRIMARY KEY AUTOINCREMENT, userId INTEGER, productId INTEGER, quantity INTEGER, status TEXT, dateCreated TEXT, dateUpdated TEXT, FOREIGN KEY(userId) REFERENCES users(id), FOREIGN KEY(productId) REFERENCES products(id))");
@@ -159,8 +199,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         values.put(COLUMN_HOBBIES, user.getHobbies());
         values.put(COLUMN_POSTCODE, user.getPostcode());
         values.put(COLUMN_ADDRESS, user.getAddress());
-        values.put(COLUMN_IS_ADMIN, user.isAdmin() ? 1 : 0);
-//        values.put(COLUMN_IS_ADMIN, user.isAdmin() ? 1 : 1);
+        values.put(COLUMN_IS_ADMIN, user.isAdmin() ? 1 : 1);
 
         db.insert(TABLE_USERS, null, values);
         db.close();
@@ -176,7 +215,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         values.put(COLUMN_HOBBIES, user.getHobbies());
         values.put(COLUMN_POSTCODE, user.getPostcode());
         values.put(COLUMN_ADDRESS, user.getAddress());
-        values.put(COLUMN_IS_ADMIN, user.isAdmin() ? 1 : 0);
+        values.put(COLUMN_IS_ADMIN, user.isAdmin() ? 1 : 1);
 
         db.update(TABLE_USERS, values, COLUMN_ID + " = ?", new String[]{String.valueOf(user.getId())});
         db.close();
@@ -241,13 +280,30 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         return categoryList;
     }
 
+    @SuppressLint("Range")
     public Category getCategory(int categoryId) {
-        // Handle retrieving a specific category from the database by ID
-        return null;
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query(TABLE_CATEGORIES, null, COLUMN_ID + " = ?", new String[]{String.valueOf(categoryId)}, null, null, null);
+        Category category = null;
+        if (cursor != null && cursor.moveToFirst()) {
+            category = new Category();
+            category.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
+            category.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
+        }
+        if (cursor != null) {
+            cursor.close();
+        }
+        db.close();
+        return category;
     }
 
     public void insertCategory(Category category) {
-        // Handle inserting a new category into the database
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME, category.getName());
+
+        db.insert(TABLE_CATEGORIES, null, values);
+        db.close();
     }
 
     public void updateCategory(Category category) {
@@ -258,9 +314,29 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         // Handle deleting a category from the database
     }
 
+    @SuppressLint("Range")
     public List<Product> getProducts() {
-        // Handle retrieving all products from the database
-        return null;
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query(TABLE_PRODUCTS, null, null, null, null, null, null);
+        List<Product> productList = new ArrayList<>();
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                Product product = new Product();
+                product.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
+                product.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
+                product.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION)));
+                product.setPrice(cursor.getDouble(cursor.getColumnIndex(COLUMN_PRICE)));
+                product.setCategoryId(cursor.getInt(cursor.getColumnIndex(COLUMN_CATEGORY_ID)));
+                product.setQuantity(cursor.getInt(cursor.getColumnIndex(COLUMN_QUANTITY)));
+                product.setImageUrl(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGE_URL)));
+                productList.add(product);
+            } while (cursor.moveToNext());
+        }
+        if (cursor != null) {
+            cursor.close();
+        }
+        db.close();
+        return productList;
     }
 
     public Product getProduct(int productId) {
@@ -269,7 +345,25 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
     }
 
     public void insertProduct(Product product) {
-        // Handle inserting a new product into the database
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME, product.getName());
+        values.put(COLUMN_DESCRIPTION, product.getDescription());
+        values.put(COLUMN_PRICE, product.getPrice());
+        values.put(COLUMN_CATEGORY_ID, product.getCategoryId());
+        values.put(COLUMN_QUANTITY, product.getQuantity());
+        values.put(COLUMN_IMAGE_URL, product.getImageUrl());
+
+        long result =  db.insert(TABLE_PRODUCTS, null, values);
+
+
+        if(result == -1) {
+            Log.e("MESSAGE",""+ product.getName() +"  Not Inserted");
+        }else{
+            Log.e("MESSAGE",""+ product.getName() +"  Inserted");
+        }
+
+        db.close();
     }
 
     public void updateProduct(Product product) {
@@ -389,5 +483,35 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         String[] args = {String.valueOf(userId)};
         db.delete("cart", "userId = ?", args);
         db.close();
+    }
+
+    @SuppressLint("Range")
+    public List<Product> getProductsByCategoryId(int categoryId) {
+        List<Product> products = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+
+        String query = "SELECT * FROM products WHERE categoryId = ?";
+        String[] args = {String.valueOf(categoryId)};
+
+        Cursor cursor = db.rawQuery(query, args);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Product product = new Product();
+                product.setId(cursor.getInt(cursor.getColumnIndex("id")));
+                product.setName(cursor.getString(cursor.getColumnIndex("name")));
+                product.setDescription(cursor.getString(cursor.getColumnIndex("description")));
+                product.setPrice(cursor.getDouble(cursor.getColumnIndex("price")));
+                product.setCategoryId(cursor.getInt(cursor.getColumnIndex("categoryId")));
+                product.setImageUrl(cursor.getString(cursor.getColumnIndex("imageUrl")));
+
+                products.add(product);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        return products;
     }
 }
