@@ -15,12 +15,12 @@ public class CartRepository {
         dbHelper = new SQLiteDBHelper(context);
     }
 
-    public void addItemToCart(int userId, Product product) {
-        dbHelper.addToCart(userId, product.getId());
+    public void addItemToCart(int userId, int productId, int quantity) {
+        dbHelper.addToCart(userId, productId, quantity);
     }
 
-    public void removeItemFromCart(int userId, Product product) {
-        dbHelper.removeFromCart(userId, product.getId());
+    public void removeItemFromCart(int cartId) {
+        dbHelper.removeFromCart(cartId);
     }
 
     public List<CartItem> getCartItems(int userId) {
@@ -34,6 +34,10 @@ public class CartRepository {
             totalQuantity += item.getQuantity();
         }
         return totalQuantity;
+    }
+
+    public void updateCartItemQuantity(int userId, int quantity) {
+        dbHelper.updateCartItemQuantity(userId, quantity);
     }
 
     public double getCartTotalPrice(int userId) {

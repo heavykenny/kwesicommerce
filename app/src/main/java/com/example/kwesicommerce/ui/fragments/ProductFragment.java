@@ -19,9 +19,7 @@ import java.util.List;
 
 public class ProductFragment extends Fragment {
 
-    private ProductAdapter adapter;
-    private List<Product> productList;
-    private GridView productView;
+    private final List<Product> productList;
 
     public ProductFragment(List<Product> productList) {
         this.productList = productList;
@@ -32,9 +30,9 @@ public class ProductFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_product, container, false);
 
-        productView = view.findViewById(R.id.gridViewProduct);
+        GridView productView = view.findViewById(R.id.gridViewProduct);
 
-        adapter = new ProductAdapter(productList);
+        ProductAdapter adapter = new ProductAdapter(productList);
         productView.setAdapter(adapter);
         return view;
     }

@@ -117,8 +117,17 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         // Create the order table
         db.execSQL("CREATE TABLE orders (id INTEGER PRIMARY KEY AUTOINCREMENT, userId INTEGER, productId INTEGER, quantity INTEGER, status TEXT, dateCreated TEXT, dateUpdated TEXT, FOREIGN KEY(userId) REFERENCES users(id), FOREIGN KEY(productId) REFERENCES products(id))");
 
-        db.execSQL("CREATE TABLE cart (id INTEGER PRIMARY KEY AUTOINCREMENT, userId INTEGER, productId INTEGER, quantity INTEGER, FOREIGN KEY(userId) REFERENCES users(id), FOREIGN KEY(productId) REFERENCES products(id))");
+//        db.execSQL("CREATE TABLE cart (id INTEGER PRIMARY KEY AUTOINCREMENT, userId INTEGER, productId INTEGER, quantity INTEGER, FOREIGN KEY(userId) REFERENCES users(id), FOREIGN KEY(productId) REFERENCES products(id))");
 
+        String createCartTableQuery = "CREATE TABLE " + TABLE_CART + "(" +
+                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                COLUMN_USER_ID + " INTEGER," +
+                COLUMN_PRODUCT_ID + " INTEGER," +
+                COLUMN_QUANTITY + " INTEGER," +
+                "FOREIGN KEY(" + COLUMN_USER_ID + ") REFERENCES " + TABLE_USERS + "(" + COLUMN_ID + ")," +
+                "FOREIGN KEY(" + COLUMN_PRODUCT_ID + ") REFERENCES " + TABLE_PRODUCTS + "(" + COLUMN_ID + ")" +
+                ")";
+        db.execSQL(createCartTableQuery);
     }
 
     @Override
@@ -199,7 +208,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         values.put(COLUMN_HOBBIES, user.getHobbies());
         values.put(COLUMN_POSTCODE, user.getPostcode());
         values.put(COLUMN_ADDRESS, user.getAddress());
-        values.put(COLUMN_IS_ADMIN, user.isAdmin() ? 1 : 1);
+        values.put(COLUMN_IS_ADMIN, 1);
 
         db.insert(TABLE_USERS, null, values);
         db.close();
@@ -215,7 +224,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         values.put(COLUMN_HOBBIES, user.getHobbies());
         values.put(COLUMN_POSTCODE, user.getPostcode());
         values.put(COLUMN_ADDRESS, user.getAddress());
-        values.put(COLUMN_IS_ADMIN, user.isAdmin() ? 1 : 1);
+        values.put(COLUMN_IS_ADMIN, 1);
 
         db.update(TABLE_USERS, values, COLUMN_ID + " = ?", new String[]{String.valueOf(user.getId())});
         db.close();
@@ -339,9 +348,26 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         return productList;
     }
 
+    @SuppressLint("Range")
     public Product getProduct(int productId) {
-        // Handle retrieving a specific product from the database by ID
-        return null;
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query(TABLE_PRODUCTS, null, COLUMN_ID + " = ?", new String[]{String.valueOf(productId)}, null, null, null);
+        Product product = null;
+        if (cursor != null && cursor.moveToFirst()) {
+            product = new Product();
+            product.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
+            product.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
+            product.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION)));
+            product.setPrice(cursor.getDouble(cursor.getColumnIndex(COLUMN_PRICE)));
+            product.setCategoryId(cursor.getInt(cursor.getColumnIndex(COLUMN_CATEGORY_ID)));
+            product.setQuantity(cursor.getInt(cursor.getColumnIndex(COLUMN_QUANTITY)));
+            product.setImageUrl(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGE_URL)));
+        }
+        if (cursor != null) {
+            cursor.close();
+        }
+        db.close();
+        return product;
     }
 
     public void insertProduct(Product product) {
@@ -354,13 +380,13 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         values.put(COLUMN_QUANTITY, product.getQuantity());
         values.put(COLUMN_IMAGE_URL, product.getImageUrl());
 
-        long result =  db.insert(TABLE_PRODUCTS, null, values);
+        long result = db.insert(TABLE_PRODUCTS, null, values);
 
 
-        if(result == -1) {
-            Log.e("MESSAGE",""+ product.getName() +"  Not Inserted");
-        }else{
-            Log.e("MESSAGE",""+ product.getName() +"  Inserted");
+        if (result == -1) {
+            Log.e("MESSAGE", product.getName() + "  Not Inserted");
+        } else {
+            Log.e("MESSAGE", product.getName() + "  Inserted");
         }
 
         db.close();
@@ -423,23 +449,43 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         return user;
     }
 
-    public void addToCart(int userId, int productId) {
+    public void addToCart(int userId, int productId, int quantity) {
         SQLiteDatabase db = getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put("userId", userId);
-        values.put("productId", productId);
-        values.put("quantity", 1);
+        // get the current userId and productId from the cart table
+        // if the userId and productId already exist in the cart table, update the quantity
 
-        db.insert("cart", null, values);
+        // otherwise, insert a new row into the cart table
+
+        String query = "SELECT * FROM cart WHERE userId = ? AND productId = ?";
+        @SuppressLint("Recycle") Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(userId), String.valueOf(productId)});
+        ContentValues values = new ContentValues();
+
+        if (cursor != null && cursor.moveToFirst()) {
+            // get product quantity from product table
+            Product product = getProduct(productId);
+            @SuppressLint("Range") int currentQuantity = cursor.getInt(cursor.getColumnIndex("quantity"));
+            if (currentQuantity + quantity > product.getQuantity()) {
+                return;
+            }
+            values.put("quantity", currentQuantity + quantity);
+            String[] args = {String.valueOf(userId), String.valueOf(productId)};
+            db.update("cart", values, "userId = ? AND productId = ?", args);
+        } else {
+            values.put("userId", userId);
+            values.put("productId", productId);
+            values.put("quantity", quantity);
+            db.insert("cart", null, values);
+        }
+
         db.close();
     }
 
-    public void removeFromCart(int userId, int productId) {
+    public void removeFromCart(int cartId) {
         SQLiteDatabase db = getWritableDatabase();
 
-        String[] args = {String.valueOf(userId), String.valueOf(productId)};
-        db.delete("cart", "userId = ? AND productId = ?", args);
+        String[] args = {String.valueOf(cartId)};
+        db.delete("cart", "id = ?", args);
         db.close();
     }
 
@@ -448,7 +494,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         List<CartItem> cartItems = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
 
-        String query = "SELECT products.id, products.name, products.description, products.price, cart.quantity " +
+        String query = "SELECT products.id as productId, products.name, products.description, products.price, cart.quantity, cart.id " +
                 "FROM cart " +
                 "JOIN products ON cart.productId = products.id " +
                 "WHERE cart.userId = ?";
@@ -458,16 +504,12 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-//                String productName = cursor.getString(cursor.getColumnIndex("name"));
-//                String productDescription = cursor.getString(cursor.getColumnIndex("description"));
-//                String productPrice = cursor.getString(cursor.getColumnIndex("price"));
-
-
-                int productId = cursor.getInt(cursor.getColumnIndex("id"));
+                int id = cursor.getInt(cursor.getColumnIndex("id"));
+                int productId = cursor.getInt(cursor.getColumnIndex("productId"));
                 int quantity = cursor.getInt(cursor.getColumnIndex("quantity"));
 
                 Product product = this.getProduct(productId);
-                CartItem cartItem = new CartItem(product, quantity);
+                CartItem cartItem = new CartItem(id, product, quantity);
                 cartItems.add(cartItem);
             } while (cursor.moveToNext());
         }
@@ -513,5 +555,21 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         db.close();
 
         return products;
+    }
+
+    public void updateCartItemQuantity(int cartId, int quantity) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        String query = "SELECT * FROM cart WHERE id = ?";
+        String[] args = {String.valueOf(cartId)};
+        @SuppressLint("Recycle") Cursor cursor = db.rawQuery(query, args);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            ContentValues values = new ContentValues();
+            values.put("quantity", quantity);
+            db.update("cart", values, "id = ?", args);
+        }
+
+        db.close();
     }
 }

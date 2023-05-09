@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="10dp"
     android:layout_marginTop="10dp"
     android:background="@color/french_blue">
 
@@ -42,7 +43,7 @@
         android:layout_toEndOf="@+id/imgViewProductListImage"
         android:layout_centerHorizontal="true"
         android:layout_alignBottom="@+id/imgViewProductListImage"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="40dp">
 
         <Button
             android:backgroundTint="@color/oxford_blue"
@@ -79,11 +80,11 @@
         <Button
             android:background="@drawable/custom_square_layout"
             android:fontFamily="@font/alegreya_sans_sc_light"
-            android:id="@+id/btnAddToCart"
+            android:id="@+id/btnRemoveProductCart"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_toEndOf="@id/btnIncrementCounter"
-            android:text="@string/string_add_to_cart"
+            android:text="Remove"
             android:textSize="15sp" />
     </RelativeLayout>
 

@@ -15,7 +15,6 @@ import com.example.kwesicommerce.R;
 import com.example.kwesicommerce.data.repository.CartRepository;
 import com.example.kwesicommerce.data.repository.UserRepository;
 import com.example.kwesicommerce.ui.activities.AccountActivity;
-import com.example.kwesicommerce.ui.activities.AdminCreateProductActivity;
 import com.example.kwesicommerce.ui.activities.AdminHomeActivity;
 import com.example.kwesicommerce.ui.activities.AdminViewCategoriesActivity;
 import com.example.kwesicommerce.ui.activities.AdminViewProductsActivity;
@@ -149,7 +148,7 @@ public class NavigationUtil {
     public void setTopNavigationItemClick() {
 
         if (userRepository.isUserLoggedIn()) {
-            txtViewCartCounter.setText(String.valueOf(cartRepository.getCartTotalQuantity(userRepository.getUserId())));
+            txtViewCartCounter.setText(String.valueOf(cartRepository.getCartItems(userRepository.getUserId()).size()));
         } else {
             txtViewCartCounter.setText("0");
         }

@@ -11,19 +11,19 @@ public class Cart {
         items = new ArrayList<>();
     }
 
-    public void addItem(Product product) {
-        // Check if the product is already in the cart
-        for (CartItem item : items) {
-            if (item.getProduct().getId() == product.getId()) {
-                item.increaseQuantity();
-                return;
-            }
-        }
-
-        // If not, add a new cart item
-        CartItem newItem = new CartItem(product, 1);
-        items.add(newItem);
-    }
+//    public void addItem(Product product) {
+//        // Check if the product is already in the cart
+//        for (CartItem item : items) {
+//            if (item.getProduct().getId() == product.getId()) {
+//                item.increaseQuantity();
+//                return;
+//            }
+//        }
+//
+//        // If not, add a new cart item
+//        CartItem newItem = new CartItem(product, 1);
+//        items.add(newItem);
+//    }
 
     public void removeItem(Product product) {
         Iterator<CartItem> iterator = items.iterator();

@@ -29,4 +29,6 @@
     <string name="string_required_last_name">*Last name</string>
     <string name="string_required_confirm_password">*Confirm Password</string>
     <string name="string_page_title">Page Title</string>
+    <string name="increment_plus">+</string>
+    <string name="decrement_minus">-</string>
 </resources>

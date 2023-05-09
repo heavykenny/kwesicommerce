@@ -1,9 +1,12 @@
 package com.example.kwesicommerce.ui.activities;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,11 +26,11 @@ public class CartActivity extends AppCompatActivity {
     CartRepository cartRepository;
     UserRepository userRepository;
 
+    @SuppressLint("DefaultLocale")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
-
 
         NavigationUtil navigationUtil = new NavigationUtil(getBaseContext(), this);
         navigationUtil.setTopNavigationItemClick();
@@ -50,10 +53,18 @@ public class CartActivity extends AppCompatActivity {
             layoutCartList.setVisibility(View.VISIBLE);
             layoutEmptyCart.setVisibility(View.GONE);
 
-            CartRecyclerViewAdapter adapter = new CartRecyclerViewAdapter(cartItems, getApplicationContext());
+            CartRecyclerViewAdapter adapter = new CartRecyclerViewAdapter(cartItems, getApplicationContext(), this);
 
             rvCart.setAdapter(adapter);
             rvCart.setLayoutManager(new LinearLayoutManager(this));
         }
+
+        updateTotalPrice();
+    }
+
+    @SuppressLint("DefaultLocale")
+    public void updateTotalPrice() {
+        TextView txtViewTotalPrice = findViewById(R.id.txtViewTotalPrice);
+        txtViewTotalPrice.setText(String.format("TOTAL £%,.2f", cartRepository.getCartTotalPrice(userRepository.getUserId())));
     }
 }
