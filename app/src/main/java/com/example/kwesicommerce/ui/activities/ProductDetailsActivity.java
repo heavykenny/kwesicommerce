@@ -111,6 +111,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
         });
 
         btnProceedToCheckout.setOnClickListener(v -> {
+            int counter = Integer.parseInt(txtViewCounter.getText().toString());
+            if (counter < 1) {
+                notificationUtil.showToast("You need to add at least one item to your cart");
+                return;
+            }
+            cartRepository.addItemToCart(userRepository.getUserId(), productId, counter);
+
             Intent intent12 = new Intent(getBaseContext(), CartActivity.class);
             intent12.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             getBaseContext().startActivity(intent12);

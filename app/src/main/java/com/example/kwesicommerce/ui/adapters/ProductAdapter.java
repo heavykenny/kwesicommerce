@@ -4,10 +4,14 @@ import static com.example.kwesicommerce.ui.adapters.CategoryRecyclerViewAdapter.
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kwesicommerce.R;
 import com.example.kwesicommerce.data.model.Product;
@@ -52,12 +56,22 @@ public class ProductAdapter extends BaseAdapter implements View.OnClickListener 
     public View getView(int position, View convertView, ViewGroup parent) {
 
         if (convertView == null) {
-            convertView = View.inflate(parent.getContext(), R.layout.product_layout, null);
+            convertView = View.inflate(parent.getContext(), R.layout.layout_product_list, null);
         }
 
         TextView productTitle = convertView.findViewById(R.id.txtViewProductListTitle);
         TextView productPrice = convertView.findViewById(R.id.txtViewProductPrice);
-//        ImageButton productWishlist = convertView.findViewById(R.id.product_wishlist);
+        ImageView imgBtnFavorite = convertView.findViewById(R.id.imgBtnFavorite);
+
+        imgBtnFavorite.setOnClickListener(v -> {
+
+            imgBtnFavorite.setColorFilter(Color.RED);
+
+            Handler handler = new Handler();
+            handler.postDelayed(() -> imgBtnFavorite.setColorFilter(Color.BLACK), 2000);
+
+            Toast.makeText(v.getContext(), "Added to Wishlist", Toast.LENGTH_SHORT).show();
+        });
 
         productTitle.setText(productList.get(position).getName());
         productPrice.setText(String.format("£%.2f", productList.get(position).getPrice()));

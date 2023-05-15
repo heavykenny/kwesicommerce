@@ -14,13 +14,13 @@
         android:src="@drawable/image_placeholder" />
 
     <ImageButton
-        android:id="@+id/product_wishlist"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:id="@+id/imgBtnFavorite"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:padding="8dp"
-        android:background="@color/white"
+        android:background="@color/antiflash_white"
         android:src="@drawable/favorite" />
 
     <LinearLayout
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/alegreya_sans_sc_bold"
             android:text="Product Title"
-            android:textColor="@android:color/white"
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
         <TextView

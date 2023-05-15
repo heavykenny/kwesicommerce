@@ -3,6 +3,7 @@ package com.example.kwesicommerce.ui.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.kwesicommerce.R;
@@ -26,6 +27,9 @@ public class HomeActivity extends AppCompatActivity {
         if (userRepository.isUserLoggedIn() && userRepository.getUserAdmin()) {
             navigationUtil.goToActivity(AdminHomeActivity.class);
         }
+
+        Button buttonShopNow = findViewById(R.id.buttonShopNow);
+        buttonShopNow.setOnClickListener(v -> navigationUtil.goToActivity(CategoryActivity.class));
     }
 
     @Override

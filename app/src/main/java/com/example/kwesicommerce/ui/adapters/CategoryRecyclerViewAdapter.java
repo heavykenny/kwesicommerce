@@ -67,12 +67,6 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
         // Handle onClick events for the whole item view
         @Override
         public void onClick(View v) {
-//            Intent intent = new Intent(appContext, ProductActivity.class);
-//            intent.putExtra("categoryId", categoryId);
-//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            appContext.startActivity(intent);
-//            activity.overridePendingTransition(0, 0);
-
             UserRepository userRepository = new UserRepository(appContext);
 
             if (userRepository.isUserLoggedIn() && userRepository.getUserAdmin()) {

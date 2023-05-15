@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/faint_black"
+    android:orientation="vertical"
+    tools:context=".ui.activities.OrderSummaryActivity">
+
+    <include layout="@layout/layout_top_bar" />
+
+    <include layout="@layout/layout_back_navigation" />
+
+    <LinearLayout
+        android:id="@+id/layoutCartList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvListCartList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rvListCartList"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/alegreya_sans_sc_bold"
+                    android:text="Personal Details"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/txtViewName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/alegreya_sans"
+                    android:text="Name:"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/txtViewEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/alegreya_sans"
+                    android:text="Email:"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/txtViewAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/alegreya_sans"
+                    android:text="Address:"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/txtViewPostcode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/alegreya_sans"
+                    android:text="Postcode:"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="#CCC" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/alegreya_sans_sc_bold"
+                    android:text="Payment Details"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/txtViewCardType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/alegreya_sans"
+                    android:text="Card Type:"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/txtViewCardNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/alegreya_sans"
+                    android:text="Card Number:"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/txtViewExpiryDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/alegreya_sans"
+                    android:text="Expiry Date:"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/txtViewCVV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/alegreya_sans"
+                    android:text="CVV:"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/txtViewTotalPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/alegreya_sans_sc_bold"
+            android:gravity="end"
+            android:padding="8dp"
+            android:paddingEnd="30dp"
+            android:text="TOTAL: £ 00.00"
+            android:textColor="@color/black"
+            android:textSize="11sp" />
+
+        <Button
+            android:id="@+id/btnPlaceOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_square_layout"
+            android:fontFamily="@font/alegreya_sans_sc_bold"
+            android:text="Place Order"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</LinearLayout>

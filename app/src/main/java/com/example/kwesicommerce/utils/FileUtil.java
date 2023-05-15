@@ -19,7 +19,7 @@ public class FileUtil {
         BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
 
         for (Order order : orders) {
-            bufferedWriter.write("Order ID: " + order.getId() + ", User ID: " + order.getUserId() + ", Product ID: " + order.getProductId() + ", Quantity: " + order.getQuantity() + ", Status: " + order.getStatus() + ", Date Created: " + order.getDateCreated() + ", Date Updated: " + order.getDateUpdated());
+            bufferedWriter.write("Order ID: " + order.getId() + ", User ID: " + order.getUserId() + ", Status: " + order.getStatus() + ", Date Created: " + order.getDateCreated() + ", Date Updated: " + order.getDateUpdated());
             bufferedWriter.newLine();
         }
 

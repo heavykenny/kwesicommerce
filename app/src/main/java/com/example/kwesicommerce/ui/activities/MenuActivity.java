@@ -90,5 +90,9 @@ public class MenuActivity extends AppCompatActivity {
         txtViewDashboard.setOnClickListener(v -> {
             navigationUtil.goToActivity(AdminHomeActivity.class);
         });
+
+        txtViewPreviousOrders.setOnClickListener(v -> {
+            navigationUtil.goToActivity(PreviousOrdersActivity.class);
+        });
     }
 }

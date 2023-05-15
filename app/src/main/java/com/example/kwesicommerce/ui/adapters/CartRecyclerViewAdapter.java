@@ -62,7 +62,6 @@ public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerVi
         private final TextView txtViewProductPrice;
         private final Button btnQuantityCounter;
         private final Button btnRemoveProductCart;
-        private final TextView txtViewTotalPrice;
         Button btnIncrementCounter;
         Button btnDecrementCounter;
 
@@ -74,8 +73,6 @@ public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerVi
             btnIncrementCounter = itemView.findViewById(R.id.btnIncrementCounter);
             btnDecrementCounter = itemView.findViewById(R.id.btnDecrementCounter);
             btnRemoveProductCart = itemView.findViewById(R.id.btnRemoveProductCart);
-
-            txtViewTotalPrice = itemView.findViewById(R.id.txtViewTotalPrice);
         }
 
         @SuppressLint("DefaultLocale")

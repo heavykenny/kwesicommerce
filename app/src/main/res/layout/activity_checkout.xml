@@ -3,26 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/oxford_blue_a"
+    android:background="@color/antiflash_white"
     android:orientation="vertical"
-    tools:context=".ui.activities.AdminCreateProductActivity">
+    tools:context=".ui.activities.CartActivity">
 
     <include layout="@layout/layout_top_bar" />
 
     <include layout="@layout/layout_back_navigation" />
 
     <LinearLayout
-        android:id="@+id/layoutEmptyCategory"
+        android:id="@+id/layoutCartList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="visible">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:gravity="center">
+            android:background="@drawable/background2">
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -31,9 +31,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -42,17 +41,63 @@
                         android:layout_marginBottom="1dp"
                         android:fontFamily="@font/alegreya_sans_sc"
                         android:padding="8dp"
-                        android:text="Product Name"
+                        android:text="Name"
                         android:textColor="@color/antiflash_white"
                         android:textSize="15sp" />
 
-                    <EditText
-                        android:id="@+id/edtTxtProductName"
+                    <TextView
+                        android:id="@+id/edtTxtName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/custom_edit_text_box"
                         android:fontFamily="@font/alegreya_sans"
-                        android:hint="Enter Product Name"
+                        android:hint="Name"
+                        android:padding="10dp"
+                        android:textColor="@color/faint_white"
+                        android:textColorHint="@color/faint_black"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:fontFamily="@font/alegreya_sans_sc"
+                        android:padding="8dp"
+                        android:text="@string/string_required_email"
+                        android:textColor="@color/antiflash_white"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/edtTxtEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_edit_text_box"
+                        android:fontFamily="@font/alegreya_sans"
+                        android:hint="@string/string_enter_your_email"
+                        android:padding="10dp"
+                        android:textColor="@color/faint_white"
+                        android:textColorHint="@color/faint_black"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:fontFamily="@font/alegreya_sans_sc"
+                        android:padding="8dp"
+                        android:text="Address"
+                        android:textColor="@color/antiflash_white"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/edtTxtAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_edit_text_box"
+                        android:fontFamily="@font/alegreya_sans"
+                        android:hint="Address"
                         android:inputType="text"
                         android:padding="10dp"
                         android:textColor="@color/faint_white"
@@ -66,45 +111,31 @@
                         android:layout_marginBottom="1dp"
                         android:fontFamily="@font/alegreya_sans_sc"
                         android:padding="8dp"
-                        android:text="Description"
+                        android:text="Post Code"
                         android:textColor="@color/antiflash_white"
                         android:textSize="15sp" />
 
                     <EditText
-                        android:id="@+id/edtTxtDescription"
+                        android:id="@+id/edtTxtPostCode"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/custom_edit_text_box"
                         android:fontFamily="@font/alegreya_sans"
-                        android:hint="Enter Description"
-                        android:inputType="text"
+                        android:hint="Post Code"
+                        android:inputType="textPostalAddress"
+                        android:maxLength="7"
                         android:padding="10dp"
                         android:textColor="@color/faint_white"
                         android:textColorHint="@color/faint_black"
                         android:textSize="15sp" />
 
 
-                    <TextView
+                    <View
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="1dp"
-                        android:layout_marginBottom="1dp"
-                        android:fontFamily="@font/alegreya_sans_sc"
-                        android:padding="8dp"
-                        android:text="Category"
-                        android:textColor="@color/antiflash_white"
-                        android:textSize="15sp" />
-
-                    <Spinner
-                        android:id="@+id/spinnerCategoryID"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/custom_edit_text_box"
-                        android:fontFamily="@font/alegreya_sans"
-                        android:padding="10dp"
-                        android:textColor="@color/faint_white"
-                        android:textColorHint="@color/faint_black"
-                        android:textSize="15sp" />
+                        android:layout_height="1dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="#CCC" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -113,50 +144,18 @@
                         android:layout_marginBottom="1dp"
                         android:fontFamily="@font/alegreya_sans_sc"
                         android:padding="8dp"
-                        android:text="Image"
-                        android:textColor="@color/antiflash_white"
-                        android:textSize="15sp" />
-
-                    <ImageView
-                        android:id="@+id/imageViewProductImage"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_margin="8dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/image_placeholder" />
-
-                    <Button
-                        android:id="@+id/btnUploadImage"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@drawable/custom_edit_text_box"
-                        android:fontFamily="@font/alegreya_sans_sc_light"
-                        android:padding="10dp"
-                        android:text="Upload Product Image"
-                        android:textColor="@color/antiflash_white" />
-
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="1dp"
-                        android:layout_marginBottom="1dp"
-                        android:fontFamily="@font/alegreya_sans_sc"
-                        android:padding="8dp"
-                        android:text="Quantity"
+                        android:text="Card Number"
                         android:textColor="@color/antiflash_white"
                         android:textSize="15sp" />
 
                     <EditText
-                        android:id="@+id/edtTxtQuantity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/custom_edit_text_box"
                         android:fontFamily="@font/alegreya_sans"
-                        android:hint="Enter Quantity"
-                        android:inputType="numberDecimal"
+                        android:hint="Card Number"
+                        android:inputType="number"
+                        android:maxLength="16"
                         android:padding="10dp"
                         android:textColor="@color/faint_white"
                         android:textColorHint="@color/faint_black"
@@ -169,18 +168,17 @@
                         android:layout_marginBottom="1dp"
                         android:fontFamily="@font/alegreya_sans_sc"
                         android:padding="8dp"
-                        android:text="Price"
+                        android:text="Expire Date"
                         android:textColor="@color/antiflash_white"
                         android:textSize="15sp" />
 
-                    <EditText
-                        android:id="@+id/edtTxtPrice"
+                    <TextView
+                        android:id="@+id/edtTxtExpireDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/custom_edit_text_box"
                         android:fontFamily="@font/alegreya_sans"
-                        android:hint="Enter Price"
-                        android:inputType="numberDecimal"
+                        android:hint="Expire Date"
                         android:padding="10dp"
                         android:textColor="@color/faint_white"
                         android:textColorHint="@color/faint_black"
@@ -193,64 +191,49 @@
                         android:layout_marginBottom="1dp"
                         android:fontFamily="@font/alegreya_sans_sc"
                         android:padding="8dp"
-                        android:text="List Price"
+                        android:text="CVV"
                         android:textColor="@color/antiflash_white"
                         android:textSize="15sp" />
 
                     <EditText
-                        android:id="@+id/edtTxtListPrice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/custom_edit_text_box"
                         android:fontFamily="@font/alegreya_sans"
-                        android:hint="Enter List Price"
-                        android:inputType="numberDecimal"
+                        android:hint="CVV"
+                        android:inputType="number"
+                        android:maxLength="3"
                         android:padding="10dp"
                         android:textColor="@color/faint_white"
                         android:textColorHint="@color/faint_black"
                         android:textSize="15sp" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="1dp"
-                        android:layout_marginBottom="1dp"
-                        android:fontFamily="@font/alegreya_sans_sc"
-                        android:padding="8dp"
-                        android:text="Retail Price"
-                        android:textColor="@color/antiflash_white"
-                        android:textSize="15sp" />
-
-                    <EditText
-                        android:id="@+id/edtTxtRetailPrice"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/custom_edit_text_box"
-                        android:fontFamily="@font/alegreya_sans"
-                        android:hint="Enter Retail Price"
-                        android:inputType="numberDecimal"
-                        android:padding="10dp"
-                        android:textColor="@color/faint_white"
-                        android:textColorHint="@color/faint_black"
-                        android:textSize="15sp" />
-
-                    <Button
-                        android:id="@+id/btnCreateCategory"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="@drawable/custom_square_layout"
-                        android:fontFamily="@font/alegreya_sans_sc_medium"
-                        android:padding="17dp"
-                        android:text="Create Product"
-                        android:textSize="30sp" />
                 </LinearLayout>
             </ScrollView>
 
         </RelativeLayout>
 
-        <include layout="@layout/layout_admin_bottom_navigation" />
+        <TextView
+            android:id="@+id/txtViewTotalPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/alegreya_sans_sc_bold"
+            android:gravity="end"
+            android:padding="8dp"
+            android:paddingEnd="30dp"
+            android:text="TOTAL: £ 00.00"
+            android:textColor="@color/black"
+            android:textSize="11sp" />
+
+        <Button
+            android:id="@+id/btnViewOrderSummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_square_layout"
+            android:fontFamily="@font/alegreya_sans_sc_bold"
+            android:text="View Order Summary"
+            android:textSize="15sp" />
     </LinearLayout>
 
 </LinearLayout>

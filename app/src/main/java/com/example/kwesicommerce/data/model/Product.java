@@ -1,6 +1,6 @@
 package com.example.kwesicommerce.data.model;
 
-import com.example.kwesicommerce.utils.DateUtil;
+import com.example.kwesicommerce.utils.FunctionUtil;
 
 public class Product {
     private String name;
@@ -36,7 +36,7 @@ public class Product {
         this.price = price;
         this.listPrice = listPrice;
         this.retailPrice = retailPrice;
-        this.dateCreated = DateUtil.getCurrentDateTime();
+        this.dateCreated = FunctionUtil.getCurrentDateTime();
         this.dateUpdated = this.dateCreated;
         this.categoryId = categoryId;
     }
@@ -49,7 +49,7 @@ public class Product {
         this.price = 0;
         this.listPrice = 0;
         this.retailPrice = 0;
-        this.dateCreated = DateUtil.getCurrentDateTime();
+        this.dateCreated = FunctionUtil.getCurrentDateTime();
         this.dateUpdated = this.dateCreated;
         this.categoryId = 0;
     }

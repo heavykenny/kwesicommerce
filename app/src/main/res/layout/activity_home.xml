@@ -52,7 +52,7 @@
             android:textSize="15sp" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/buttonShopNow"
             android:layout_width="200dp"
             android:layout_height="80dp"
             android:layout_below="@id/textViewDescription"

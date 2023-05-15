@@ -1,23 +1,39 @@
 package com.example.kwesicommerce.data.model;
 
-import com.example.kwesicommerce.utils.DateUtil;
-
 public class Order {
     private int id;
     private int userId;
-    private int productId;
-    private int quantity;
     private String status;
+
+    private String orderTrackingNumber;
     private String dateCreated;
     private String dateUpdated;
 
-    public Order(int userId, int productId, int quantity) {
+    private double amountPaid;
+
+    public Order(int userId, String status, String orderTrackingNumber, double amountPaid, String dateCreated, String dateUpdated) {
         this.userId = userId;
-        this.productId = productId;
-        this.quantity = quantity;
-        this.status = "pending";
-        this.dateCreated = DateUtil.getCurrentDateTime();
-        this.dateUpdated = this.dateCreated;
+        this.status = status;
+        this.orderTrackingNumber = orderTrackingNumber;
+        this.dateCreated = dateCreated;
+        this.dateUpdated = dateUpdated;
+        this.amountPaid = amountPaid;
+    }
+
+    public String getOrderTrackingNumber() {
+        return orderTrackingNumber;
+    }
+
+    public void setOrderTrackingNumber(String orderTrackingNumber) {
+        this.orderTrackingNumber = orderTrackingNumber;
+    }
+
+    public double getAmountPaid() {
+        return amountPaid;
+    }
+
+    public void setAmountPaid(double amountPaid) {
+        this.amountPaid = amountPaid;
     }
 
     public int getId() {
@@ -34,22 +50,6 @@ public class Order {
 
     public void setUserId(int userId) {
         this.userId = userId;
-    }
-
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public String getStatus() {
@@ -76,15 +76,5 @@ public class Order {
         this.dateUpdated = dateUpdated;
     }
 
-    public void create() {
-        // Handle creating a new order
-    }
 
-    public void checkStatus() {
-        // Handle checking the status of an order
-    }
-
-    public void viewHistory() {
-        // Handle viewing order history for the user
-    }
 }

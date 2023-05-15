@@ -33,6 +33,7 @@ public class UserRepository {
     }
 
     public void updateUser(User user) {
+        this.setUserDetails(user);
         dbHelper.updateUser(user);
     }
 

@@ -61,10 +61,10 @@
                     android:fontFamily="@font/alegreya_sans"
                     android:hint="Enter Category Name"
                     android:inputType="text"
-                    android:padding="15dp"
+                    android:padding="10dp"
                     android:textColor="@color/faint_white"
                     android:textColorHint="@color/faint_black"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
                 <Button
                     android:id="@+id/btnCreateCategory"

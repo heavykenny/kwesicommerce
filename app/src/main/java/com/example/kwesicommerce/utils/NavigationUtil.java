@@ -79,7 +79,7 @@ public class NavigationUtil {
         cartRepository = new CartRepository(context);
     }
 
-    public NavigationUtil(Context baseContext, CartActivity activity) {
+    public NavigationUtil(Context baseContext, Activity activity) {
         this.context = baseContext;
         this.activity = activity;
         this.activeNavItem = null;

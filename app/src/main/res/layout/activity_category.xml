@@ -12,6 +12,27 @@
     <include layout="@layout/layout_back_navigation" />
 
     <RelativeLayout
+        android:id="@+id/relLayoutEmptyCategory"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/txtViewEmptyCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/alegreya_sans_sc_bold"
+            android:gravity="center"
+            android:padding="30dp"
+            android:text="Sorry, we currently have no category.! Please check back later."
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/relLayoutCategoryList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -21,39 +42,7 @@
             android:id="@+id/rvListCategoryList"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
-        <include layout="@layout/layout_bottom_navigation" />
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/layoutEmptyCategory"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:visibility="gone"
-        android:orientation="vertical">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-
-            <TextView
-                android:id="@+id/txtViewEmptyCategory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_centerHorizontal="true"
-                android:fontFamily="@font/alegreya_sans_sc_bold"
-                android:gravity="center"
-                android:padding="30dp"
-                android:text="Sorry, we currently have no category.! Please check back later."
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:visibility="visible" />
-        </RelativeLayout>
-
-        <include layout="@layout/layout_bottom_navigation" />
-    </LinearLayout>
-
+    <include layout="@layout/layout_bottom_navigation" />
 </LinearLayout>

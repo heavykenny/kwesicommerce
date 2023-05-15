@@ -60,6 +60,15 @@ public class CartActivity extends AppCompatActivity {
         }
 
         updateTotalPrice();
+
+        Button btnProceedToCheckout = findViewById(R.id.btnProceedToCheckout);
+        btnProceedToCheckout.setOnClickListener(v -> {
+            if (cartItems.isEmpty()) {
+                Toast.makeText(getApplicationContext(), "Your cart is empty", Toast.LENGTH_SHORT).show();
+            } else {
+                navigationUtil.goToActivity(CheckoutActivity.class);
+            }
+        });
     }
 
     @SuppressLint("DefaultLocale")
