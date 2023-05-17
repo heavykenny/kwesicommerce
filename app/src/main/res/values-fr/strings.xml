@@ -34,7 +34,7 @@
     <string name="enter_product_name">Entrez le nom du produit</string>
     <string name="description">Description</string>
     <string name="enter_description">Entrez la description</string>
-    <string name="category">Catégorie</string>
+    <string name="categoryModel">Catégorie</string>
     <string name="image">Image</string>
     <string name="upload_product_image">Télécharger une image du produit</string>
     <string name="quantity">Quantité</string>

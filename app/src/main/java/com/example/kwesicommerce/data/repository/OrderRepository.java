@@ -2,37 +2,37 @@ package com.example.kwesicommerce.data.repository;
 
 import android.content.Context;
 
-import com.example.kwesicommerce.data.database.SQLiteDBHelper;
-import com.example.kwesicommerce.data.model.CartItem;
-import com.example.kwesicommerce.data.model.Order;
+import com.example.kwesicommerce.data.database.SQLiteDatabaseHelper;
+import com.example.kwesicommerce.data.model.CartItemModel;
+import com.example.kwesicommerce.data.model.OrderModel;
 
 import java.util.List;
 
 public class OrderRepository {
 
-    private SQLiteDBHelper dbHelper;
+    private SQLiteDatabaseHelper dbHelper;
 
     public OrderRepository(Context context) {
-        dbHelper = new SQLiteDBHelper(context);
+        dbHelper = new SQLiteDatabaseHelper(context);
     }
 
-    public Order getOrderById(int id) {
+    public OrderModel getOrderById(int id) {
         return dbHelper.getOrder(id);
     }
 
-    public long createOrder(Order order) {
-        return  dbHelper.insertOrder(order);
+    public long createOrder(OrderModel orderModel) {
+        return  dbHelper.insertOrder(orderModel);
     }
 
-    public void updateOrder(Order order) {
-        dbHelper.updateOrder(order);
+    public void updateOrder(OrderModel orderModel) {
+        dbHelper.updateOrder(orderModel);
     }
 
-    public void deleteOrder(Order order) {
-        dbHelper.deleteOrder(order);
+    public void deleteOrder(OrderModel orderModel) {
+        dbHelper.deleteOrder(orderModel);
     }
 
-    public List<Order> getAllOrders() {
+    public List<OrderModel> getAllOrders() {
         return dbHelper.getOrders();
     }
 
@@ -40,7 +40,7 @@ public class OrderRepository {
         dbHelper.insertOrderItem(orderId, productId, quantity);
     }
 
-    public List<CartItem> getOrderItems(String orderId) {
+    public List<CartItemModel> getOrderItems(String orderId) {
         return dbHelper.getOrderItems(orderId);
     }
 
@@ -48,7 +48,7 @@ public class OrderRepository {
         return dbHelper.getOrderTotalPrice(orderId);
     }
 
-    public List<CartItem> getUsersOrder(int userId) {
+    public List<CartItemModel> getUsersOrder(int userId) {
         return dbHelper.getUsersOrder(userId);
     }
 
@@ -56,7 +56,7 @@ public class OrderRepository {
         return dbHelper.getTotalSales();
     }
 
-    public List<CartItem> getAllOrdersProduct() {
+    public List<CartItemModel> getAllOrdersProduct() {
         return dbHelper.getAllOrdersProduct();
     }
 }

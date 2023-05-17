@@ -2,36 +2,36 @@ package com.example.kwesicommerce.data.repository;
 
 import android.content.Context;
 
-import com.example.kwesicommerce.data.database.SQLiteDBHelper;
-import com.example.kwesicommerce.data.model.Category;
+import com.example.kwesicommerce.data.database.SQLiteDatabaseHelper;
+import com.example.kwesicommerce.data.model.CategoryModel;
 
 import java.util.List;
 
 public class CategoryRepository {
 
-    private final SQLiteDBHelper dbHelper;
+    private final SQLiteDatabaseHelper dbHelper;
 
     public CategoryRepository(Context context) {
-        dbHelper = new SQLiteDBHelper(context);
+        dbHelper = new SQLiteDatabaseHelper(context);
     }
 
-    public Category getCategoryById(int id) {
+    public CategoryModel getCategoryById(int id) {
         return dbHelper.getCategory(id);
     }
 
-    public void createCategory(Category category) {
-        dbHelper.insertCategory(category);
+    public void createCategory(CategoryModel categoryModel) {
+        dbHelper.insertCategory(categoryModel);
     }
 
-    public void updateCategory(Category category) {
-        dbHelper.updateCategory(category);
+    public void updateCategory(CategoryModel categoryModel) {
+        dbHelper.updateCategory(categoryModel);
     }
 
-    public void deleteCategory(Category category) {
-        dbHelper.deleteCategory(category);
+    public void deleteCategory(CategoryModel categoryModel) {
+        dbHelper.deleteCategory(categoryModel);
     }
 
-    public List<Category> getAllCategories() {
+    public List<CategoryModel> getAllCategories() {
         return dbHelper.getCategories();
     }
 }

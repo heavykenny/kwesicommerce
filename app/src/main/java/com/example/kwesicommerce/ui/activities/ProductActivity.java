@@ -10,8 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.kwesicommerce.R;
-import com.example.kwesicommerce.data.model.Category;
-import com.example.kwesicommerce.data.model.Product;
+import com.example.kwesicommerce.data.model.CategoryModel;
+import com.example.kwesicommerce.data.model.ProductModel;
 import com.example.kwesicommerce.data.repository.CategoryRepository;
 import com.example.kwesicommerce.data.repository.ProductRepository;
 import com.example.kwesicommerce.ui.fragments.ProductFragment;
@@ -30,11 +30,11 @@ public class ProductActivity extends AppCompatActivity {
         int categoryId = intent.getIntExtra("categoryId", 0);
 
         CategoryRepository categoryRepository = new CategoryRepository(getBaseContext());
-        Category category = categoryRepository.getCategoryById(categoryId);
+        CategoryModel categoryModel = categoryRepository.getCategoryById(categoryId);
 
         ProductRepository productRepository = new ProductRepository(getBaseContext());
 
-        List<Product> productList = productRepository.getProductsByCategoryId(categoryId);
+        List<ProductModel> productModelList = productRepository.getProductsByCategoryId(categoryId);
 
         LinearLayout active = findViewById(R.id.linLayoutShop);
 
@@ -42,13 +42,13 @@ public class ProductActivity extends AppCompatActivity {
         navigationUtil.setNavigationItemClick();
         navigationUtil.setTopNavigationItemClick();
 
-        navigationUtil.backNavigation(category.getName() + "'s Product");
+        navigationUtil.backNavigation(categoryModel.getName() + "'s Product");
 
         // Get the FragmentManager
         FragmentManager fragmentManager = getSupportFragmentManager();
         RelativeLayout relLayoutProductList = findViewById(R.id.relLayoutProductList);
         FrameLayout relLayoutProductContainer = findViewById(R.id.fragProductContainer);
-        if (productList.isEmpty()){
+        if (productModelList.isEmpty()){
             relLayoutProductList.setVisibility(LinearLayout.VISIBLE);
             relLayoutProductContainer.setVisibility(FrameLayout.GONE);
         }else{
@@ -56,7 +56,7 @@ public class ProductActivity extends AppCompatActivity {
             relLayoutProductContainer.setVisibility(FrameLayout.VISIBLE);
         }
         // Create a new Fragment instance
-        ProductFragment fragment = new ProductFragment(productList);
+        ProductFragment fragment = new ProductFragment(productModelList);
         // Add the Fragment to the layout
         fragmentManager.beginTransaction().add(R.id.fragProductContainer, fragment)
                 .commit();

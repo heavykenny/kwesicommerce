@@ -1,13 +1,13 @@
 package com.example.kwesicommerce.data.model;
 
-public class OrderItem {
-    private final Product product;
+public class CartItemModel {
+    private final ProductModel productModel;
     private int quantity;
     private int id;
 
-    public OrderItem(int id, Product product, int quantity) {
+    public CartItemModel(int id, ProductModel productModel, int quantity) {
         this.id = id;
-        this.product = product;
+        this.productModel = productModel;
         this.quantity = quantity;
     }
 
@@ -19,8 +19,8 @@ public class OrderItem {
         this.id = id;
     }
 
-    public Product getProduct() {
-        return product;
+    public ProductModel getProduct() {
+        return productModel;
     }
 
     public int getQuantity() {
@@ -29,16 +29,6 @@ public class OrderItem {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public void increaseQuantity() {
-        quantity++;
-    }
-
-    public void decreaseQuantity() {
-        if (quantity > 1) {
-            quantity--;
-        }
     }
 }
 

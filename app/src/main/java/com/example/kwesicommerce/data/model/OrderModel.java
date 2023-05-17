@@ -1,6 +1,6 @@
 package com.example.kwesicommerce.data.model;
 
-public class Order {
+public class OrderModel {
     private int id;
     private int userId;
     private String status;
@@ -11,7 +11,7 @@ public class Order {
 
     private double amountPaid;
 
-    public Order(int userId, String status, String orderTrackingNumber, double amountPaid, String dateCreated, String dateUpdated) {
+    public OrderModel(int userId, String status, String orderTrackingNumber, double amountPaid, String dateCreated, String dateUpdated) {
         this.userId = userId;
         this.status = status;
         this.orderTrackingNumber = orderTrackingNumber;
@@ -20,7 +20,7 @@ public class Order {
         this.amountPaid = amountPaid;
     }
 
-    public Order() {
+    public OrderModel() {
         this.id = 0;
         this.userId = 0;
         this.status = "";

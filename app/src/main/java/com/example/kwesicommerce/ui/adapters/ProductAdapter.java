@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kwesicommerce.R;
-import com.example.kwesicommerce.data.model.Product;
+import com.example.kwesicommerce.data.model.ProductModel;
 import com.example.kwesicommerce.data.repository.UserRepository;
 import com.example.kwesicommerce.data.repository.WishlistRepository;
 import com.example.kwesicommerce.ui.activities.ProductDetailsActivity;
@@ -22,17 +22,17 @@ import com.example.kwesicommerce.ui.activities.ProductDetailsActivity;
 import java.util.List;
 
 public class ProductAdapter extends BaseAdapter implements View.OnClickListener {
-    private final List<Product> productList;
+    private final List<ProductModel> productModelList;
 
-    public ProductAdapter(List<Product> productList) {
-        this.productList = productList;
+    public ProductAdapter(List<ProductModel> productModelList) {
+        this.productModelList = productModelList;
     }
 
     @Override
     public void onClick(View v) {
         int position = (Integer) v.getTag();
         Intent intent = new Intent(v.getContext(), ProductDetailsActivity.class);
-        intent.putExtra("productId", productList.get(position).getId());
+        intent.putExtra("productId", productModelList.get(position).getId());
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         v.getContext().startActivity(intent);
         activity.overridePendingTransition(0, 0);
@@ -40,12 +40,12 @@ public class ProductAdapter extends BaseAdapter implements View.OnClickListener 
 
     @Override
     public int getCount() {
-        return productList.size();
+        return productModelList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return productList.get(position);
+        return productModelList.get(position);
     }
 
     @Override
@@ -78,10 +78,10 @@ public class ProductAdapter extends BaseAdapter implements View.OnClickListener 
                 int userId = userRepository.getUserId();
                 WishlistRepository wishlistRepository = new WishlistRepository(v.getContext());
 
-                if (wishlistRepository.addToWishlist(productList.get(position).getId(), userId) > 0) {
-                    Toast.makeText(v.getContext(), "Added to Wishlist ---" + wishlistRepository.addToWishlist(productList.get(position).getId(), userId), Toast.LENGTH_SHORT).show();
+                if (wishlistRepository.addToWishlist(productModelList.get(position).getId(), userId) > 0) {
+                    Toast.makeText(v.getContext(), "Added to Wishlist ---" + wishlistRepository.addToWishlist(productModelList.get(position).getId(), userId), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(v.getContext(), "Failed to add to Wishlist == "+ wishlistRepository.addToWishlist(productList.get(position).getId(), userId), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(v.getContext(), "Failed to add to Wishlist == "+ wishlistRepository.addToWishlist(productModelList.get(position).getId(), userId), Toast.LENGTH_SHORT).show();
                 }
 
                 // create toast message
@@ -91,8 +91,8 @@ public class ProductAdapter extends BaseAdapter implements View.OnClickListener 
             }
         });
 
-        productTitle.setText(productList.get(position).getName());
-        productPrice.setText(String.format("£%.2f", productList.get(position).getPrice()));
+        productTitle.setText(productModelList.get(position).getName());
+        productPrice.setText(String.format("£%.2f", productModelList.get(position).getPrice()));
 
         convertView.setTag(position);
         convertView.setOnClickListener(this);

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kwesicommerce.R;
-import com.example.kwesicommerce.data.model.Category;
+import com.example.kwesicommerce.data.model.CategoryModel;
 import com.example.kwesicommerce.data.repository.CategoryRepository;
 import com.example.kwesicommerce.ui.adapters.CategoryRecyclerViewAdapter;
 import com.example.kwesicommerce.utils.NavigationUtil;
@@ -37,18 +37,18 @@ public class AdminManageCategoriesActivity extends AppCompatActivity {
 
 
         CategoryRepository categoryRepository = new CategoryRepository(getApplicationContext());
-        List<Category> categoryList = categoryRepository.getAllCategories();
+        List<CategoryModel> categoryModelList = categoryRepository.getAllCategories();
         RecyclerView rvListCategory = findViewById(R.id.rvListCategoryList);
         RelativeLayout relLayoutCategoryList = findViewById(R.id.relLayoutCategoryList);
 
-        if (categoryList.isEmpty()) {
+        if (categoryModelList.isEmpty()) {
             rvListCategory.setVisibility(View.GONE);
             relLayoutCategoryList.setVisibility(View.VISIBLE);
         } else {
             rvListCategory.setVisibility(View.VISIBLE);
             relLayoutCategoryList.setVisibility(View.GONE);
 
-            CategoryRecyclerViewAdapter adapter = new CategoryRecyclerViewAdapter(categoryList, getApplicationContext(), this);
+            CategoryRecyclerViewAdapter adapter = new CategoryRecyclerViewAdapter(categoryModelList, getApplicationContext(), this);
             rvListCategory.setAdapter(adapter);
             rvListCategory.setLayoutManager(new LinearLayoutManager(this));
         }

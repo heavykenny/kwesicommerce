@@ -12,9 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kwesicommerce.R;
-import com.example.kwesicommerce.data.model.CartItem;
+import com.example.kwesicommerce.data.model.CartItemModel;
 import com.example.kwesicommerce.data.repository.CartRepository;
-import com.example.kwesicommerce.data.repository.UserRepository;
 import com.example.kwesicommerce.ui.activities.CartActivity;
 import com.example.kwesicommerce.utils.NotificationUtil;
 
@@ -23,18 +22,15 @@ import java.util.List;
 // REFERENCE: https://developer.android.com/develop/ui/views/layout/recyclerview
 public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerViewAdapter.ViewHolder> {
     private static CartRepository cartRepository = null;
-    private static UserRepository userRepository = null;
-
     @SuppressLint("StaticFieldLeak")
     private static NotificationUtil notificationUtil = null;
-    private static List<CartItem> cartItemList = null;
+    private static List<CartItemModel> cartItemModelList = null;
 
     private CartActivity cartActivity;
 
-    public CartRecyclerViewAdapter(List<CartItem> cartItemList, Context context, CartActivity cartActivity) {
-        CartRecyclerViewAdapter.cartItemList = cartItemList;
+    public CartRecyclerViewAdapter(List<CartItemModel> cartItemModelList, Context context, CartActivity cartActivity) {
+        CartRecyclerViewAdapter.cartItemModelList = cartItemModelList;
         cartRepository = new CartRepository(context);
-        userRepository = new UserRepository(context);
         notificationUtil = new NotificationUtil(context);
         this.cartActivity = cartActivity;
     }
@@ -48,13 +44,13 @@ public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerVi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        CartItem cartItem = cartItemList.get(position);
-        holder.bind(cartItem);
+        CartItemModel cartItemModel = cartItemModelList.get(position);
+        holder.bind(cartItemModel);
     }
 
     @Override
     public int getItemCount() {
-        return cartItemList.size();
+        return cartItemModelList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -76,21 +72,21 @@ public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerVi
         }
 
         @SuppressLint("DefaultLocale")
-        public void bind(CartItem cartItem) {
-            txtViewProductListTitle.setText(cartItem.getProduct().getName());
-            txtViewProductPrice.setText(String.valueOf(cartItem.getProduct().getPrice()));
-            txtViewProductPrice.setText(String.format("£%.2f", cartItem.getProduct().getPrice()));
-            btnQuantityCounter.setText(String.valueOf(cartItem.getQuantity()));
+        public void bind(CartItemModel cartItemModel) {
+            txtViewProductListTitle.setText(cartItemModel.getProduct().getName());
+            txtViewProductPrice.setText(String.valueOf(cartItemModel.getProduct().getPrice()));
+            txtViewProductPrice.setText(String.format("£%.2f", cartItemModel.getProduct().getPrice()));
+            btnQuantityCounter.setText(String.valueOf(cartItemModel.getQuantity()));
 
             btnIncrementCounter.setOnClickListener(v -> {
                 int counter = Integer.parseInt(btnQuantityCounter.getText().toString());
-                if (counter == cartItem.getProduct().getQuantity()) {
-                    notificationUtil.showToast("This product only has " + cartItem.getProduct().getQuantity() + " items in stock");
+                if (counter == cartItemModel.getProduct().getQuantity()) {
+                    notificationUtil.showToast("This product only has " + cartItemModel.getProduct().getQuantity() + " items in stock");
                     return;
                 }
                 counter++;
                 btnQuantityCounter.setText(String.valueOf(counter));
-                cartRepository.updateCartItemQuantity(cartItem.getId(), counter);
+                cartRepository.updateCartItemQuantity(cartItemModel.getId(), counter);
                 updateTotalPrice();
             });
 
@@ -99,19 +95,19 @@ public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerVi
                 if (counter > 1) {
                     counter--;
                     btnQuantityCounter.setText(String.valueOf(counter));
-                    cartRepository.updateCartItemQuantity(cartItem.getId(), counter);
+                    cartRepository.updateCartItemQuantity(cartItemModel.getId(), counter);
                     updateTotalPrice();
                 }
             });
 
             btnRemoveProductCart.setOnClickListener(v -> {
-                cartRepository.removeItemFromCart(cartItem.getId());
+                cartRepository.removeItemFromCart(cartItemModel.getId());
                 updateTotalPrice();
                 // remove from recycler view
-                cartItemList.remove(cartItem);
+                cartItemModelList.remove(cartItemModel);
                 notifyItemRemoved(getAdapterPosition());
 
-                notificationUtil.showToast("Product removed from cart");
+                notificationUtil.showToast("ProductModel removed from cart");
             });
         }
 

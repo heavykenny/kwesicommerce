@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.example.kwesicommerce.R;
-import com.example.kwesicommerce.data.model.CartItem;
+import com.example.kwesicommerce.data.model.CartItemModel;
 import com.example.kwesicommerce.data.repository.OrderRepository;
 import com.example.kwesicommerce.ui.adapters.OrderRecyclerViewAdapter;
 import com.example.kwesicommerce.utils.NavigationUtil;
@@ -31,7 +31,7 @@ public class AdminManageOrdersActivity extends AppCompatActivity {
         navigationUtil.backNavigation("Admin Manage Orders");
 
         OrderRepository orderRepository = new OrderRepository(this);
-        List<CartItem> orderItems = orderRepository.getAllOrdersProduct();
+        List<CartItemModel> orderItems = orderRepository.getAllOrdersProduct();
 
         RelativeLayout relLayoutNoOrders  = findViewById(R.id.relLayoutNoOrders);
         RelativeLayout relLayoutAllOrders = findViewById(R.id.relLayoutAllOrders);

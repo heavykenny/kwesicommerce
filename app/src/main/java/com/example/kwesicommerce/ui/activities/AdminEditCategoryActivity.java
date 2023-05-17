@@ -17,6 +17,6 @@ public class AdminEditCategoryActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         int categoryId = intent.getIntExtra("categoryId", 0);
-        Toast.makeText(this, "Category Id: " + categoryId, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "CategoryModel Id: " + categoryId, Toast.LENGTH_SHORT).show();
     }
 }

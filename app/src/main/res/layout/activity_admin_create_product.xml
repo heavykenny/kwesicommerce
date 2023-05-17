@@ -91,7 +91,7 @@
                         android:layout_marginBottom="1dp"
                         android:fontFamily="@font/alegreya_sans_sc"
                         android:padding="8dp"
-                        android:text="@string/category"
+                        android:text="@string/categoryModel"
                         android:textColor="@color/antiflash_white"
                         android:textSize="15sp" />
 

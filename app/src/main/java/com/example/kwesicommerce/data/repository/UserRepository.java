@@ -2,116 +2,74 @@ package com.example.kwesicommerce.data.repository;
 
 import android.content.Context;
 
-import com.example.kwesicommerce.data.database.SQLiteDBHelper;
-import com.example.kwesicommerce.data.model.User;
+import com.example.kwesicommerce.data.database.SQLiteDatabaseHelper;
+import com.example.kwesicommerce.data.model.UserModel;
 import com.example.kwesicommerce.data.sharedpreferences.SharedPreferencesHelper;
 
-import java.util.Collection;
 import java.util.List;
 
 public class UserRepository {
-
-    private final SQLiteDBHelper dbHelper;
+    private final SQLiteDatabaseHelper dbHelper;
     private final SharedPreferencesHelper preferencesHelper;
 
     public UserRepository(Context context) {
-        dbHelper = new SQLiteDBHelper(context);
+        dbHelper = new SQLiteDatabaseHelper(context);
         preferencesHelper = new SharedPreferencesHelper(context);
     }
 
-    public User getUserById(int id) {
+    public UserModel getUserById(int id) {
         return dbHelper.getUser(id);
     }
 
-    public User getUserByEmail(String email) {
+    public UserModel getUserByEmail(String email) {
         return dbHelper.getByEmail(email);
     }
 
-    public void createUser(User user) {
-        dbHelper.insertUser(user);
+    public void createUser(UserModel userModel) {
+        dbHelper.insertUser(userModel);
     }
 
     public boolean isEmailUnique(String email) {
         return dbHelper.isEmailUnique(email);
     }
 
-    public void updateUser(User user) {
-        this.setUserDetails(user);
-        dbHelper.updateUser(user);
+    public void updateUser(UserModel userModel) {
+        this.setUserDetails(userModel);
+        dbHelper.updateUser(userModel);
     }
 
-    public void deleteUser(User user) {
-        dbHelper.deleteUser(user);
+    public void deleteUser(UserModel userModel) {
+        dbHelper.deleteUser(userModel);
     }
 
     public int getUserId() {
         return preferencesHelper.getUserId();
     }
 
-    public void setUserId(int userId) {
-        preferencesHelper.setUserId(userId);
-    }
-
     public String getUserFullName() {
         return preferencesHelper.getUserFullName();
     }
-
-//    public void setUserFullName(String fullName) {
-//        preferencesHelper.setUserFullName(fullName);
-//    }
 
     public String getUserEmail() {
         return preferencesHelper.getUserEmail();
     }
 
-//    public void setUserEmail(String email) {
-//        preferencesHelper.setUserEmail(email);
-//    }
-
-//    public String getUserPassword() {
-//        return preferencesHelper.getUserPassword();
-//    }
-
-//    public void setUserPassword(String password) {
-//        preferencesHelper.setUserPassword(password);
-//    }
-
     public String getUserHobbies() {
         return preferencesHelper.getUserHobbies();
     }
-
-//    public void setUserHobbies(String hobbies) {
-//        preferencesHelper.setUserHobbies(hobbies);
-//    }
 
     public String getUserPostcode() {
         return preferencesHelper.getUserPostcode();
     }
 
-//    public void setUserPostcode(String postcode) {
-//        preferencesHelper.setUserPostcode(postcode);
-//    }
-
     public String getUserAddress() {
         return preferencesHelper.getUserAddress();
     }
 
-//    public void setUserAddress(String address) {
-//        preferencesHelper.setUserAddress(address);
-//    }
-
-//    public String getUserLastUpdated() {
-//        return preferencesHelper.getUserLastUpdated();
-//    }
-
-//    public void setDateUpdated(String dateUpdated) {
-//        preferencesHelper.setDateUpdated(dateUpdated);
-//    }
-
     public boolean isUserAdmin() {
         int userId = preferencesHelper.getUserId();
-        User user = dbHelper.getUser(userId);
-        return user != null && user.isAdmin();
+        UserModel userModel = dbHelper.getUser(userId);
+        return userModel != null && userModel.isAdmin();
     }
 
     // user login method
@@ -119,16 +77,16 @@ public class UserRepository {
         return dbHelper.isUserCredentialsValid(email, password);
     }
 
-    public void setUserDetails(User user) {
+    public void setUserDetails(UserModel userModel) {
         clearUserData();
-        preferencesHelper.setUserDetails(user);
+        preferencesHelper.setUserDetails(userModel);
     }
 
     public void clearUserData() {
         preferencesHelper.clearUserData();
     }
 
-    public User getUser() {
+    public UserModel getUser() {
         int userId = preferencesHelper.getUserId();
         return dbHelper.getUser(userId);
     }
@@ -152,15 +110,20 @@ public class UserRepository {
             preferencesHelper.setUserAdmin(false);
         }
     }
+
     public String getUserProfileImage() {
         return preferencesHelper.getUserProfileImage();
     }
 
-    public List<User> getAllAdmins() {
+    public List<UserModel> getAllAdmins() {
         return dbHelper.getAllAdmins();
     }
 
-    public List<User> getAllCustomers() {
+    public List<UserModel> getAllCustomers() {
         return dbHelper.getAllCustomers();
+    }
+
+    public List<UserModel> getAllUsers() {
+        return dbHelper.getAllUsers();
     }
 }

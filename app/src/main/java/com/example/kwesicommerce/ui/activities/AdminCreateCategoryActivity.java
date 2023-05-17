@@ -7,7 +7,7 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.kwesicommerce.R;
-import com.example.kwesicommerce.data.model.Category;
+import com.example.kwesicommerce.data.model.CategoryModel;
 import com.example.kwesicommerce.data.repository.CategoryRepository;
 import com.example.kwesicommerce.utils.NavigationUtil;
 import com.example.kwesicommerce.utils.NotificationUtil;
@@ -33,17 +33,17 @@ public class AdminCreateCategoryActivity extends AppCompatActivity {
             EditText edtTxtCategoryName = findViewById(R.id.edtTxtCategoryName);
 
             if (edtTxtCategoryName.getText().toString().isEmpty()) {
-                edtTxtCategoryName.setError("Category name is required");
+                edtTxtCategoryName.setError("CategoryModel name is required");
                 edtTxtCategoryName.requestFocus();
                 return;
             }
 
             try {
-                Category category = new Category();
-                category.setName(edtTxtCategoryName.getText().toString());
+                CategoryModel categoryModel = new CategoryModel();
+                categoryModel.setName(edtTxtCategoryName.getText().toString());
 
-                categoryRepository.createCategory(category);
-                notificationUtil.showToast("Category created successfully");
+                categoryRepository.createCategory(categoryModel);
+                notificationUtil.showToast("CategoryModel created successfully");
                 navigationUtil.goToActivity(AdminManageCategoriesActivity.class);
             } catch (Exception e) {
                 notificationUtil.showToast(e.getMessage());

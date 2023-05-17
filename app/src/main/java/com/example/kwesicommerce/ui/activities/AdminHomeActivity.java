@@ -6,7 +6,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.kwesicommerce.R;
-import com.example.kwesicommerce.data.model.User;
 import com.example.kwesicommerce.data.repository.CategoryRepository;
 import com.example.kwesicommerce.data.repository.OrderRepository;
 import com.example.kwesicommerce.data.repository.ProductRepository;

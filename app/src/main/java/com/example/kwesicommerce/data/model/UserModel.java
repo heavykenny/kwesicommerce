@@ -2,7 +2,7 @@ package com.example.kwesicommerce.data.model;
 
 import java.util.Date;
 
-public class User {
+public class UserModel {
     private String fullName;
     private String email;
     private String dateRegistered;
@@ -24,7 +24,7 @@ public class User {
     private boolean isAdmin;
     private int id;
 
-    public User(String firstName, String lastName, String email, String password) {
+    public UserModel(String firstName, String lastName, String email, String password) {
         this.fullName = firstName + " " + lastName;
         this.email = email;
         this.dateRegistered = new Date().toString();
@@ -37,7 +37,7 @@ public class User {
         this.setProfileImage = "";
     }
 
-    public User(String firstName, String lastName, String email, String password, String hobbies, String postcode, String address, Boolean isAdmin, String setProfileImage) {
+    public UserModel(String firstName, String lastName, String email, String password, String hobbies, String postcode, String address, Boolean isAdmin, String setProfileImage) {
         this.fullName = firstName + " " + lastName;
         this.email = email;
         this.dateRegistered = new Date().toString();
@@ -50,7 +50,7 @@ public class User {
         this.setProfileImage = setProfileImage;
     }
 
-    public User() {
+    public UserModel() {
         this.fullName = "";
         this.email = "";
         this.dateRegistered = "";

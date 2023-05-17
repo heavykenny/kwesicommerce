@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.kwesicommerce.R;
-import com.example.kwesicommerce.data.model.Product;
+import com.example.kwesicommerce.data.model.ProductModel;
 import com.example.kwesicommerce.data.repository.ProductRepository;
 import com.example.kwesicommerce.ui.fragments.ProductFragment;
 import com.example.kwesicommerce.utils.NavigationUtil;
@@ -27,7 +27,7 @@ public class AdminManageProductsActivity extends AppCompatActivity {
 
         ProductRepository productRepository = new ProductRepository(getBaseContext());
 
-        List<Product> productList = productRepository.getAllProducts();
+        List<ProductModel> productModelList = productRepository.getAllProducts();
 
         LinearLayout active = findViewById(R.id.linLayoutAdminProduct);
 
@@ -47,7 +47,7 @@ public class AdminManageProductsActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         RelativeLayout relLayoutProductList = findViewById(R.id.relLayoutProductList);
         FrameLayout relLayoutProductContainer = findViewById(R.id.fragProductContainer);
-        if (productList.isEmpty()) {
+        if (productModelList.isEmpty()) {
 
 
             relLayoutProductList.setVisibility(LinearLayout.VISIBLE);
@@ -57,7 +57,7 @@ public class AdminManageProductsActivity extends AppCompatActivity {
             relLayoutProductList.setVisibility(LinearLayout.GONE);
             relLayoutProductContainer.setVisibility(FrameLayout.VISIBLE);
             // Create a new Fragment instance
-            ProductFragment fragment = new ProductFragment(productList);
+            ProductFragment fragment = new ProductFragment(productModelList);
             // Add the Fragment to the layout
             fragmentManager.beginTransaction().add(R.id.fragProductContainer, fragment)
                     .commit();

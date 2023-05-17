@@ -1,10 +1,7 @@
 package com.example.kwesicommerce.ui.adapters;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kwesicommerce.R;
-import com.example.kwesicommerce.data.model.Product;
-import com.example.kwesicommerce.data.model.User;
+import com.example.kwesicommerce.data.model.ProductModel;
 import com.example.kwesicommerce.data.repository.UserRepository;
 import com.example.kwesicommerce.data.repository.WishlistRepository;
 import com.example.kwesicommerce.utils.NotificationUtil;
@@ -26,7 +22,7 @@ import java.util.List;
 
 // REFERENCE: https://developer.android.com/develop/ui/views/layout/recyclerview
 public class WishlistRecyclerViewAdapter extends RecyclerView.Adapter<WishlistRecyclerViewAdapter.ViewHolder> {
-    static List<Product> productList;
+    static List<ProductModel> productModelList;
     Context appContext;
 
     WishlistRepository wishlistRepository;
@@ -35,8 +31,8 @@ public class WishlistRecyclerViewAdapter extends RecyclerView.Adapter<WishlistRe
 
     NotificationUtil notificationUtil;
 
-    public WishlistRecyclerViewAdapter(List<Product> productList, Context appContext) {
-        WishlistRecyclerViewAdapter.productList = productList;
+    public WishlistRecyclerViewAdapter(List<ProductModel> productModelList, Context appContext) {
+        WishlistRecyclerViewAdapter.productModelList = productModelList;
         this.appContext = appContext;
         wishlistRepository = new WishlistRepository(appContext);
         userRepository = new UserRepository(appContext);
@@ -53,13 +49,13 @@ public class WishlistRecyclerViewAdapter extends RecyclerView.Adapter<WishlistRe
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull WishlistRecyclerViewAdapter.ViewHolder holder, int index) {
-        holder.txtTitle.setText(productList.get(index).getName());
-        holder.txtViewProductPrice.setText("£ " + productList.get(index).getPrice());
+        holder.txtTitle.setText(productModelList.get(index).getName());
+        holder.txtViewProductPrice.setText("£ " + productModelList.get(index).getPrice());
     }
 
     @Override
     public int getItemCount() {
-        return productList.size();
+        return productModelList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -75,12 +71,12 @@ public class WishlistRecyclerViewAdapter extends RecyclerView.Adapter<WishlistRe
 
             btnWishListRemoveCart.setOnClickListener(v -> {
                 int index = getAdapterPosition();
-                Toast.makeText(appContext, "" +productList.get(index).getName(), Toast.LENGTH_SHORT).show();
-                wishlistRepository.removeProductFromWishlist(productList.get(index).getId(), userRepository.getUserId());
-                productList.remove(index);
+                Toast.makeText(appContext, "" + productModelList.get(index).getName(), Toast.LENGTH_SHORT).show();
+                wishlistRepository.removeProductFromWishlist(productModelList.get(index).getId(), userRepository.getUserId());
+                productModelList.remove(index);
                 notifyItemRemoved(index);
 
-                notificationUtil.showToast("Product removed from wishlist");
+                notificationUtil.showToast("ProductModel removed from wishlist");
             });
 
             itemView.setOnClickListener(this);

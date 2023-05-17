@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.example.kwesicommerce.R;
-import com.example.kwesicommerce.data.model.User;
+import com.example.kwesicommerce.data.model.UserModel;
 import com.example.kwesicommerce.data.repository.UserRepository;
 import com.example.kwesicommerce.ui.activities.HomeActivity;
 import com.example.kwesicommerce.ui.activities.ProfileActivity;
@@ -114,9 +114,9 @@ public class AccountFragment extends Fragment {
                 return;
             }
 
-            User newUser = new User(firstName, lastName, email, password);
+            UserModel newUserModel = new UserModel(firstName, lastName, email, password);
 
-            userRepository.createUser(newUser);
+            userRepository.createUser(newUserModel);
 
             Toast.makeText(getContext(), "Registering...", Toast.LENGTH_SHORT).show();
         });
@@ -141,11 +141,11 @@ public class AccountFragment extends Fragment {
 
             if (isAuthenticated) {
                 userRepository.setUserDetails(userRepository.getUserByEmail(email));
-                // User authentication successful
+                // UserModel authentication successful
                 Intent intent = new Intent(getContext(), HomeActivity.class);
                 startActivity(intent);
             } else {
-                // User authentication failed
+                // UserModel authentication failed
                 Toast.makeText(getContext(), "Credentials is invalid", Toast.LENGTH_SHORT).show();
             }
         });

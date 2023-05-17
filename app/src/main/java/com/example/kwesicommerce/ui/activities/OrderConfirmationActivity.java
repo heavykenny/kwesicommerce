@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kwesicommerce.R;
-import com.example.kwesicommerce.data.model.CartItem;
+import com.example.kwesicommerce.data.model.CartItemModel;
 import com.example.kwesicommerce.data.repository.OrderRepository;
 import com.example.kwesicommerce.data.repository.UserRepository;
 import com.example.kwesicommerce.ui.adapters.OrderRecyclerViewAdapter;
@@ -51,7 +51,7 @@ public class OrderConfirmationActivity extends AppCompatActivity {
 
         RecyclerView rvListCartList = findViewById(R.id.rvListCartList);
 
-        List<CartItem> orderItems = orderRepository.getOrderItems(orderId);
+        List<CartItemModel> orderItems = orderRepository.getOrderItems(orderId);
         OrderRecyclerViewAdapter adapter = new OrderRecyclerViewAdapter(orderItems, getApplicationContext());
 
         rvListCartList.setAdapter(adapter);

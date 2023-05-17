@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kwesicommerce.R;
-import com.example.kwesicommerce.data.model.CartItem;
+import com.example.kwesicommerce.data.model.CartItemModel;
 import com.example.kwesicommerce.data.repository.OrderRepository;
 import com.example.kwesicommerce.data.repository.UserRepository;
 import com.example.kwesicommerce.ui.adapters.OrderRecyclerViewAdapter;
@@ -34,7 +34,7 @@ public class PreviousOrdersActivity extends AppCompatActivity {
 
         int userId = userRepository.getUserId();
 
-        List<CartItem> orderItems = orderRepository.getUsersOrder(userId);
+        List<CartItemModel> orderItems = orderRepository.getUsersOrder(userId);
 
         RelativeLayout relLayoutPreviousOrdersEmpty = findViewById(R.id.relLayoutPreviousOrdersEmpty);
         RelativeLayout relLayoutPreviousOrders = findViewById(R.id.relLayoutPreviousOrders);

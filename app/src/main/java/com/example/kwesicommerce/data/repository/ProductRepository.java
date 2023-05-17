@@ -2,40 +2,40 @@ package com.example.kwesicommerce.data.repository;
 
 import android.content.Context;
 
-import com.example.kwesicommerce.data.database.SQLiteDBHelper;
-import com.example.kwesicommerce.data.model.Product;
+import com.example.kwesicommerce.data.database.SQLiteDatabaseHelper;
+import com.example.kwesicommerce.data.model.ProductModel;
 
 import java.util.List;
 
 public class ProductRepository {
 
-    private SQLiteDBHelper dbHelper;
+    private SQLiteDatabaseHelper dbHelper;
 
     public ProductRepository(Context context) {
-        dbHelper = new SQLiteDBHelper(context);
+        dbHelper = new SQLiteDatabaseHelper(context);
     }
 
-    public Product getProductById(int id) {
+    public ProductModel getProductById(int id) {
         return dbHelper.getProduct(id);
     }
 
-    public int createProduct(Product product) {
-        return dbHelper.insertProduct(product);
+    public int createProduct(ProductModel productModel) {
+        return dbHelper.insertProduct(productModel);
     }
 
-    public void updateProduct(Product product) {
-        dbHelper.updateProduct(product);
+    public void updateProduct(ProductModel productModel) {
+        dbHelper.updateProduct(productModel);
     }
 
-    public void deleteProduct(Product product) {
-        dbHelper.deleteProduct(product);
+    public void deleteProduct(ProductModel productModel) {
+        dbHelper.deleteProduct(productModel);
     }
 
-    public List<Product> getAllProducts() {
+    public List<ProductModel> getAllProducts() {
         return dbHelper.getProducts();
     }
 
-    public List<Product> getProductsByCategoryId(int categoryId) {
+    public List<ProductModel> getProductsByCategoryId(int categoryId) {
         return dbHelper.getProductsByCategoryId(categoryId);
     }
 }

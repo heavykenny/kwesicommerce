@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.kwesicommerce.R;
-import com.example.kwesicommerce.data.model.Product;
+import com.example.kwesicommerce.data.model.ProductModel;
 import com.example.kwesicommerce.data.repository.CartRepository;
 import com.example.kwesicommerce.data.repository.ProductRepository;
 import com.example.kwesicommerce.data.repository.UserRepository;
@@ -44,25 +44,25 @@ public class ProductDetailsActivity extends AppCompatActivity {
         int productId = intent.getIntExtra("productId", 0);
 
         ProductRepository productRepository = new ProductRepository(getBaseContext());
-        Product product = productRepository.getProductById(productId);
+        ProductModel productModel = productRepository.getProductById(productId);
 
         TextView txtViewProductListTitle = findViewById(R.id.txtViewProductListTitle);
         TextView txtViewProductPrice = findViewById(R.id.txtViewProductPrice);
         TextView txtViewProductListDescription = findViewById(R.id.txtViewProductListDescription);
         ImageView imgViewProductImage = findViewById(R.id.imgViewProductImage);
 
-        txtViewProductListTitle.setText(product.getName());
-        txtViewProductPrice.setText(String.format("£%.2f", product.getPrice()));
-        txtViewProductListDescription.setText(product.getDescription());
-        imgViewProductImage.setImageURI(Uri.parse(product.getImageUrl()));
+        txtViewProductListTitle.setText(productModel.getName());
+        txtViewProductPrice.setText(String.format("£%.2f", productModel.getPrice()));
+        txtViewProductListDescription.setText(productModel.getDescription());
+        imgViewProductImage.setImageURI(Uri.parse(productModel.getImageUrl()));
 
         TextView txtViewCounter = findViewById(R.id.btnQuantityCounter);
 
         Button btnIncrementCounter = findViewById(R.id.btnIncrementCounter);
         btnIncrementCounter.setOnClickListener(v -> {
             int counter = Integer.parseInt(txtViewCounter.getText().toString());
-            if (counter == product.getQuantity()) {
-                notificationUtil.showToast("You can't add more than " + product.getQuantity() + " items to your cart");
+            if (counter == productModel.getQuantity()) {
+                notificationUtil.showToast("You can't add more than " + productModel.getQuantity() + " items to your cart");
                 return;
             }
             counter++;
@@ -96,7 +96,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
             cartRepository.addItemToCart(userRepository.getUserId(), productId, counter);
 
-            notificationUtil.showToast("You have added " + counter + " " + product.getName() + " to your cart");
+            notificationUtil.showToast("You have added " + counter + " " + productModel.getName() + " to your cart");
         });
 
 

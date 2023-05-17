@@ -14,8 +14,8 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.kwesicommerce.R;
-import com.example.kwesicommerce.data.model.Category;
-import com.example.kwesicommerce.data.model.Product;
+import com.example.kwesicommerce.data.model.CategoryModel;
+import com.example.kwesicommerce.data.model.ProductModel;
 import com.example.kwesicommerce.data.repository.CategoryRepository;
 import com.example.kwesicommerce.data.repository.ProductRepository;
 import com.example.kwesicommerce.utils.NavigationUtil;
@@ -47,9 +47,9 @@ public class AdminCreateProductActivity extends AppCompatActivity {
         CategoryRepository categoryRepository = new CategoryRepository(getApplicationContext());
 
         Spinner spinnerCategoryID = findViewById(R.id.spinnerCategoryID);
-        List<Category> categories = categoryRepository.getAllCategories();
+        List<CategoryModel> categories = categoryRepository.getAllCategories();
 
-        ArrayAdapter<Category> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
+        ArrayAdapter<CategoryModel> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCategoryID.setAdapter(adapter);
 
@@ -77,10 +77,10 @@ public class AdminCreateProductActivity extends AppCompatActivity {
         btnCreateCategory = findViewById(R.id.btnCreateCategory);
         btnCreateCategory.setOnClickListener(v -> {
             // Get the selected category
-            Category selectedCategory = (Category) spinnerCategoryID.getSelectedItem();
+            CategoryModel selectedCategoryModel = (CategoryModel) spinnerCategoryID.getSelectedItem();
             // Get the category ID
-            int categoryID = selectedCategory.getId();
-            // Get the product image
+            int categoryID = selectedCategoryModel.getId();
+            // Get the productModel image
             String productImage = imageViewProductImage.toString();
 
             TextView edtTxtProductName = findViewById(R.id.edtTxtProductName);
@@ -99,25 +99,25 @@ public class AdminCreateProductActivity extends AppCompatActivity {
             String retailPrice = edtTxtRetailPrice.getText().toString();
 
             if (productName.isEmpty()) {
-                edtTxtProductName.setError("Product name is required");
+                edtTxtProductName.setError("ProductModel name is required");
                 edtTxtProductName.requestFocus();
                 return;
             }
 
             if (productDescription.isEmpty()) {
-                edtTxtProductDescription.setError("Product description is required");
+                edtTxtProductDescription.setError("ProductModel description is required");
                 edtTxtProductDescription.requestFocus();
                 return;
             }
 
             if (productPrice.isEmpty()) {
-                edtTxtProductPrice.setError("Product price is required");
+                edtTxtProductPrice.setError("ProductModel price is required");
                 edtTxtProductPrice.requestFocus();
                 return;
             }
 
             if (productQuantity.isEmpty()) {
-                edtTxtProductQuantity.setError("Product quantity is required");
+                edtTxtProductQuantity.setError("ProductModel quantity is required");
                 edtTxtProductQuantity.requestFocus();
                 return;
             }
@@ -133,7 +133,7 @@ public class AdminCreateProductActivity extends AppCompatActivity {
                 edtTxtRetailPrice.requestFocus();
             }
 
-            Product product = new Product(
+            ProductModel productModel = new ProductModel(
                     0, productName, productDescription,
                     productImage,
                     Integer.parseInt(productQuantity),
@@ -142,10 +142,10 @@ public class AdminCreateProductActivity extends AppCompatActivity {
 
             ProductRepository productRepository = new ProductRepository(getBaseContext());
 
-            if (productRepository.createProduct(product) > 0) {
-                notificationUtil.showToast("Product has been created successfully");
+            if (productRepository.createProduct(productModel) > 0) {
+                notificationUtil.showToast("ProductModel has been created successfully");
             } else {
-                notificationUtil.showToast("Product creation failed");
+                notificationUtil.showToast("ProductModel creation failed");
             }
         });
 

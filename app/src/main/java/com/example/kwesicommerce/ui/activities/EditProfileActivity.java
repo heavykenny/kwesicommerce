@@ -19,7 +19,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.kwesicommerce.R;
-import com.example.kwesicommerce.data.model.User;
+import com.example.kwesicommerce.data.model.UserModel;
 import com.example.kwesicommerce.data.repository.UserRepository;
 import com.example.kwesicommerce.utils.NavigationUtil;
 
@@ -94,17 +94,17 @@ public class EditProfileActivity extends AppCompatActivity {
                 edtTxtAddress.setError("Please enter your address");
                 edtTxtAddress.requestFocus();
             } else {
-                User user = userRepository.getUser();
-                user.setFullName(fullName);
-                user.setAddress(address);
-                user.setPostcode(postCode);
-                user.setHobbies(hobbies);
-                user.setProfileImage(profileImageUri);
-                userRepository.updateUser(user);
+                UserModel userModel = userRepository.getUser();
+                userModel.setFullName(fullName);
+                userModel.setAddress(address);
+                userModel.setPostcode(postCode);
+                userModel.setHobbies(hobbies);
+                userModel.setProfileImage(profileImageUri);
+                userRepository.updateUser(userModel);
 
 //                Toast.makeText(this, userRepository.getUserProfileImage(), Toast.LENGTH_SHORT).show();
 
-                Toast.makeText(this, user.getProfileImage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, userModel.getProfileImage(), Toast.LENGTH_SHORT).show();
                 navigationUtil.goToActivity(ProfileActivity.class);
             }
         });

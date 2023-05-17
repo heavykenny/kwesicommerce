@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.kwesicommerce.R;
-import com.example.kwesicommerce.data.model.User;
+import com.example.kwesicommerce.data.model.UserModel;
 import com.example.kwesicommerce.data.repository.CartRepository;
 import com.example.kwesicommerce.data.repository.UserRepository;
 import com.example.kwesicommerce.utils.NavigationUtil;
@@ -71,10 +71,10 @@ public class CheckoutActivity extends AppCompatActivity {
                 return;
             }
 
-            User user = userRepository.getUser();
-            user.setAddress(edtTxtAddress.getText().toString());
-            user.setPostcode(edtTxtPostCode.getText().toString());
-            userRepository.updateUser(user);
+            UserModel userModel = userRepository.getUser();
+            userModel.setAddress(edtTxtAddress.getText().toString());
+            userModel.setPostcode(edtTxtPostCode.getText().toString());
+            userRepository.updateUser(userModel);
 
             navigationUtil.goToActivity(OrderSummaryActivity.class);
         });

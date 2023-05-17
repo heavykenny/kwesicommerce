@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kwesicommerce.R;
-import com.example.kwesicommerce.data.model.Product;
+import com.example.kwesicommerce.data.model.ProductModel;
 import com.example.kwesicommerce.data.repository.UserRepository;
 import com.example.kwesicommerce.data.repository.WishlistRepository;
 import com.example.kwesicommerce.ui.adapters.WishlistRecyclerViewAdapter;
@@ -36,7 +36,7 @@ public class WishlistActivity extends AppCompatActivity {
         WishlistRepository wishlistRepository = new WishlistRepository(getApplicationContext());
         UserRepository userRepository = new UserRepository(getApplicationContext());
 
-        List<Product> wishilistList = wishlistRepository.getUserWishlist(userRepository.getUserId());
+        List<ProductModel> wishilistList = wishlistRepository.getUserWishlist(userRepository.getUserId());
 
         RelativeLayout relLayoutWishList = findViewById(R.id.relLayoutWishList);
         RelativeLayout relLayoutWishListEmpty = findViewById(R.id.relLayoutWishListEmpty);

@@ -6,7 +6,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Environment;
 
-import com.example.kwesicommerce.data.model.Order;
+import com.example.kwesicommerce.data.model.OrderModel;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -19,14 +19,14 @@ import java.nio.file.Files;
 import java.util.List;
 
 public class FileUtil {
-    public static void exportToFile(String filename, List<Order> orders) throws IOException {
+    public static void exportToFile(String filename, List<OrderModel> orderModels) throws IOException {
         File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), filename);
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
         BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
 
-        for (Order order : orders) {
-            bufferedWriter.write("Order ID: " + order.getId() + ", User ID: " + order.getUserId() + ", Status: " + order.getStatus() + ", Date Created: " + order.getDateCreated() + ", Date Updated: " + order.getDateUpdated());
+        for (OrderModel orderModel : orderModels) {
+            bufferedWriter.write("OrderModel ID: " + orderModel.getId() + ", UserModel ID: " + orderModel.getUserId() + ", Status: " + orderModel.getStatus() + ", Date Created: " + orderModel.getDateCreated() + ", Date Updated: " + orderModel.getDateUpdated());
             bufferedWriter.newLine();
         }
 

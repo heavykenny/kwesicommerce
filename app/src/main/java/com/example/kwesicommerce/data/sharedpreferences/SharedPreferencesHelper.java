@@ -3,7 +3,7 @@ package com.example.kwesicommerce.data.sharedpreferences;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.kwesicommerce.data.model.User;
+import com.example.kwesicommerce.data.model.UserModel;
 
 public class SharedPreferencesHelper {
 
@@ -17,6 +17,9 @@ public class SharedPreferencesHelper {
     private static final String KEY_USER_ADDRESS = "user_address";
     private static final String KEY_USER_PROFILE_IMAGE = "user_profile_image";
     private static final String KEY_USER_LAST_UPDATED = "user_last_updated";
+    private static final String KEY_USER_IS_ADMIN = "user_is_admin";
+
+
 
     private final SharedPreferences sharedPreferences;
 
@@ -28,64 +31,24 @@ public class SharedPreferencesHelper {
         return sharedPreferences.getInt(KEY_USER_ID, -1);
     }
 
-    public void setUserId(int userId) {
-        sharedPreferences.edit().putInt(KEY_USER_ID, userId).apply();
-    }
-
     public String getUserFullName() {
         return sharedPreferences.getString(KEY_USER_FULLNAME, "");
-    }
-
-    public void setUserFullName(String fullName) {
-        sharedPreferences.edit().putString(KEY_USER_FULLNAME, fullName).apply();
     }
 
     public String getUserEmail() {
         return sharedPreferences.getString(KEY_USER_EMAIL, "");
     }
 
-    public void setUserEmail(String email) {
-        sharedPreferences.edit().putString(KEY_USER_EMAIL, email).apply();
-    }
-
-    public String getUserPassword() {
-        return sharedPreferences.getString(KEY_USER_PASSWORD, "");
-    }
-
-    public void setUserPassword(String password) {
-        sharedPreferences.edit().putString(KEY_USER_PASSWORD, password).apply();
-    }
-
     public String getUserHobbies() {
         return sharedPreferences.getString(KEY_USER_HOBBIES, "");
-    }
-
-    public void setUserHobbies(String hobbies) {
-        sharedPreferences.edit().putString(KEY_USER_HOBBIES, hobbies).apply();
     }
 
     public String getUserPostcode() {
         return sharedPreferences.getString(KEY_USER_POSTCODE, "");
     }
 
-    public void setUserPostcode(String postcode) {
-        sharedPreferences.edit().putString(KEY_USER_POSTCODE, postcode).apply();
-    }
-
     public String getUserAddress() {
         return sharedPreferences.getString(KEY_USER_ADDRESS, "");
-    }
-
-    public void setUserAddress(String address) {
-        sharedPreferences.edit().putString(KEY_USER_ADDRESS, address).apply();
-    }
-
-    public String getUserLastUpdated() {
-        return sharedPreferences.getString(KEY_USER_LAST_UPDATED, "");
-    }
-
-    public void setDateUpdated(String dateUpdated) {
-        sharedPreferences.edit().putString(KEY_USER_LAST_UPDATED, dateUpdated).apply();
     }
 
     public void clearUserData() {
@@ -99,18 +62,17 @@ public class SharedPreferencesHelper {
         sharedPreferences.edit().remove(KEY_USER_PROFILE_IMAGE).apply();
         sharedPreferences.edit().remove(KEY_USER_LAST_UPDATED).apply();
     }
-
-
-    public void setUserDetails(User user) {
-        sharedPreferences.edit().putInt(KEY_USER_ID, user.getId()).apply();
-        sharedPreferences.edit().putString(KEY_USER_FULLNAME, user.getFullName()).apply();
-        sharedPreferences.edit().putString(KEY_USER_EMAIL, user.getEmail()).apply();
-        sharedPreferences.edit().putString(KEY_USER_PASSWORD, user.getPassword()).apply();
-        sharedPreferences.edit().putString(KEY_USER_HOBBIES, user.getHobbies()).apply();
-        sharedPreferences.edit().putString(KEY_USER_POSTCODE, user.getPostcode()).apply();
-        sharedPreferences.edit().putString(KEY_USER_ADDRESS, user.getAddress()).apply();
-        sharedPreferences.edit().putString(KEY_USER_PROFILE_IMAGE, user.getProfileImage()).apply();
-        sharedPreferences.edit().putString(KEY_USER_LAST_UPDATED, user.getDateUpdated()).apply();
+    public void setUserDetails(UserModel userModel) {
+        sharedPreferences.edit().putInt(KEY_USER_ID, userModel.getId()).apply();
+        sharedPreferences.edit().putString(KEY_USER_FULLNAME, userModel.getFullName()).apply();
+        sharedPreferences.edit().putString(KEY_USER_EMAIL, userModel.getEmail()).apply();
+        sharedPreferences.edit().putString(KEY_USER_PASSWORD, userModel.getPassword()).apply();
+        sharedPreferences.edit().putString(KEY_USER_HOBBIES, userModel.getHobbies()).apply();
+        sharedPreferences.edit().putString(KEY_USER_POSTCODE, userModel.getPostcode()).apply();
+        sharedPreferences.edit().putString(KEY_USER_ADDRESS, userModel.getAddress()).apply();
+        sharedPreferences.edit().putString(KEY_USER_PROFILE_IMAGE, userModel.getProfileImage()).apply();
+        sharedPreferences.edit().putString(KEY_USER_LAST_UPDATED, userModel.getDateUpdated()).apply();
+        sharedPreferences.edit().putBoolean(KEY_USER_IS_ADMIN, userModel.isAdmin()).apply();
     }
 
     public void setUserAdmin(boolean value) {
@@ -118,14 +80,10 @@ public class SharedPreferencesHelper {
     }
 
     public boolean getUserAdmin() {
-        return sharedPreferences.getBoolean("isAdmin", false);
+        return sharedPreferences.getBoolean(KEY_USER_IS_ADMIN, false);
     }
 
     public String getUserProfileImage() {
-        return sharedPreferences.getString("profileImage", "");
-    }
-
-    public void setUserProfileImage(String profileImage) {
-        sharedPreferences.edit().putString("profileImage", profileImage).apply();
+        return sharedPreferences.getString(KEY_USER_PROFILE_IMAGE, "");
     }
 }

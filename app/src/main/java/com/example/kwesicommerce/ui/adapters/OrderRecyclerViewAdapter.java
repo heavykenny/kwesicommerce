@@ -11,17 +11,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kwesicommerce.R;
-import com.example.kwesicommerce.data.model.CartItem;
+import com.example.kwesicommerce.data.model.CartItemModel;
 
 import java.util.List;
 
 // REFERENCE: https://developer.android.com/develop/ui/views/layout/recyclerview
 public class OrderRecyclerViewAdapter extends RecyclerView.Adapter<OrderRecyclerViewAdapter.ViewHolder> {
-    List<CartItem> cartItemList;
+    List<CartItemModel> cartItemModelList;
     Context appContext;
 
-    public OrderRecyclerViewAdapter(List<CartItem> cartItemList, Context appContext) {
-        this.cartItemList = cartItemList;
+    public OrderRecyclerViewAdapter(List<CartItemModel> cartItemModelList, Context appContext) {
+        this.cartItemModelList = cartItemModelList;
         this.appContext = appContext;
     }
 
@@ -35,15 +35,15 @@ public class OrderRecyclerViewAdapter extends RecyclerView.Adapter<OrderRecycler
     @SuppressLint("DefaultLocale")
     @Override
     public void onBindViewHolder(@NonNull OrderRecyclerViewAdapter.ViewHolder holder, int index) {
-        holder.txtViewProductListTitle.setText(cartItemList.get(index).getProduct().getName());
-        holder.txtViewProductPrice.setText(String.format("£%,.2f", cartItemList.get(index).getProduct().getPrice()));
-        holder.txtViewQuantity.setText(String.format("Quantity: %d", cartItemList.get(index).getQuantity()));
-        holder.txtViewProductTotalPrice.setText(String.format("Total: £%,.2f", cartItemList.get(index).getProduct().getPrice() * cartItemList.get(index).getQuantity()));
+        holder.txtViewProductListTitle.setText(cartItemModelList.get(index).getProduct().getName());
+        holder.txtViewProductPrice.setText(String.format("£%,.2f", cartItemModelList.get(index).getProduct().getPrice()));
+        holder.txtViewQuantity.setText(String.format("Quantity: %d", cartItemModelList.get(index).getQuantity()));
+        holder.txtViewProductTotalPrice.setText(String.format("Total: £%,.2f", cartItemModelList.get(index).getProduct().getPrice() * cartItemModelList.get(index).getQuantity()));
     }
 
     @Override
     public int getItemCount() {
-        return cartItemList.size();
+        return cartItemModelList.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

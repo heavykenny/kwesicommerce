@@ -7,18 +7,18 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.kwesicommerce.data.model.CartItem;
-import com.example.kwesicommerce.data.model.Category;
-import com.example.kwesicommerce.data.model.Order;
-import com.example.kwesicommerce.data.model.Product;
-import com.example.kwesicommerce.data.model.User;
+import com.example.kwesicommerce.data.model.CartItemModel;
+import com.example.kwesicommerce.data.model.CategoryModel;
+import com.example.kwesicommerce.data.model.OrderModel;
+import com.example.kwesicommerce.data.model.ProductModel;
+import com.example.kwesicommerce.data.model.UserModel;
 import com.example.kwesicommerce.utils.FunctionUtil;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class SQLiteDBHelper extends SQLiteOpenHelper {
+public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "kwesicommerce.db";
     private static final int DATABASE_VERSION = 1;
@@ -30,9 +30,9 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
     private static final String TABLE_CART = "cart";
     private static final String TABLE_ORDERS = "orders";
     private static final String TABLE_ORDER_ITEMS = "order_items";
+    private static final String TABLE_WISHLIST = "wishlist";
 
-
-    // User table columns
+    // UserModel table columns
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_NAME = "name";
     private static final String COLUMN_FULL_NAME = "fullName";
@@ -46,35 +46,23 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
     private static final String COLUMN_ADDRESS = "address";
     private static final String COLUMN_IS_ADMIN = "isAdmin";
 
-    // Category table columns
+    // CategoryModel table columns
     private static final String COLUMN_DESCRIPTION = "description";
     private static final String COLUMN_IMAGE_URL = "imageUrl";
-
     private static final String COLUMN_PRICE = "price";
-
     private static final String COLUMN_LIST_PRICE = "listPrice";
-
     private static final String COLUMN_RETAIL_PRICE = "retailPrice";
-
     private static final String COLUMN_CATEGORY_ID = "categoryId";
-
     private static final String COLUMN_QUANTITY = "quantity";
-
     private static final String COLUMN_ORDER_ID = "orderId";
     private static final String COLUMN_ORDER_TRACKING_ID = "orderTrackingId";
-
     private static final String COLUMN_USER_ID = "userId";
-
     private static final String COLUMN_PRODUCT_ID = "productId";
-
     private static final String COLUMN_DATE_CREATED = "dateCreated";
-
     private static final String COLUMN_STATUS = "status";
     private static final String COLUMN_AMOUNT_PAID = "amountPaid";
-    private static final String TABLE_WISHLIST = "wishlist";
 
-
-    public SQLiteDBHelper(Context context) {
+    public SQLiteDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -183,100 +171,63 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
     }
 
     @SuppressLint("Range")
-    public List<User> getUsers() {
-        SQLiteDatabase db = getReadableDatabase();
-        List<User> userList = new ArrayList<>();
-
-        String selectQuery = "SELECT * FROM " + TABLE_USERS;
-        Cursor cursor = db.rawQuery(selectQuery, null);
-
-        if (cursor != null && cursor.moveToFirst()) {
-            do {
-                User user = new User();
-                user.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
-                user.setFullName(cursor.getString(cursor.getColumnIndex(COLUMN_FULL_NAME)));
-                user.setEmail(cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL)));
-                user.setDateRegistered(cursor.getString(cursor.getColumnIndex(COLUMN_DATE_REGISTERED)));
-                user.setDateUpdated(cursor.getString(cursor.getColumnIndex(COLUMN_DATE_UPDATED)));
-                user.setPassword(cursor.getString(cursor.getColumnIndex(COLUMN_PASSWORD)));
-                user.setHobbies(cursor.getString(cursor.getColumnIndex(COLUMN_HOBBIES)));
-                user.setPostcode(cursor.getString(cursor.getColumnIndex(COLUMN_POSTCODE)));
-                user.setAddress(cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS)));
-                user.setProfileImage(cursor.getString(cursor.getColumnIndex(COLUMN_PROFILE_PICTURE)));
-                user.setAdmin(cursor.getInt(cursor.getColumnIndex(COLUMN_IS_ADMIN)) == 1);
-
-
-                userList.add(user);
-            } while (cursor.moveToNext());
-        }
-
-        if (cursor != null) {
-            cursor.close();
-        }
-        //db.close();
-
-        return userList;
-    }
-
-
-    @SuppressLint("Range")
-    public User getUser(int userId) {
+    public UserModel getUser(int userId) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(TABLE_USERS, null, COLUMN_ID + " = ?", new String[]{String.valueOf(userId)}, null, null, null);
-        User user = null;
+        UserModel userModel = null;
         if (cursor != null && cursor.moveToFirst()) {
-            user = new User();
-            user.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
-            user.setFullName(cursor.getString(cursor.getColumnIndex(COLUMN_FULL_NAME)));
-            user.setEmail(cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL)));
-            user.setDateRegistered(cursor.getString(cursor.getColumnIndex(COLUMN_DATE_REGISTERED)));
-            user.setDateUpdated(cursor.getString(cursor.getColumnIndex(COLUMN_DATE_UPDATED)));
-            user.setPassword(cursor.getString(cursor.getColumnIndex(COLUMN_PASSWORD)));
-            user.setHobbies(cursor.getString(cursor.getColumnIndex(COLUMN_HOBBIES)));
-            user.setPostcode(cursor.getString(cursor.getColumnIndex(COLUMN_POSTCODE)));
-            user.setAddress(cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS)));
-            user.setAdmin(cursor.getInt(cursor.getColumnIndex(COLUMN_IS_ADMIN)) == 1);
-            user.setProfileImage(cursor.getString(cursor.getColumnIndex(COLUMN_PROFILE_PICTURE)));
+            userModel = new UserModel();
+            userModel.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
+            userModel.setFullName(cursor.getString(cursor.getColumnIndex(COLUMN_FULL_NAME)));
+            userModel.setEmail(cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL)));
+            userModel.setDateRegistered(cursor.getString(cursor.getColumnIndex(COLUMN_DATE_REGISTERED)));
+            userModel.setDateUpdated(cursor.getString(cursor.getColumnIndex(COLUMN_DATE_UPDATED)));
+            userModel.setPassword(cursor.getString(cursor.getColumnIndex(COLUMN_PASSWORD)));
+            userModel.setHobbies(cursor.getString(cursor.getColumnIndex(COLUMN_HOBBIES)));
+            userModel.setPostcode(cursor.getString(cursor.getColumnIndex(COLUMN_POSTCODE)));
+            userModel.setAddress(cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS)));
+            userModel.setAdmin(cursor.getInt(cursor.getColumnIndex(COLUMN_IS_ADMIN)) == 1);
+            userModel.setProfileImage(cursor.getString(cursor.getColumnIndex(COLUMN_PROFILE_PICTURE)));
         }
         if (cursor != null) {
             cursor.close();
         }
         //db.close();
-        return user;
+        return userModel;
     }
 
-    public void insertUser(User user) {
+    public void insertUser(UserModel userModel) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_FULL_NAME, user.getFullName());
-        values.put(COLUMN_EMAIL, user.getEmail());
-        values.put(COLUMN_PASSWORD, user.getPassword());
-        values.put(COLUMN_HOBBIES, user.getHobbies());
-        values.put(COLUMN_POSTCODE, user.getPostcode());
-        values.put(COLUMN_ADDRESS, user.getAddress());
+        values.put(COLUMN_FULL_NAME, userModel.getFullName());
+        values.put(COLUMN_EMAIL, userModel.getEmail());
+        values.put(COLUMN_PASSWORD, userModel.getPassword());
+        values.put(COLUMN_HOBBIES, userModel.getHobbies());
+        values.put(COLUMN_POSTCODE, userModel.getPostcode());
+        values.put(COLUMN_ADDRESS, userModel.getAddress());
         values.put(COLUMN_IS_ADMIN, 1);
         values.put(COLUMN_DATE_REGISTERED, FunctionUtil.getCurrentDateTime());
         values.put(COLUMN_DATE_UPDATED, FunctionUtil.getCurrentDateTime());
-        values.put(COLUMN_PROFILE_PICTURE, user.getProfileImage());
+        values.put(COLUMN_PROFILE_PICTURE, userModel.getProfileImage());
 
         db.insert(TABLE_USERS, null, values);
         //db.close();
     }
 
-    public void updateUser(User user) {
+    public void updateUser(UserModel userModel) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_FULL_NAME, user.getFullName());
-        values.put(COLUMN_EMAIL, user.getEmail());
+        values.put(COLUMN_FULL_NAME, userModel.getFullName());
+        values.put(COLUMN_EMAIL, userModel.getEmail());
         values.put(COLUMN_DATE_UPDATED, String.format(String.valueOf(new Date())));
-        values.put(COLUMN_PASSWORD, user.getPassword());
-        values.put(COLUMN_HOBBIES, user.getHobbies());
-        values.put(COLUMN_POSTCODE, user.getPostcode());
-        values.put(COLUMN_ADDRESS, user.getAddress());
-        values.put(COLUMN_IS_ADMIN, user.isAdmin() ? 1 : 0);
-        values.put(COLUMN_PROFILE_PICTURE, user.getProfileImage());
+        values.put(COLUMN_PASSWORD, userModel.getPassword());
+        values.put(COLUMN_HOBBIES, userModel.getHobbies());
+        values.put(COLUMN_POSTCODE, userModel.getPostcode());
+        values.put(COLUMN_ADDRESS, userModel.getAddress());
+        values.put(COLUMN_IS_ADMIN, userModel.isAdmin() ? 1 : 0);
+        values.put(COLUMN_PROFILE_PICTURE, userModel.getProfileImage());
 
-        db.update(TABLE_USERS, values, COLUMN_ID + " = ?", new String[]{String.valueOf(user.getId())});
+        db.update(TABLE_USERS, values, COLUMN_ID + " = ?", new String[]{String.valueOf(userModel.getId())});
         //db.close();
     }
 
@@ -307,17 +258,17 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
     }
 
 
-    public void deleteUser(User user) {
-        // Handle deleting a user from the database
+    public void deleteUser(UserModel userModel) {
+        // Handle deleting a userModel from the database
 
         SQLiteDatabase db = getWritableDatabase();
-        db.delete(TABLE_USERS, COLUMN_ID + " = ?", new String[]{String.valueOf(user.getId())});
+        db.delete(TABLE_USERS, COLUMN_ID + " = ?", new String[]{String.valueOf(userModel.getId())});
         //db.close();
     }
 
     @SuppressLint("Range")
-    public List<Category> getCategories() {
-        List<Category> categoryList = new ArrayList<>();
+    public List<CategoryModel> getCategories() {
+        List<CategoryModel> categoryModelList = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
 
         String query = "SELECT * FROM " + TABLE_CATEGORIES;
@@ -325,112 +276,112 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 
         if (cursor != null && cursor.moveToFirst()) {
             do {
-                Category category = new Category();
+                CategoryModel categoryModel = new CategoryModel();
 
-                category.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
-                category.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
-                categoryList.add(category);
+                categoryModel.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
+                categoryModel.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
+                categoryModelList.add(categoryModel);
             } while (cursor.moveToNext());
         }
 
         //db.close();
 
 
-        return categoryList;
+        return categoryModelList;
     }
 
     @SuppressLint("Range")
-    public Category getCategory(int categoryId) {
+    public CategoryModel getCategory(int categoryId) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(TABLE_CATEGORIES, null, COLUMN_ID + " = ?", new String[]{String.valueOf(categoryId)}, null, null, null);
-        Category category = null;
+        CategoryModel categoryModel = null;
         if (cursor != null && cursor.moveToFirst()) {
-            category = new Category();
-            category.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
-            category.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
+            categoryModel = new CategoryModel();
+            categoryModel.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
+            categoryModel.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
         }
         if (cursor != null) {
             cursor.close();
         }
         //db.close();
-        return category;
+        return categoryModel;
     }
 
-    public void insertCategory(Category category) {
+    public void insertCategory(CategoryModel categoryModel) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_NAME, category.getName());
+        values.put(COLUMN_NAME, categoryModel.getName());
 
         db.insert(TABLE_CATEGORIES, null, values);
         //db.close();
     }
 
-    public void updateCategory(Category category) {
-        // Handle updating an existing category in the database
+    public void updateCategory(CategoryModel categoryModel) {
+        // Handle updating an existing categoryModel in the database
     }
 
-    public void deleteCategory(Category category) {
-        // Handle deleting a category from the database
+    public void deleteCategory(CategoryModel categoryModel) {
+        // Handle deleting a categoryModel from the database
     }
 
     @SuppressLint("Range")
-    public List<Product> getProducts() {
+    public List<ProductModel> getProducts() {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(TABLE_PRODUCTS, null, null, null, null, null, null);
-        List<Product> productList = new ArrayList<>();
+        List<ProductModel> productModelList = new ArrayList<>();
         if (cursor != null && cursor.moveToFirst()) {
             do {
-                Product product = new Product();
-                product.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
-                product.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
-                product.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION)));
-                product.setPrice(cursor.getDouble(cursor.getColumnIndex(COLUMN_PRICE)));
-                product.setCategoryId(cursor.getInt(cursor.getColumnIndex(COLUMN_CATEGORY_ID)));
-                product.setQuantity(cursor.getInt(cursor.getColumnIndex(COLUMN_QUANTITY)));
-                product.setImageUrl(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGE_URL)));
-                productList.add(product);
+                ProductModel productModel = new ProductModel();
+                productModel.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
+                productModel.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
+                productModel.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION)));
+                productModel.setPrice(cursor.getDouble(cursor.getColumnIndex(COLUMN_PRICE)));
+                productModel.setCategoryId(cursor.getInt(cursor.getColumnIndex(COLUMN_CATEGORY_ID)));
+                productModel.setQuantity(cursor.getInt(cursor.getColumnIndex(COLUMN_QUANTITY)));
+                productModel.setImageUrl(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGE_URL)));
+                productModelList.add(productModel);
             } while (cursor.moveToNext());
         }
         if (cursor != null) {
             cursor.close();
         }
         //db.close();
-        return productList;
+        return productModelList;
     }
 
     @SuppressLint("Range")
-    public Product getProduct(int productId) {
+    public ProductModel getProduct(int productId) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(TABLE_PRODUCTS, null, COLUMN_ID + " = ?", new String[]{String.valueOf(productId)}, null, null, null);
-        Product product = null;
+        ProductModel productModel = null;
         if (cursor != null && cursor.moveToFirst()) {
-            product = new Product();
-            product.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
-            product.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
-            product.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION)));
-            product.setPrice(cursor.getDouble(cursor.getColumnIndex(COLUMN_PRICE)));
-            product.setCategoryId(cursor.getInt(cursor.getColumnIndex(COLUMN_CATEGORY_ID)));
-            product.setQuantity(cursor.getInt(cursor.getColumnIndex(COLUMN_QUANTITY)));
-            product.setImageUrl(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGE_URL)));
+            productModel = new ProductModel();
+            productModel.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
+            productModel.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
+            productModel.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION)));
+            productModel.setPrice(cursor.getDouble(cursor.getColumnIndex(COLUMN_PRICE)));
+            productModel.setCategoryId(cursor.getInt(cursor.getColumnIndex(COLUMN_CATEGORY_ID)));
+            productModel.setQuantity(cursor.getInt(cursor.getColumnIndex(COLUMN_QUANTITY)));
+            productModel.setImageUrl(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGE_URL)));
         }
         if (cursor != null) {
             cursor.close();
         }
         //db.close();
-        return product;
+        return productModel;
     }
 
-    public int insertProduct(Product product) {
+    public int insertProduct(ProductModel productModel) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_NAME, product.getName());
-        values.put(COLUMN_DESCRIPTION, product.getDescription());
-        values.put(COLUMN_PRICE, product.getPrice());
-        values.put(COLUMN_CATEGORY_ID, product.getCategoryId());
-        values.put(COLUMN_QUANTITY, product.getQuantity());
-        values.put(COLUMN_IMAGE_URL, product.getImageUrl());
-        values.put(COLUMN_LIST_PRICE, product.getListPrice());
-        values.put(COLUMN_RETAIL_PRICE, product.getRetailPrice());
+        values.put(COLUMN_NAME, productModel.getName());
+        values.put(COLUMN_DESCRIPTION, productModel.getDescription());
+        values.put(COLUMN_PRICE, productModel.getPrice());
+        values.put(COLUMN_CATEGORY_ID, productModel.getCategoryId());
+        values.put(COLUMN_QUANTITY, productModel.getQuantity());
+        values.put(COLUMN_IMAGE_URL, productModel.getImageUrl());
+        values.put(COLUMN_LIST_PRICE, productModel.getListPrice());
+        values.put(COLUMN_RETAIL_PRICE, productModel.getRetailPrice());
         values.put(COLUMN_DATE_CREATED, FunctionUtil.getCurrentDateTime());
         values.put(COLUMN_DATE_UPDATED, FunctionUtil.getCurrentDateTime());
 
@@ -439,103 +390,103 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         //db.close();
     }
 
-    public void updateProduct(Product product) {
-        // Handle updating an existing product in the database
+    public void updateProduct(ProductModel productModel) {
+        // Handle updating an existing productModel in the database
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_NAME, product.getName());
-        values.put(COLUMN_DESCRIPTION, product.getDescription());
-        values.put(COLUMN_PRICE, product.getPrice());
-        values.put(COLUMN_CATEGORY_ID, product.getCategoryId());
-        values.put(COLUMN_QUANTITY, product.getQuantity());
-        values.put(COLUMN_IMAGE_URL, product.getImageUrl());
+        values.put(COLUMN_NAME, productModel.getName());
+        values.put(COLUMN_DESCRIPTION, productModel.getDescription());
+        values.put(COLUMN_PRICE, productModel.getPrice());
+        values.put(COLUMN_CATEGORY_ID, productModel.getCategoryId());
+        values.put(COLUMN_QUANTITY, productModel.getQuantity());
+        values.put(COLUMN_IMAGE_URL, productModel.getImageUrl());
 
-        db.update(TABLE_PRODUCTS, values, COLUMN_ID + " = ?", new String[]{String.valueOf(product.getId())});
+        db.update(TABLE_PRODUCTS, values, COLUMN_ID + " = ?", new String[]{String.valueOf(productModel.getId())});
         //db.close();
     }
 
-    public void deleteProduct(Product product) {
-        // Handle deleting a product from the database
+    public void deleteProduct(ProductModel productModel) {
+        // Handle deleting a productModel from the database
     }
 
     @SuppressLint("Range")
-    public List<Order> getOrders() {
+    public List<OrderModel> getOrders() {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(TABLE_ORDERS, null, null, null, null, null, null);
-        List<Order> orderList = new ArrayList<>();
+        List<OrderModel> orderModelList = new ArrayList<>();
         if (cursor != null && cursor.moveToFirst()) {
             do {
-                Order order = new Order();
-                order.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
-                order.setUserId(cursor.getInt(cursor.getColumnIndex(COLUMN_USER_ID)));
-                order.setStatus(cursor.getString(cursor.getColumnIndex(COLUMN_STATUS)));
-                order.setOrderTrackingNumber(cursor.getString(cursor.getColumnIndex(COLUMN_ORDER_TRACKING_ID)));
-                order.setAmountPaid(cursor.getDouble(cursor.getColumnIndex(COLUMN_AMOUNT_PAID)));
-                order.setDateCreated(cursor.getString(cursor.getColumnIndex(COLUMN_DATE_CREATED)));
-                order.setDateUpdated(cursor.getString(cursor.getColumnIndex(COLUMN_DATE_UPDATED)));
-                orderList.add(order);
+                OrderModel orderModel = new OrderModel();
+                orderModel.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
+                orderModel.setUserId(cursor.getInt(cursor.getColumnIndex(COLUMN_USER_ID)));
+                orderModel.setStatus(cursor.getString(cursor.getColumnIndex(COLUMN_STATUS)));
+                orderModel.setOrderTrackingNumber(cursor.getString(cursor.getColumnIndex(COLUMN_ORDER_TRACKING_ID)));
+                orderModel.setAmountPaid(cursor.getDouble(cursor.getColumnIndex(COLUMN_AMOUNT_PAID)));
+                orderModel.setDateCreated(cursor.getString(cursor.getColumnIndex(COLUMN_DATE_CREATED)));
+                orderModel.setDateUpdated(cursor.getString(cursor.getColumnIndex(COLUMN_DATE_UPDATED)));
+                orderModelList.add(orderModel);
             } while (cursor.moveToNext());
         }
         if (cursor != null) {
             cursor.close();
         }
         //db.close();
-        return orderList;
+        return orderModelList;
     }
 
-    public Order getOrder(int orderId) {
+    public OrderModel getOrder(int orderId) {
         // Handle retrieving a specific order from the database by ID
         return null;
     }
 
-    public long insertOrder(Order order) {
+    public long insertOrder(OrderModel orderModel) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_USER_ID, order.getUserId());
-        values.put(COLUMN_STATUS, order.getStatus());
-        values.put(COLUMN_ORDER_TRACKING_ID, order.getOrderTrackingNumber());
-        values.put(COLUMN_AMOUNT_PAID, order.getAmountPaid());
-        values.put(COLUMN_DATE_CREATED, order.getDateCreated());
-        values.put(COLUMN_DATE_UPDATED, order.getDateUpdated());
+        values.put(COLUMN_USER_ID, orderModel.getUserId());
+        values.put(COLUMN_STATUS, orderModel.getStatus());
+        values.put(COLUMN_ORDER_TRACKING_ID, orderModel.getOrderTrackingNumber());
+        values.put(COLUMN_AMOUNT_PAID, orderModel.getAmountPaid());
+        values.put(COLUMN_DATE_CREATED, orderModel.getDateCreated());
+        values.put(COLUMN_DATE_UPDATED, orderModel.getDateUpdated());
         long orderID = db.insert(TABLE_ORDERS, null, values);
         //db.close();
 
         return orderID;
     }
 
-    public void updateOrder(Order order) {
-        // Handle updating an existing order in the database
+    public void updateOrder(OrderModel orderModel) {
+        // Handle updating an existing orderModel in the database
     }
 
-    public void deleteOrder(Order order) {
-        // Handle deleting an order from the database
+    public void deleteOrder(OrderModel orderModel) {
+        // Handle deleting an orderModel from the database
     }
 
     @SuppressLint("Range")
-    public User getByEmail(String email) {
+    public UserModel getByEmail(String email) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(TABLE_USERS, null, COLUMN_EMAIL + " = ?", new String[]{String.valueOf(email)}, null, null, null);
-        User user = null;
+        UserModel userModel = null;
 
         if (cursor != null && cursor.moveToFirst()) {
-            user = new User();
-            user.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
-            user.setFullName(cursor.getString(cursor.getColumnIndex(COLUMN_FULL_NAME)));
-            user.setEmail(cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL)));
-            user.setDateRegistered(cursor.getString(cursor.getColumnIndex(COLUMN_DATE_REGISTERED)));
-            user.setDateUpdated(cursor.getString(cursor.getColumnIndex(COLUMN_DATE_UPDATED)));
-            user.setPassword(cursor.getString(cursor.getColumnIndex(COLUMN_PASSWORD)));
-            user.setHobbies(cursor.getString(cursor.getColumnIndex(COLUMN_HOBBIES)));
-            user.setPostcode(cursor.getString(cursor.getColumnIndex(COLUMN_POSTCODE)));
-            user.setAddress(cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS)));
-            user.setAdmin(cursor.getInt(cursor.getColumnIndex(COLUMN_IS_ADMIN)) == 1);
+            userModel = new UserModel();
+            userModel.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
+            userModel.setFullName(cursor.getString(cursor.getColumnIndex(COLUMN_FULL_NAME)));
+            userModel.setEmail(cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL)));
+            userModel.setDateRegistered(cursor.getString(cursor.getColumnIndex(COLUMN_DATE_REGISTERED)));
+            userModel.setDateUpdated(cursor.getString(cursor.getColumnIndex(COLUMN_DATE_UPDATED)));
+            userModel.setPassword(cursor.getString(cursor.getColumnIndex(COLUMN_PASSWORD)));
+            userModel.setHobbies(cursor.getString(cursor.getColumnIndex(COLUMN_HOBBIES)));
+            userModel.setPostcode(cursor.getString(cursor.getColumnIndex(COLUMN_POSTCODE)));
+            userModel.setAddress(cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS)));
+            userModel.setAdmin(cursor.getInt(cursor.getColumnIndex(COLUMN_IS_ADMIN)) == 1);
         }
 
         if (cursor != null) {
             cursor.close();
         }
         //db.close();
-        return user;
+        return userModel;
     }
 
     @SuppressLint({"Recycle", "Range"})
@@ -552,10 +503,10 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
         if (cursor != null && cursor.moveToFirst()) {
-            // get product quantity from product table
-            Product product = getProduct(productId);
+            // get productModel quantity from productModel table
+            ProductModel productModel = getProduct(productId);
             int currentQuantity = cursor.getInt(cursor.getColumnIndex(COLUMN_QUANTITY));
-            if (currentQuantity + quantity > product.getQuantity()) {
+            if (currentQuantity + quantity > productModel.getQuantity()) {
                 return;
             }
             values.put("quantity", currentQuantity + quantity);
@@ -580,8 +531,8 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
     }
 
     @SuppressLint("Range")
-    public List<CartItem> getCartItems(int userId) {
-        List<CartItem> cartItems = new ArrayList<>();
+    public List<CartItemModel> getCartItems(int userId) {
+        List<CartItemModel> cartItemModels = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
 
         String query = "SELECT products.id as productId, products.name, products.description, products.price, cart.quantity, cart.id " +
@@ -599,16 +550,16 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
                 int productId = cursor.getInt(cursor.getColumnIndex(COLUMN_PRODUCT_ID));
                 int quantity = cursor.getInt(cursor.getColumnIndex(COLUMN_QUANTITY));
 
-                Product product = this.getProduct(productId);
-                CartItem cartItem = new CartItem(id, product, quantity);
-                cartItems.add(cartItem);
+                ProductModel productModel = this.getProduct(productId);
+                CartItemModel cartItemModel = new CartItemModel(id, productModel, quantity);
+                cartItemModels.add(cartItemModel);
             } while (cursor.moveToNext());
         }
 
         cursor.close();
         //db.close();
 
-        return cartItems;
+        return cartItemModels;
     }
 
     public void clearCart(int userId) {
@@ -619,8 +570,8 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
     }
 
     @SuppressLint("Range")
-    public List<Product> getProductsByCategoryId(int categoryId) {
-        List<Product> products = new ArrayList<>();
+    public List<ProductModel> getProductsByCategoryId(int categoryId) {
+        List<ProductModel> productModels = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
 
         String query = "SELECT * FROM " + TABLE_PRODUCTS + " WHERE " + COLUMN_CATEGORY_ID + " = ?";
@@ -630,22 +581,22 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                Product product = new Product();
-                product.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
-                product.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
-                product.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION)));
-                product.setPrice(cursor.getDouble(cursor.getColumnIndex(COLUMN_PRICE)));
-                product.setCategoryId(cursor.getInt(cursor.getColumnIndex(COLUMN_CATEGORY_ID)));
-                product.setImageUrl(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGE_URL)));
+                ProductModel productModel = new ProductModel();
+                productModel.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
+                productModel.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
+                productModel.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION)));
+                productModel.setPrice(cursor.getDouble(cursor.getColumnIndex(COLUMN_PRICE)));
+                productModel.setCategoryId(cursor.getInt(cursor.getColumnIndex(COLUMN_CATEGORY_ID)));
+                productModel.setImageUrl(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGE_URL)));
 
-                products.add(product);
+                productModels.add(productModel);
             } while (cursor.moveToNext());
         }
 
         cursor.close();
         //db.close();
 
-        return products;
+        return productModels;
     }
 
     public void updateCartItemQuantity(int cartId, int quantity) {
@@ -678,8 +629,8 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
     }
 
     @SuppressLint("Range")
-    public List<CartItem> getOrderItems(String orderId) {
-        List<CartItem> cartItems = new ArrayList<>();
+    public List<CartItemModel> getOrderItems(String orderId) {
+        List<CartItemModel> cartItemModels = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
 
         String query = "SELECT products.id as productId, products.name, products.description, products.price, order_items.quantity, order_items.id " +
@@ -696,16 +647,16 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
                 int productId = cursor.getInt(cursor.getColumnIndex(COLUMN_PRODUCT_ID));
                 int quantity = cursor.getInt(cursor.getColumnIndex(COLUMN_QUANTITY));
 
-                Product product = this.getProduct(productId);
-                CartItem cartItem = new CartItem(id, product, quantity);
-                cartItems.add(cartItem);
+                ProductModel productModel = this.getProduct(productId);
+                CartItemModel cartItemModel = new CartItemModel(id, productModel, quantity);
+                cartItemModels.add(cartItemModel);
             } while (cursor.moveToNext());
         }
 
         cursor.close();
         //db.close();
 
-        return cartItems;
+        return cartItemModels;
     }
 
     @SuppressLint("Range")
@@ -731,8 +682,8 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
     }
 
     @SuppressLint("Range")
-    public List<CartItem> getUsersOrder(int userId) {
-        List<CartItem> cartItems = new ArrayList<>();
+    public List<CartItemModel> getUsersOrder(int userId) {
+        List<CartItemModel> cartItemModels = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
 
         // order by order date created
@@ -755,16 +706,16 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
                 int productId = cursor.getInt(cursor.getColumnIndex(COLUMN_PRODUCT_ID));
                 int quantity = cursor.getInt(cursor.getColumnIndex(COLUMN_QUANTITY));
 
-                Product product = this.getProduct(productId);
-                CartItem cartItem = new CartItem(id, product, quantity);
-                cartItems.add(cartItem);
+                ProductModel productModel = this.getProduct(productId);
+                CartItemModel cartItemModel = new CartItemModel(id, productModel, quantity);
+                cartItemModels.add(cartItemModel);
             } while (cursor.moveToNext());
         }
 
         cursor.close();
         //db.close();
 
-        return cartItems;
+        return cartItemModels;
     }
 
     @SuppressLint("Range")
@@ -788,8 +739,8 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
     }
 
     @SuppressLint("Range")
-    public List<Product> getUserWishlist(int userId) {
-        List<Product> products = new ArrayList<>();
+    public List<ProductModel> getUserWishlist(int userId) {
+        List<ProductModel> productModels = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
 
         String query = "SELECT products.id, products.name, products.description, products.price, products.categoryId, products.imageUrl " +
@@ -802,22 +753,22 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                Product product = new Product();
-                product.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
-                product.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
-                product.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION)));
-                product.setPrice(cursor.getDouble(cursor.getColumnIndex(COLUMN_PRICE)));
-                product.setCategoryId(cursor.getInt(cursor.getColumnIndex(COLUMN_CATEGORY_ID)));
-                product.setImageUrl(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGE_URL)));
+                ProductModel productModel = new ProductModel();
+                productModel.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
+                productModel.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
+                productModel.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION)));
+                productModel.setPrice(cursor.getDouble(cursor.getColumnIndex(COLUMN_PRICE)));
+                productModel.setCategoryId(cursor.getInt(cursor.getColumnIndex(COLUMN_CATEGORY_ID)));
+                productModel.setImageUrl(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGE_URL)));
 
-                products.add(product);
+                productModels.add(productModel);
             } while (cursor.moveToNext());
         }
 
         cursor.close();
         //db.close();
 
-        return products;
+        return productModels;
     }
 
     public void deleteWishlist(int productId, int userId) {
@@ -849,8 +800,8 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
     }
 
     @SuppressLint("Range")
-    public List<User> getAllAdmins() {
-        List<User> users = new ArrayList<>();
+    public List<UserModel> getAllAdmins() {
+        List<UserModel> userModels = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
 
         String query = "SELECT * FROM users WHERE isAdmin = 1";
@@ -859,31 +810,31 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                User user = new User();
-                user.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
-                user.setFullName(cursor.getString(cursor.getColumnIndex(COLUMN_FULL_NAME)));
-                user.setEmail(cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL)));
-                user.setDateRegistered(cursor.getString(cursor.getColumnIndex(COLUMN_DATE_REGISTERED)));
-                user.setDateUpdated(cursor.getString(cursor.getColumnIndex(COLUMN_DATE_UPDATED)));
-                user.setPassword(cursor.getString(cursor.getColumnIndex(COLUMN_PASSWORD)));
-                user.setHobbies(cursor.getString(cursor.getColumnIndex(COLUMN_HOBBIES)));
-                user.setPostcode(cursor.getString(cursor.getColumnIndex(COLUMN_POSTCODE)));
-                user.setAddress(cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS)));
-                user.setAdmin(cursor.getInt(cursor.getColumnIndex(COLUMN_IS_ADMIN)) == 1);
+                UserModel userModel = new UserModel();
+                userModel.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
+                userModel.setFullName(cursor.getString(cursor.getColumnIndex(COLUMN_FULL_NAME)));
+                userModel.setEmail(cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL)));
+                userModel.setDateRegistered(cursor.getString(cursor.getColumnIndex(COLUMN_DATE_REGISTERED)));
+                userModel.setDateUpdated(cursor.getString(cursor.getColumnIndex(COLUMN_DATE_UPDATED)));
+                userModel.setPassword(cursor.getString(cursor.getColumnIndex(COLUMN_PASSWORD)));
+                userModel.setHobbies(cursor.getString(cursor.getColumnIndex(COLUMN_HOBBIES)));
+                userModel.setPostcode(cursor.getString(cursor.getColumnIndex(COLUMN_POSTCODE)));
+                userModel.setAddress(cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS)));
+                userModel.setAdmin(cursor.getInt(cursor.getColumnIndex(COLUMN_IS_ADMIN)) == 1);
 
-                users.add(user);
+                userModels.add(userModel);
             } while (cursor.moveToNext());
         }
 
         cursor.close();
         //db.close();
 
-        return users;
+        return userModels;
     }
 
     @SuppressLint("Range")
-    public List<User> getAllCustomers() {
-        List<User> users = new ArrayList<>();
+    public List<UserModel> getAllCustomers() {
+        List<UserModel> userModels = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
 
         String query = "SELECT * FROM users WHERE isAdmin = 0";
@@ -892,26 +843,26 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                User user = new User();
-                user.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
-                user.setFullName(cursor.getString(cursor.getColumnIndex(COLUMN_FULL_NAME)));
-                user.setEmail(cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL)));
-                user.setDateRegistered(cursor.getString(cursor.getColumnIndex(COLUMN_DATE_REGISTERED)));
-                user.setDateUpdated(cursor.getString(cursor.getColumnIndex(COLUMN_DATE_UPDATED)));
-                user.setPassword(cursor.getString(cursor.getColumnIndex(COLUMN_PASSWORD)));
-                user.setHobbies(cursor.getString(cursor.getColumnIndex(COLUMN_HOBBIES)));
-                user.setPostcode(cursor.getString(cursor.getColumnIndex(COLUMN_POSTCODE)));
-                user.setAddress(cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS)));
-                user.setAdmin(cursor.getInt(cursor.getColumnIndex(COLUMN_IS_ADMIN)) == 1);
+                UserModel userModel = new UserModel();
+                userModel.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
+                userModel.setFullName(cursor.getString(cursor.getColumnIndex(COLUMN_FULL_NAME)));
+                userModel.setEmail(cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL)));
+                userModel.setDateRegistered(cursor.getString(cursor.getColumnIndex(COLUMN_DATE_REGISTERED)));
+                userModel.setDateUpdated(cursor.getString(cursor.getColumnIndex(COLUMN_DATE_UPDATED)));
+                userModel.setPassword(cursor.getString(cursor.getColumnIndex(COLUMN_PASSWORD)));
+                userModel.setHobbies(cursor.getString(cursor.getColumnIndex(COLUMN_HOBBIES)));
+                userModel.setPostcode(cursor.getString(cursor.getColumnIndex(COLUMN_POSTCODE)));
+                userModel.setAddress(cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS)));
+                userModel.setAdmin(cursor.getInt(cursor.getColumnIndex(COLUMN_IS_ADMIN)) == 1);
 
-                users.add(user);
+                userModels.add(userModel);
             } while (cursor.moveToNext());
         }
 
         cursor.close();
         //db.close();
 
-        return users;
+        return userModels;
     }
 
     @SuppressLint("Range")
@@ -933,8 +884,8 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
     }
 
     @SuppressLint("Range")
-    public List<CartItem> getAllOrdersProduct() {
-        List<CartItem> cartItems = new ArrayList<>();
+    public List<CartItemModel> getAllOrdersProduct() {
+        List<CartItemModel> cartItemModels = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
 
         // order by order date created
@@ -956,15 +907,48 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
                 int productId = cursor.getInt(cursor.getColumnIndex(COLUMN_PRODUCT_ID));
                 int quantity = cursor.getInt(cursor.getColumnIndex(COLUMN_QUANTITY));
 
-                Product product = this.getProduct(productId);
-                CartItem cartItem = new CartItem(id, product, quantity);
-                cartItems.add(cartItem);
+                ProductModel productModel = this.getProduct(productId);
+                CartItemModel cartItemModel = new CartItemModel(id, productModel, quantity);
+                cartItemModels.add(cartItemModel);
             } while (cursor.moveToNext());
         }
 
         cursor.close();
         //db.close();
 
-        return cartItems;
+        return cartItemModels;
+    }
+
+    @SuppressLint("Range")
+    public List<UserModel> getAllUsers() {
+        List<UserModel> userModels = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+
+        String query = "SELECT * FROM users";
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                UserModel userModel = new UserModel();
+                userModel.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
+                userModel.setFullName(cursor.getString(cursor.getColumnIndex(COLUMN_FULL_NAME)));
+                userModel.setEmail(cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL)));
+                userModel.setDateRegistered(cursor.getString(cursor.getColumnIndex(COLUMN_DATE_REGISTERED)));
+                userModel.setDateUpdated(cursor.getString(cursor.getColumnIndex(COLUMN_DATE_UPDATED)));
+                userModel.setPassword(cursor.getString(cursor.getColumnIndex(COLUMN_PASSWORD)));
+                userModel.setHobbies(cursor.getString(cursor.getColumnIndex(COLUMN_HOBBIES)));
+                userModel.setPostcode(cursor.getString(cursor.getColumnIndex(COLUMN_POSTCODE)));
+                userModel.setAddress(cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS)));
+                userModel.setAdmin(cursor.getInt(cursor.getColumnIndex(COLUMN_IS_ADMIN)) == 1);
+
+                userModels.add(userModel);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        //db.close();
+
+        return userModels;
     }
 }

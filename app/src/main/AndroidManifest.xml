@@ -69,9 +69,6 @@
             android:name=".ui.activities.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.MainActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.activities.HomeActivity"
             android:exported="true">
             <intent-filter>
@@ -85,9 +82,6 @@
             android:exported="false" />
         <activity
             android:name=".ui.activities.PreviousOrdersActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activities.UserListActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activities.UpdateProfileActivity"

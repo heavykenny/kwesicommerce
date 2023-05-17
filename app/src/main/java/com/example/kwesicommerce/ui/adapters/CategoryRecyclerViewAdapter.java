@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kwesicommerce.R;
-import com.example.kwesicommerce.data.model.Category;
+import com.example.kwesicommerce.data.model.CategoryModel;
 import com.example.kwesicommerce.data.repository.UserRepository;
 import com.example.kwesicommerce.ui.activities.AdminEditCategoryActivity;
 import com.example.kwesicommerce.ui.activities.ProductActivity;
@@ -23,10 +23,10 @@ import java.util.List;
 public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRecyclerViewAdapter.ViewHolder> {
     static Context appContext;
     static Activity activity;
-    List<Category> categoryList;
+    List<CategoryModel> categoryModelList;
 
-    public CategoryRecyclerViewAdapter(List<Category> categoryList, Context appContext, Activity activity) {
-        this.categoryList = categoryList;
+    public CategoryRecyclerViewAdapter(List<CategoryModel> categoryModelList, Context appContext, Activity activity) {
+        this.categoryModelList = categoryModelList;
         CategoryRecyclerViewAdapter.appContext = appContext;
         CategoryRecyclerViewAdapter.activity = activity;
     }
@@ -40,13 +40,13 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
 
     @Override
     public void onBindViewHolder(@NonNull CategoryRecyclerViewAdapter.ViewHolder holder, int index) {
-        holder.txtTitle.setText(categoryList.get(index).getName());
-        holder.categoryId = categoryList.get(index).getId();
+        holder.txtTitle.setText(categoryModelList.get(index).getName());
+        holder.categoryId = categoryModelList.get(index).getId();
     }
 
     @Override
     public int getItemCount() {
-        return categoryList.size();
+        return categoryModelList.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

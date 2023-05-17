@@ -4,17 +4,15 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kwesicommerce.R;
-import com.example.kwesicommerce.data.model.CartItem;
+import com.example.kwesicommerce.data.model.CartItemModel;
 import com.example.kwesicommerce.data.repository.CartRepository;
 import com.example.kwesicommerce.data.repository.UserRepository;
-import com.example.kwesicommerce.ui.adapters.CartRecyclerViewAdapter;
 import com.example.kwesicommerce.ui.adapters.OrderRecyclerViewAdapter;
 import com.example.kwesicommerce.utils.NavigationUtil;
 
@@ -52,8 +50,8 @@ public class OrderSummaryActivity extends AppCompatActivity {
         RecyclerView rvListCartList = findViewById(R.id.rvListCartList);
 
         cartRepository = new CartRepository(getBaseContext());
-        List<CartItem> cartItems = cartRepository.getCartItems(userRepository.getUserId());
-        OrderRecyclerViewAdapter adapter = new OrderRecyclerViewAdapter(cartItems, getApplicationContext());
+        List<CartItemModel> cartItemModels = cartRepository.getCartItems(userRepository.getUserId());
+        OrderRecyclerViewAdapter adapter = new OrderRecyclerViewAdapter(cartItemModels, getApplicationContext());
 
         rvListCartList.setAdapter(adapter);
         rvListCartList.setLayoutManager(new LinearLayoutManager(this));

@@ -2,7 +2,7 @@ package com.example.kwesicommerce.data.model;
 
 import com.example.kwesicommerce.utils.FunctionUtil;
 
-public class Product {
+public class ProductModel {
     private String name;
     private String description;
 
@@ -27,7 +27,7 @@ public class Product {
     private int id;
     private int categoryId;
 
-    public Product(int productId, String name, String description, String imageUrl, int productQuantity, double price, double listPrice, double retailPrice, int categoryId) {
+    public ProductModel(int productId, String name, String description, String imageUrl, int productQuantity, double price, double listPrice, double retailPrice, int categoryId) {
         this.id = productId;
         this.name = name;
         this.description = description;
@@ -41,7 +41,7 @@ public class Product {
         this.categoryId = categoryId;
     }
 
-    public Product() {
+    public ProductModel() {
         this.id = 0;
         this.name = "";
         this.description = "";

@@ -2,20 +2,20 @@ package com.example.kwesicommerce.data.repository;
 
 import android.content.Context;
 
-import com.example.kwesicommerce.data.database.SQLiteDBHelper;
-import com.example.kwesicommerce.data.model.CartItem;
-import com.example.kwesicommerce.data.model.Order;
-import com.example.kwesicommerce.data.model.Product;
+import com.example.kwesicommerce.data.database.SQLiteDatabaseHelper;
+import com.example.kwesicommerce.data.model.CartItemModel;
+import com.example.kwesicommerce.data.model.OrderModel;
+import com.example.kwesicommerce.data.model.ProductModel;
 import com.example.kwesicommerce.utils.FunctionUtil;
 
 import java.util.List;
 
 public class CartRepository {
-    private final SQLiteDBHelper dbHelper;
+    private final SQLiteDatabaseHelper dbHelper;
     private final Context context;
 
     public CartRepository(Context context) {
-        dbHelper = new SQLiteDBHelper(context);
+        dbHelper = new SQLiteDatabaseHelper(context);
         this.context = context;
     }
 
@@ -27,17 +27,8 @@ public class CartRepository {
         dbHelper.removeFromCart(cartId);
     }
 
-    public List<CartItem> getCartItems(int userId) {
+    public List<CartItemModel> getCartItems(int userId) {
         return dbHelper.getCartItems(userId);
-    }
-
-    public int getCartTotalQuantity(int userId) {
-        List<CartItem> cartItems = getCartItems(userId);
-        int totalQuantity = 0;
-        for (CartItem item : cartItems) {
-            totalQuantity += item.getQuantity();
-        }
-        return totalQuantity;
     }
 
     public void updateCartItemQuantity(int userId, int quantity) {
@@ -45,28 +36,24 @@ public class CartRepository {
     }
 
     public double getCartTotalPrice(int userId) {
-        List<CartItem> cartItems = getCartItems(userId);
+        List<CartItemModel> cartItemModels = getCartItems(userId);
         double totalPrice = 0;
-        for (CartItem item : cartItems) {
+        for (CartItemModel item : cartItemModels) {
             totalPrice += item.getProduct().getPrice() * item.getQuantity();
         }
         return totalPrice;
     }
 
-    public void clearCart(int userId) {
-        dbHelper.clearCart(userId);
-    }
-
     public long makeOrder(int userId) {
-        List<CartItem> cartItems = getCartItems(userId);
+        List<CartItemModel> cartItemModels = getCartItems(userId);
         OrderRepository orderRepository = new OrderRepository(context);
-        Order order = new Order(userId, "Paid",FunctionUtil.generateOrderTracking(), this.getCartTotalPrice(userId), FunctionUtil.getCurrentDateTime(), FunctionUtil.getCurrentDateTime());
-        long orderId = orderRepository.createOrder(order);
+        OrderModel orderModel = new OrderModel(userId, "Paid",FunctionUtil.generateOrderTracking(), this.getCartTotalPrice(userId), FunctionUtil.getCurrentDateTime(), FunctionUtil.getCurrentDateTime());
+        long orderId = orderRepository.createOrder(orderModel);
 
-        for (CartItem item : cartItems) {
-            Product product = item.getProduct();
-            product.setQuantity(product.getQuantity() - item.getQuantity());
-            dbHelper.updateProduct(product);
+        for (CartItemModel item : cartItemModels) {
+            ProductModel productModel = item.getProduct();
+            productModel.setQuantity(productModel.getQuantity() - item.getQuantity());
+            dbHelper.updateProduct(productModel);
             orderRepository.createOrderItem((int) orderId, item.getProduct().getId(), item.getQuantity());
             dbHelper.removeFromCart(item.getId());
         }

@@ -10,19 +10,17 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.kwesicommerce.R;
-import com.example.kwesicommerce.data.model.Category;
-import com.example.kwesicommerce.data.model.Product;
+import com.example.kwesicommerce.data.model.ProductModel;
 import com.example.kwesicommerce.ui.adapters.ProductAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProductFragment extends Fragment {
 
-    private final List<Product> productList;
+    private final List<ProductModel> productModelList;
 
-    public ProductFragment(List<Product> productList) {
-        this.productList = productList;
+    public ProductFragment(List<ProductModel> productModelList) {
+        this.productModelList = productModelList;
     }
 
     @Nullable
@@ -32,7 +30,7 @@ public class ProductFragment extends Fragment {
 
         GridView productView = view.findViewById(R.id.gridViewProduct);
 
-        ProductAdapter adapter = new ProductAdapter(productList);
+        ProductAdapter adapter = new ProductAdapter(productModelList);
         productView.setAdapter(adapter);
         return view;
     }
