@@ -20,6 +20,16 @@ public class Order {
         this.amountPaid = amountPaid;
     }
 
+    public Order() {
+        this.id = 0;
+        this.userId = 0;
+        this.status = "";
+        this.orderTrackingNumber = "";
+        this.dateCreated = "";
+        this.dateUpdated = "";
+        this.amountPaid = 0;
+    }
+
     public String getOrderTrackingNumber() {
         return orderTrackingNumber;
     }

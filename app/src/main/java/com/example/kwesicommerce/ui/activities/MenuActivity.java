@@ -31,7 +31,6 @@ public class MenuActivity extends AppCompatActivity {
         LinearLayout linLayoutAdminAccount = findViewById(R.id.linLayoutAdminAccount);
         linLayoutAdminAccount.setVisibility(TextView.GONE);
 
-
         TextView txtViewSwitchToUserAccount = findViewById(R.id.txtViewSwitchToUserAccount);
 
         LinearLayout linLayUserLoginCheck = findViewById(R.id.linLayUserLoginCheck);

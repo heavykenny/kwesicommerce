@@ -1,19 +1,21 @@
 package com.example.kwesicommerce.ui.activities;
 
+import android.os.Bundle;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-import android.widget.LinearLayout;
-
 import com.example.kwesicommerce.R;
-import com.example.kwesicommerce.data.model.Category;
 import com.example.kwesicommerce.data.model.Product;
+import com.example.kwesicommerce.data.repository.UserRepository;
+import com.example.kwesicommerce.data.repository.WishlistRepository;
 import com.example.kwesicommerce.ui.adapters.WishlistRecyclerViewAdapter;
 import com.example.kwesicommerce.utils.NavigationUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class WishlistActivity extends AppCompatActivity {
@@ -31,17 +33,26 @@ public class WishlistActivity extends AppCompatActivity {
 
         navigationUtil.backNavigation("Wishlist");
 
-        List<Product> data = new ArrayList<>();
+        WishlistRepository wishlistRepository = new WishlistRepository(getApplicationContext());
+        UserRepository userRepository = new UserRepository(getApplicationContext());
 
-//        Category cat = new Category("Gadgets");
-//        data.add(new Product(1, "Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, 1));
-//        data.add(new Product(1, "Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, 1));
-//        data.add(new Product(1, "Flower", "Lorem Text", "R.drawable.image_placeholder", 100, 100, 100, 1));
+        List<Product> wishilistList = wishlistRepository.getUserWishlist(userRepository.getUserId());
 
-        RecyclerView rvTestList = findViewById(R.id.rvListWishList);
-        WishlistRecyclerViewAdapter adapter = new WishlistRecyclerViewAdapter(data, getApplicationContext());
-        rvTestList.setAdapter(adapter);
-        rvTestList.setLayoutManager(new LinearLayoutManager(this));
+        RelativeLayout relLayoutWishList = findViewById(R.id.relLayoutWishList);
+        RelativeLayout relLayoutWishListEmpty = findViewById(R.id.relLayoutWishListEmpty);
+
+        if (wishilistList.isEmpty()) {
+            relLayoutWishListEmpty.setVisibility(LinearLayout.VISIBLE);
+            relLayoutWishList.setVisibility(FrameLayout.GONE);
+        } else {
+            relLayoutWishListEmpty.setVisibility(LinearLayout.GONE);
+            relLayoutWishList.setVisibility(FrameLayout.VISIBLE);
+
+            RecyclerView rvTestList = findViewById(R.id.rvListWishList);
+            WishlistRecyclerViewAdapter adapter = new WishlistRecyclerViewAdapter(wishilistList, getApplicationContext());
+            rvTestList.setAdapter(adapter);
+            rvTestList.setLayoutManager(new LinearLayoutManager(this));
+        }
     }
 
     @Override

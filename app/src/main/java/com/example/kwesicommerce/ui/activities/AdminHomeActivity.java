@@ -6,8 +6,11 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.kwesicommerce.R;
+import com.example.kwesicommerce.data.model.User;
 import com.example.kwesicommerce.data.repository.CategoryRepository;
+import com.example.kwesicommerce.data.repository.OrderRepository;
 import com.example.kwesicommerce.data.repository.ProductRepository;
+import com.example.kwesicommerce.data.repository.UserRepository;
 import com.example.kwesicommerce.utils.NavigationUtil;
 
 public class AdminHomeActivity extends AppCompatActivity {
@@ -19,6 +22,7 @@ public class AdminHomeActivity extends AppCompatActivity {
 
         NavigationUtil navigationUtil = new NavigationUtil(getBaseContext(), this, findViewById(R.id.linLayoutAdminHome));
         navigationUtil.setAdminNavigationItemClick();
+        navigationUtil.setTopNavigationItemClick();
 
         navigationUtil.backNavigation("Admin Dashboard");
 
@@ -31,5 +35,19 @@ public class AdminHomeActivity extends AppCompatActivity {
         CategoryRepository categoryRepository = new CategoryRepository(getBaseContext());
         TextView txtCategoriesCount = findViewById(R.id.txtCategoriesCount);
         txtCategoriesCount.setText(String.valueOf(categoryRepository.getAllCategories().size()));
+
+        TextView txtAdminsCount = findViewById(R.id.txtAdminsCount);
+        UserRepository userRepository = new UserRepository(getBaseContext());
+        txtAdminsCount.setText(String.valueOf(userRepository.getAllAdmins().size()));
+
+        TextView txtCustomersCount = findViewById(R.id.txtCustomersCount);
+        txtCustomersCount.setText(String.valueOf(userRepository.getAllCustomers().size()));
+
+        TextView txtOrdersCount = findViewById(R.id.txtOrdersCount);
+        TextView txtSalesCount = findViewById(R.id.txtSalesCount);
+        OrderRepository orderRepository = new OrderRepository(getBaseContext());
+        int ordersCount = orderRepository.getAllOrders().size();
+        txtOrdersCount.setText(String.valueOf(ordersCount));
+        txtSalesCount.setText(String.valueOf(orderRepository.getTotalSales()));
     }
 }

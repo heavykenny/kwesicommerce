@@ -18,12 +18,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-public class AdminViewProductsActivity extends AppCompatActivity {
+public class AdminManageProductsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_view_products);
+        setContentView(R.layout.activity_admin_manage_products);
 
         ProductRepository productRepository = new ProductRepository(getBaseContext());
 
@@ -35,7 +35,7 @@ public class AdminViewProductsActivity extends AppCompatActivity {
         navigationUtil.setAdminNavigationItemClick();
         navigationUtil.setTopNavigationItemClick();
 
-        navigationUtil.backNavigation("Admin View Products");
+        navigationUtil.backNavigation("Admin Manage Products");
 
         FloatingActionButton fabAddProduct = findViewById(R.id.fabAddProduct);
         fabAddProduct.setOnClickListener(v -> {

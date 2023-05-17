@@ -2,9 +2,7 @@ package com.example.kwesicommerce.ui.activities;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,17 +17,17 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-public class AdminViewCategoriesActivity extends AppCompatActivity {
+public class AdminManageCategoriesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_view_categories);
+        setContentView(R.layout.activity_admin_manage_categories);
 
         NavigationUtil navigationUtil = new NavigationUtil(getBaseContext(), this, findViewById(R.id.linLayoutAdminCategory));
         navigationUtil.setAdminNavigationItemClick();
         navigationUtil.setTopNavigationItemClick();
-        navigationUtil.backNavigation("Admin View Categories");
+        navigationUtil.backNavigation("Admin Manage Categories");
 
 
         FloatingActionButton fabAddCategory = findViewById(R.id.fabAddCategory);

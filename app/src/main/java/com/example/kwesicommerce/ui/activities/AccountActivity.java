@@ -30,7 +30,9 @@ public class AccountActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        finish();
+        super.onBackPressed();
+        NavigationUtil navigationUtil = new NavigationUtil(getBaseContext(), this);
+        navigationUtil.goToActivity(CategoryActivity.class);
     }
 
     @Override

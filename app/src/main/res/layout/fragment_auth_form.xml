@@ -23,6 +23,7 @@
                 android:background="@drawable/custom_square_layout"
                 android:fontFamily="@font/alegreya_sans_sc_light"
                 android:padding="10dp"
+                android:layout_margin="2dp"
                 android:text="@string/string_login"
                 android:textSize="30sp" />
 
@@ -30,6 +31,7 @@
                 android:id="@+id/btnRegister"
                 android:layout_width="0dp"
                 android:layout_height="80dp"
+                android:layout_margin="2dp"
                 android:layout_weight="1"
                 android:background="@drawable/custom_square_layout"
                 android:fontFamily="@font/alegreya_sans_sc_light"

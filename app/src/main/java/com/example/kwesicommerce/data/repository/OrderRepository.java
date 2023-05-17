@@ -51,4 +51,12 @@ public class OrderRepository {
     public List<CartItem> getUsersOrder(int userId) {
         return dbHelper.getUsersOrder(userId);
     }
+
+    public double getTotalSales() {
+        return dbHelper.getTotalSales();
+    }
+
+    public List<CartItem> getAllOrdersProduct() {
+        return dbHelper.getAllOrdersProduct();
+    }
 }

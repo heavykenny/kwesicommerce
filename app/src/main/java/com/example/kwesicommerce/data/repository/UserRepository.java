@@ -6,6 +6,9 @@ import com.example.kwesicommerce.data.database.SQLiteDBHelper;
 import com.example.kwesicommerce.data.model.User;
 import com.example.kwesicommerce.data.sharedpreferences.SharedPreferencesHelper;
 
+import java.util.Collection;
+import java.util.List;
+
 public class UserRepository {
 
     private final SQLiteDBHelper dbHelper;
@@ -53,57 +56,57 @@ public class UserRepository {
         return preferencesHelper.getUserFullName();
     }
 
-    public void setUserFullName(String fullName) {
-        preferencesHelper.setUserFullName(fullName);
-    }
+//    public void setUserFullName(String fullName) {
+//        preferencesHelper.setUserFullName(fullName);
+//    }
 
     public String getUserEmail() {
         return preferencesHelper.getUserEmail();
     }
 
-    public void setUserEmail(String email) {
-        preferencesHelper.setUserEmail(email);
-    }
+//    public void setUserEmail(String email) {
+//        preferencesHelper.setUserEmail(email);
+//    }
 
-    public String getUserPassword() {
-        return preferencesHelper.getUserPassword();
-    }
+//    public String getUserPassword() {
+//        return preferencesHelper.getUserPassword();
+//    }
 
-    public void setUserPassword(String password) {
-        preferencesHelper.setUserPassword(password);
-    }
+//    public void setUserPassword(String password) {
+//        preferencesHelper.setUserPassword(password);
+//    }
 
     public String getUserHobbies() {
         return preferencesHelper.getUserHobbies();
     }
 
-    public void setUserHobbies(String hobbies) {
-        preferencesHelper.setUserHobbies(hobbies);
-    }
+//    public void setUserHobbies(String hobbies) {
+//        preferencesHelper.setUserHobbies(hobbies);
+//    }
 
     public String getUserPostcode() {
         return preferencesHelper.getUserPostcode();
     }
 
-    public void setUserPostcode(String postcode) {
-        preferencesHelper.setUserPostcode(postcode);
-    }
+//    public void setUserPostcode(String postcode) {
+//        preferencesHelper.setUserPostcode(postcode);
+//    }
 
     public String getUserAddress() {
         return preferencesHelper.getUserAddress();
     }
 
-    public void setUserAddress(String address) {
-        preferencesHelper.setUserAddress(address);
-    }
+//    public void setUserAddress(String address) {
+//        preferencesHelper.setUserAddress(address);
+//    }
 
-    public String getUserLastUpdated() {
-        return preferencesHelper.getUserLastUpdated();
-    }
+//    public String getUserLastUpdated() {
+//        return preferencesHelper.getUserLastUpdated();
+//    }
 
-    public void setDateUpdated(String dateUpdated) {
-        preferencesHelper.setDateUpdated(dateUpdated);
-    }
+//    public void setDateUpdated(String dateUpdated) {
+//        preferencesHelper.setDateUpdated(dateUpdated);
+//    }
 
     public boolean isUserAdmin() {
         int userId = preferencesHelper.getUserId();
@@ -148,5 +151,16 @@ public class UserRepository {
         } else {
             preferencesHelper.setUserAdmin(false);
         }
+    }
+    public String getUserProfileImage() {
+        return preferencesHelper.getUserProfileImage();
+    }
+
+    public List<User> getAllAdmins() {
+        return dbHelper.getAllAdmins();
+    }
+
+    public List<User> getAllCustomers() {
+        return dbHelper.getAllCustomers();
     }
 }

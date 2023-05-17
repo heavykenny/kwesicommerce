@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/antiflash_white"
     android:orientation="vertical"
-    tools:context=".ui.activities.AdminViewProductsActivity">
+    tools:context=".ui.activities.AdminManageOrdersActivity">
 
     <include layout="@layout/layout_top_bar" />
 
@@ -13,7 +13,7 @@
 
 
     <RelativeLayout
-        android:id="@+id/relLayoutProductList"
+        android:id="@+id/relLayoutNoOrders"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
@@ -25,35 +25,22 @@
             android:fontFamily="@font/alegreya_sans_sc_bold"
             android:gravity="center"
             android:padding="30dp"
-            android:text="Sorry, we currently have no product. Since you are an admin, you can add products by clicking the plus button on the bottom right corner"
+            android:text="Sorry, no orders have been placed yet."
             android:textColor="@color/black"
             android:textSize="18sp"
             android:visibility="visible" />
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/relLayoutProductContainer"
+        android:id="@+id/relLayoutAllOrders"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabAddProduct"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="40dp"
-            android:backgroundTint="@color/celestial_blue"
-            android:src="@drawable/icon_add" />
-
-        <FrameLayout
-            android:id="@+id/fragProductContainer"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvListCartList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="70dp" />
+            android:layout_height="wrap_content"/>
     </RelativeLayout>
 
     <include layout="@layout/layout_admin_bottom_navigation" />

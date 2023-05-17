@@ -142,9 +142,11 @@ public class AdminCreateProductActivity extends AppCompatActivity {
 
             ProductRepository productRepository = new ProductRepository(getBaseContext());
 
-            productRepository.createProduct(product);
-
-            notificationUtil.showToast("Product has been created successfully");
+            if (productRepository.createProduct(product) > 0) {
+                notificationUtil.showToast("Product has been created successfully");
+            } else {
+                notificationUtil.showToast("Product creation failed");
+            }
         });
 
     }

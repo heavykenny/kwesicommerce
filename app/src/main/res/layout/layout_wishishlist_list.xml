@@ -34,28 +34,15 @@
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/btnWishListAddToCart"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_below="@+id/txtViewProductPrice"
-        android:layout_marginEnd="5dp"
-        android:layout_toEndOf="@+id/imgViewProductListImage"
-        android:background="@drawable/custom_square_layout"
-        android:fontFamily="@font/alegreya_sans_sc"
-        android:padding="10dp"
-        android:text="@string/string_add_to_cart"
-        android:textSize="10dp" />
-
-    <Button
         android:id="@+id/btnWishListRemoveCart"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_below="@+id/txtViewProductPrice"
-        android:layout_toEndOf="@+id/btnWishListAddToCart"
+        android:layout_toEndOf="@+id/imgViewProductListImage"
         android:background="@drawable/custom_square_layout"
         android:fontFamily="@font/alegreya_sans_sc"
         android:padding="10dp"
-        android:text="@string/string_remove_from_cart"
+        android:text="@string/string_remove_from_wishlist"
         android:textSize="10dp" />
 
 </RelativeLayout>

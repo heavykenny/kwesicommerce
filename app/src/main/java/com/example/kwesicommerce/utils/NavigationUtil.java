@@ -14,10 +14,13 @@ import android.widget.Toast;
 import com.example.kwesicommerce.R;
 import com.example.kwesicommerce.data.repository.CartRepository;
 import com.example.kwesicommerce.data.repository.UserRepository;
+import com.example.kwesicommerce.data.repository.WishlistRepository;
 import com.example.kwesicommerce.ui.activities.AccountActivity;
 import com.example.kwesicommerce.ui.activities.AdminHomeActivity;
-import com.example.kwesicommerce.ui.activities.AdminViewCategoriesActivity;
-import com.example.kwesicommerce.ui.activities.AdminViewProductsActivity;
+import com.example.kwesicommerce.ui.activities.AdminManageOrdersActivity;
+import com.example.kwesicommerce.ui.activities.AdminManageUserActivity;
+import com.example.kwesicommerce.ui.activities.AdminManageCategoriesActivity;
+import com.example.kwesicommerce.ui.activities.AdminManageProductsActivity;
 import com.example.kwesicommerce.ui.activities.CartActivity;
 import com.example.kwesicommerce.ui.activities.CategoryActivity;
 import com.example.kwesicommerce.ui.activities.HomeActivity;
@@ -40,8 +43,12 @@ public class NavigationUtil {
     private final ImageView imgViewShopIcon;
     private final ImageView imgViewSearchIcon;
     private final TextView txtViewCartCounter;
+
+    private final TextView txtViewWishlistCounter;
     UserRepository userRepository;
     CartRepository cartRepository;
+
+    WishlistRepository wishlistRepository;
     // admin navigation
     private LinearLayout adminHomeLayout = null;
     private LinearLayout adminCategoryLayout = null;
@@ -62,6 +69,7 @@ public class NavigationUtil {
         menuLayout = activity.findViewById(R.id.linLayoutMenu);
         imgViewShopIcon = activity.findViewById(R.id.imgViewShopIcon);
         imgViewSearchIcon = activity.findViewById(R.id.imgViewSearchIcon);
+        txtViewWishlistCounter = activity.findViewById(R.id.txtViewWishlistCounter);
 
 
         // admin navigation
@@ -77,6 +85,7 @@ public class NavigationUtil {
 
         userRepository = new UserRepository(context);
         cartRepository = new CartRepository(context);
+        wishlistRepository = new WishlistRepository(context);
     }
 
     public NavigationUtil(Context baseContext, Activity activity) {
@@ -90,6 +99,7 @@ public class NavigationUtil {
         accountLayout = activity.findViewById(R.id.linLayoutProfile);
         menuLayout = activity.findViewById(R.id.linLayoutMenu);
         txtViewCartCounter = activity.findViewById(R.id.txtViewCartCounter);
+        txtViewWishlistCounter = activity.findViewById(R.id.txtViewWishlistCounter);
 
         imgViewShopIcon = activity.findViewById(R.id.imgViewShopIcon);
         imgViewSearchIcon = activity.findViewById(R.id.imgViewSearchIcon);
@@ -97,9 +107,13 @@ public class NavigationUtil {
 
         userRepository = new UserRepository(context);
         cartRepository = new CartRepository(context);
+        wishlistRepository = new WishlistRepository(context);
     }
 
     public void setNavigationItemClick() {
+        // set wishlist count
+        txtViewWishlistCounter.setText(String.valueOf(wishlistRepository.getUserWishlistCount(userRepository.getUserId())));
+
         if (activeNavItem != null) {
             activeNavItem.setBackgroundResource(R.color.oxford_blue_dark);
         }
@@ -200,7 +214,7 @@ public class NavigationUtil {
 
         adminCategoryLayout.setOnClickListener(v -> {
             v.startAnimation(clickAnimation);
-            Intent intent = new Intent(context, AdminViewCategoriesActivity.class);
+            Intent intent = new Intent(context, AdminManageCategoriesActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
             activity.overridePendingTransition(0, 0);
@@ -208,15 +222,7 @@ public class NavigationUtil {
 
         adminProductLayout.setOnClickListener(v -> {
             v.startAnimation(clickAnimation);
-            Intent intent = new Intent(context, AdminViewProductsActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intent);
-            activity.overridePendingTransition(0, 0);
-        });
-
-        adminOrdersLayout.setOnClickListener(v -> {
-            v.startAnimation(clickAnimation);
-            Intent intent = new Intent(context, AdminViewCategoriesActivity.class);
+            Intent intent = new Intent(context, AdminManageProductsActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
             activity.overridePendingTransition(0, 0);
@@ -224,7 +230,15 @@ public class NavigationUtil {
 
         linLayoutAdminUsers.setOnClickListener(v -> {
             v.startAnimation(clickAnimation);
-            Intent intent = new Intent(context, AdminViewCategoriesActivity.class);
+            Intent intent = new Intent(context, AdminManageUserActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+            activity.overridePendingTransition(0, 0);
+        });
+
+        adminOrdersLayout.setOnClickListener(v -> {
+            v.startAnimation(clickAnimation);
+            Intent intent = new Intent(context, AdminManageOrdersActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
             activity.overridePendingTransition(0, 0);

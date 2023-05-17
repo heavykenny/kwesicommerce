@@ -11,6 +11,16 @@ public class User {
     private String hobbies;
     private String postcode;
     private String address;
+
+    public String getProfileImage() {
+        return setProfileImage;
+    }
+
+    public void setProfileImage(String setProfileImage) {
+        this.setProfileImage = setProfileImage;
+    }
+
+    private String setProfileImage;
     private boolean isAdmin;
     private int id;
 
@@ -24,9 +34,10 @@ public class User {
         this.postcode = "";
         this.address = "";
         this.isAdmin = false;
+        this.setProfileImage = "";
     }
 
-    public User(String firstName, String lastName, String email, String password, String hobbies, String postcode, String address, Boolean isAdmin) {
+    public User(String firstName, String lastName, String email, String password, String hobbies, String postcode, String address, Boolean isAdmin, String setProfileImage) {
         this.fullName = firstName + " " + lastName;
         this.email = email;
         this.dateRegistered = new Date().toString();
@@ -36,6 +47,7 @@ public class User {
         this.postcode = postcode;
         this.address = address;
         this.isAdmin = isAdmin;
+        this.setProfileImage = setProfileImage;
     }
 
     public User() {
@@ -48,6 +60,7 @@ public class User {
         this.postcode = "";
         this.address = "";
         this.isAdmin = false;
+        this.setProfileImage = "";
     }
 
     public boolean isAdmin() {
@@ -128,17 +141,5 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public void updateProfile() {
-        // Handle updating user profile
-    }
-
-    public void checkOrderStatus() {
-        // Handle checking order status for the user
-    }
-
-    public void viewPreviousOrders() {
-        // Handle viewing previous orders for the user
     }
 }

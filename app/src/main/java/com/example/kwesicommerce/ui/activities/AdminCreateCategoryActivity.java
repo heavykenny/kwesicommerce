@@ -44,7 +44,7 @@ public class AdminCreateCategoryActivity extends AppCompatActivity {
 
                 categoryRepository.createCategory(category);
                 notificationUtil.showToast("Category created successfully");
-                navigationUtil.goToActivity(AdminViewCategoriesActivity.class);
+                navigationUtil.goToActivity(AdminManageCategoriesActivity.class);
             } catch (Exception e) {
                 notificationUtil.showToast(e.getMessage());
             }

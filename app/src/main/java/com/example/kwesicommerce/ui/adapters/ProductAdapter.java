@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import com.example.kwesicommerce.R;
 import com.example.kwesicommerce.data.model.Product;
+import com.example.kwesicommerce.data.repository.UserRepository;
+import com.example.kwesicommerce.data.repository.WishlistRepository;
 import com.example.kwesicommerce.ui.activities.ProductDetailsActivity;
 
 import java.util.List;
@@ -70,7 +72,23 @@ public class ProductAdapter extends BaseAdapter implements View.OnClickListener 
             Handler handler = new Handler();
             handler.postDelayed(() -> imgBtnFavorite.setColorFilter(Color.BLACK), 2000);
 
-            Toast.makeText(v.getContext(), "Added to Wishlist", Toast.LENGTH_SHORT).show();
+            // check if user is logged in
+            UserRepository userRepository = new UserRepository(v.getContext());
+            if (userRepository.isUserLoggedIn()) {
+                int userId = userRepository.getUserId();
+                WishlistRepository wishlistRepository = new WishlistRepository(v.getContext());
+
+                if (wishlistRepository.addToWishlist(productList.get(position).getId(), userId) > 0) {
+                    Toast.makeText(v.getContext(), "Added to Wishlist ---" + wishlistRepository.addToWishlist(productList.get(position).getId(), userId), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(v.getContext(), "Failed to add to Wishlist == "+ wishlistRepository.addToWishlist(productList.get(position).getId(), userId), Toast.LENGTH_SHORT).show();
+                }
+
+                // create toast message
+//                Toast.makeText(v.getContext(), "Added to Wishlist", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(v.getContext(), "Please login to add to wishlist", Toast.LENGTH_SHORT).show();
+            }
         });
 
         productTitle.setText(productList.get(position).getName());

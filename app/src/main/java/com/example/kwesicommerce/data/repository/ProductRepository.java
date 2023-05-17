@@ -19,8 +19,8 @@ public class ProductRepository {
         return dbHelper.getProduct(id);
     }
 
-    public void createProduct(Product product) {
-        dbHelper.insertProduct(product);
+    public int createProduct(Product product) {
+        return dbHelper.insertProduct(product);
     }
 
     public void updateProduct(Product product) {

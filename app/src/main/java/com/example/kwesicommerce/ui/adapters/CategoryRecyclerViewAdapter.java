@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,11 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.kwesicommerce.R;
 import com.example.kwesicommerce.data.model.Category;
 import com.example.kwesicommerce.data.repository.UserRepository;
-import com.example.kwesicommerce.ui.activities.AdminCreateProductActivity;
 import com.example.kwesicommerce.ui.activities.AdminEditCategoryActivity;
-import com.example.kwesicommerce.ui.activities.AdminViewProductsActivity;
 import com.example.kwesicommerce.ui.activities.ProductActivity;
-import com.example.kwesicommerce.ui.activities.ProductDetailsActivity;
 
 import java.util.List;
 

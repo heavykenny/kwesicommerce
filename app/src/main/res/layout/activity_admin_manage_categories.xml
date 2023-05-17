@@ -3,46 +3,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/antiflash_white"
     android:orientation="vertical"
-    tools:context=".ui.activities.WishlistActivity">
+    tools:context=".ui.activities.AdminManageCategoriesActivity">
 
     <include layout="@layout/layout_top_bar" />
 
     <include layout="@layout/layout_back_navigation" />
 
-
     <RelativeLayout
-        android:id="@+id/relLayoutWishListEmpty"
+        android:id="@+id/relLayoutCategoryList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
         <TextView
+            android:id="@+id/txtViewEmptyCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
             android:fontFamily="@font/alegreya_sans_sc_bold"
             android:gravity="center"
             android:padding="30dp"
-            android:text="Sorry, you have no items in your wishlist."
+            android:text="Sorry, there's no category! Since you are an admin, you can add categories by clicking the plus button on the bottom right corner"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:visibility="visible" />
+
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/relLayoutWishList"
+        android:id="@+id/relLayoutCategoryContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAddCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="40dp"
+            android:backgroundTint="@color/celestial_blue"
+            android:src="@drawable/icon_add" />
+
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvListWishList"
+            android:id="@+id/rvListCategoryList"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
     </RelativeLayout>
 
-    <include layout="@layout/layout_bottom_navigation" />
-
+    <include layout="@layout/layout_admin_bottom_navigation" />
 </LinearLayout>

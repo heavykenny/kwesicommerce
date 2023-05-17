@@ -97,7 +97,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/custom_edit_text_box"
                         android:fontFamily="@font/alegreya_sans"
-                        android:hint="Address"
+                        android:hint="Enter your Address"
                         android:inputType="text"
                         android:padding="10dp"
                         android:textColor="@color/faint_white"
@@ -128,7 +128,6 @@
                         android:textColor="@color/faint_white"
                         android:textColorHint="@color/faint_black"
                         android:textSize="15sp" />
-
 
                     <View
                         android:layout_width="match_parent"

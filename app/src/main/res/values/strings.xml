@@ -10,7 +10,7 @@
     <string name="string_back">Back</string>
     <string name="string_edit_profile">Edit Profile</string>
     <string name="string_add_to_cart">Add to Cart</string>
-    <string name="string_remove_from_cart">Remove from Cart</string>
+    <string name="string_remove_from_wishlist">Remove from Wishlist</string>
     <string name="string_login">Login</string>
     <string name="string_register">Register</string>
     <string name="string_login_to_your_account">Login to your Account</string>

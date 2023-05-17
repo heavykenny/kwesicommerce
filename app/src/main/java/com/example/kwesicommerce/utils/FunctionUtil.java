@@ -16,4 +16,9 @@ public class FunctionUtil {
         int random = (int) (Math.random() * (999999 - 100000 + 1) + 100000);
         return "KWESI-" + random;
     }
+
+    public static String generateProfileURL() {
+        int random = (int) (Math.random() * (999999 - 100000 + 1) + 100000);
+        return "KWESI-" + random + ".jpg";
+    }
 }

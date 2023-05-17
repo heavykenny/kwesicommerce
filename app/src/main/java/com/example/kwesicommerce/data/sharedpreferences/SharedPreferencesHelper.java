@@ -15,6 +15,7 @@ public class SharedPreferencesHelper {
     private static final String KEY_USER_HOBBIES = "user_hobbies";
     private static final String KEY_USER_POSTCODE = "user_postcode";
     private static final String KEY_USER_ADDRESS = "user_address";
+    private static final String KEY_USER_PROFILE_IMAGE = "user_profile_image";
     private static final String KEY_USER_LAST_UPDATED = "user_last_updated";
 
     private final SharedPreferences sharedPreferences;
@@ -95,6 +96,7 @@ public class SharedPreferencesHelper {
         sharedPreferences.edit().remove(KEY_USER_HOBBIES).apply();
         sharedPreferences.edit().remove(KEY_USER_POSTCODE).apply();
         sharedPreferences.edit().remove(KEY_USER_ADDRESS).apply();
+        sharedPreferences.edit().remove(KEY_USER_PROFILE_IMAGE).apply();
         sharedPreferences.edit().remove(KEY_USER_LAST_UPDATED).apply();
     }
 
@@ -107,6 +109,7 @@ public class SharedPreferencesHelper {
         sharedPreferences.edit().putString(KEY_USER_HOBBIES, user.getHobbies()).apply();
         sharedPreferences.edit().putString(KEY_USER_POSTCODE, user.getPostcode()).apply();
         sharedPreferences.edit().putString(KEY_USER_ADDRESS, user.getAddress()).apply();
+        sharedPreferences.edit().putString(KEY_USER_PROFILE_IMAGE, user.getProfileImage()).apply();
         sharedPreferences.edit().putString(KEY_USER_LAST_UPDATED, user.getDateUpdated()).apply();
     }
 
@@ -116,5 +119,13 @@ public class SharedPreferencesHelper {
 
     public boolean getUserAdmin() {
         return sharedPreferences.getBoolean("isAdmin", false);
+    }
+
+    public String getUserProfileImage() {
+        return sharedPreferences.getString("profileImage", "");
+    }
+
+    public void setUserProfileImage(String profileImage) {
+        sharedPreferences.edit().putString("profileImage", profileImage).apply();
     }
 }

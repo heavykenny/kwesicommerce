@@ -18,7 +18,7 @@
         android:layout_weight="1">
 
         <ImageView
-            android:id="@+id/imgViewProductImage"
+            android:id="@+id/imgViewProfileImage"
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:layout_centerHorizontal="true"
@@ -30,11 +30,11 @@
             android:id="@+id/txtProfileName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/imgViewProductImage"
+            android:layout_below="@+id/imgViewProfileImage"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/alegreya_sans_sc"
-            android:text="John Doe"
+            android:text="Name: John Doe"
             android:textColor="@color/antiflash_white"
             android:textSize="18sp" />
 
@@ -46,7 +46,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/alegreya_sans_sc_light"
-            android:text="john.doe@example.com"
+            android:text="Email: john.doe@example.com"
             android:textSize="14sp" />
 
         <TextView
@@ -56,18 +56,28 @@
             android:layout_below="@+id/txtProfileEmail"
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/alegreya_sans_sc_light"
-            android:text="Marriott Hotel, Accra"
+            android:text="Address: Not set"
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/txtProfilePhoneNumber"
+            android:id="@+id/txtProfilePostCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtProfileAddress"
             android:layout_centerHorizontal="true"
+            android:fontFamily="@font/alegreya_sans_sc_light"
+            android:text="Post Code: Not set"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/txtViewHobbies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtProfilePostCode"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/alegreya_sans_sc_light"
-            android:text="00000000000"
+            android:text="Hobbies: Not set"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
@@ -75,7 +85,7 @@
             android:id="@+id/btnProfileEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtProfilePhoneNumber"
+            android:layout_below="@+id/txtViewHobbies"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="32dp"
             android:background="@drawable/custom_round_layout"
