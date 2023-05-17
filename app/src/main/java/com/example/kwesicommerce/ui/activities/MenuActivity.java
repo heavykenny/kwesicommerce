@@ -67,7 +67,6 @@ public class MenuActivity extends AppCompatActivity {
             txtViewSwitchToAdminAccount.setVisibility(TextView.GONE);
         }
 
-
         txtViewSwitchToUserAccount.setOnClickListener(v -> {
             try {
                 userRepository.setUserAdmin(false);
@@ -77,7 +76,6 @@ public class MenuActivity extends AppCompatActivity {
                 notificationUtil.showToast(e.getMessage());
             }
         });
-
 
         TextView txtViewLogout = findViewById(R.id.txtViewLogout);
         txtViewLogout.setOnClickListener(v -> {
@@ -92,6 +90,26 @@ public class MenuActivity extends AppCompatActivity {
 
         txtViewPreviousOrders.setOnClickListener(v -> {
             navigationUtil.goToActivity(PreviousOrdersActivity.class);
+        });
+
+        TextView txtViewManageUsers = findViewById(R.id.txtViewManageUsers);
+        txtViewManageUsers.setOnClickListener(v -> {
+            navigationUtil.goToActivity(AdminManageUserActivity.class);
+        });
+
+        TextView txtViewManageProducts = findViewById(R.id.txtViewManageProducts);
+        txtViewManageProducts.setOnClickListener(v -> {
+            navigationUtil.goToActivity(AdminManageProductsActivity.class);
+        });
+
+        TextView txtViewManageOrders = findViewById(R.id.txtViewManageOrders);
+        txtViewManageOrders.setOnClickListener(v -> {
+            navigationUtil.goToActivity(AdminManageOrdersActivity.class);
+        });
+
+        TextView txtViewManageCategory = findViewById(R.id.txtViewManageCategory);
+        txtViewManageCategory.setOnClickListener(v -> {
+            navigationUtil.goToActivity(AdminManageCategoriesActivity.class);
         });
     }
 }

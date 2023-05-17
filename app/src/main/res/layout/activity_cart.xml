@@ -49,7 +49,7 @@
             android:fontFamily="@font/alegreya_sans_sc_bold"
             android:gravity="center"
             android:padding="8dp"
-            android:text="Continue Shopping"
+            android:text="@string/continue_shopping"
             android:textColor="@color/black"
             android:textSize="11sp" />
 
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/custom_square_layout"
             android:fontFamily="@font/alegreya_sans_sc_bold"
-            android:text="Proceed to Checkout"
+            android:text="@string/proceed_to_checkout"
             android:textSize="20sp" />
     </LinearLayout>
 
@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:fontFamily="@font/alegreya_sans_sc_bold"
-                android:text="oh no! your cart is empty!"
+                android:text="@string/manage_cart_message"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:visibility="visible" />
@@ -94,7 +94,7 @@
             android:fontFamily="@font/alegreya_sans_sc"
             android:gravity="center"
             android:padding="15dp"
-            android:text="Continue Shopping"
+            android:text="@string/continue_shopping"
             android:textColor="@color/white"
             android:textSize="15sp" />
 

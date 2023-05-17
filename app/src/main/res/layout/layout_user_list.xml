@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:layout_marginTop="10dp"
+    android:background="@color/french_blue">
+
+    <ImageView
+        android:id="@+id/imgViewProfileImage"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/circle_shape"
+        android:src="@drawable/account" />
+
+    <TextView
+        android:id="@+id/txtViewUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/imgViewProfileImage"
+        android:fontFamily="@font/alegreya_sans_sc"
+        android:text="Ken Olawuwo"
+        android:textSize="23sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtViewEmail"
+        android:text="ken.olawuwo@gmail.com"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="2dp"
+        android:layout_below="@+id/txtViewUserName"
+        android:layout_toEndOf="@+id/imgViewProfileImage"
+        android:fontFamily="@font/alegreya_sans_sc_light"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/txtViewDateRegistered"
+        android:text="Registered: 12/12/2019"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="2dp"
+        android:layout_below="@+id/txtViewEmail"
+        android:layout_toEndOf="@+id/imgViewProfileImage"
+        android:fontFamily="@font/alegreya_sans_sc_light"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/txtViewUserType"
+        android:text="User Type: Admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="2dp"
+        android:layout_below="@+id/txtViewDateRegistered"
+        android:layout_toEndOf="@+id/imgViewProfileImage"
+        android:fontFamily="@font/alegreya_sans_sc_light"
+        android:textSize="15sp" />
+</RelativeLayout>

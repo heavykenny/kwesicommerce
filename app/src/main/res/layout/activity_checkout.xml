@@ -41,7 +41,7 @@
                         android:layout_marginBottom="1dp"
                         android:fontFamily="@font/alegreya_sans_sc"
                         android:padding="8dp"
-                        android:text="Name"
+                        android:text="@string/name"
                         android:textColor="@color/antiflash_white"
                         android:textSize="15sp" />
 
@@ -51,7 +51,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/custom_edit_text_box"
                         android:fontFamily="@font/alegreya_sans"
-                        android:hint="Name"
+                        android:hint="@string/name"
                         android:padding="10dp"
                         android:textColor="@color/faint_white"
                         android:textColorHint="@color/faint_black"
@@ -87,7 +87,7 @@
                         android:layout_marginBottom="1dp"
                         android:fontFamily="@font/alegreya_sans_sc"
                         android:padding="8dp"
-                        android:text="Address"
+                        android:text="@string/address"
                         android:textColor="@color/antiflash_white"
                         android:textSize="15sp" />
 
@@ -97,7 +97,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/custom_edit_text_box"
                         android:fontFamily="@font/alegreya_sans"
-                        android:hint="Enter your Address"
+                        android:hint="@string/required_address"
                         android:inputType="text"
                         android:padding="10dp"
                         android:textColor="@color/faint_white"
@@ -111,7 +111,7 @@
                         android:layout_marginBottom="1dp"
                         android:fontFamily="@font/alegreya_sans_sc"
                         android:padding="8dp"
-                        android:text="Post Code"
+                        android:text="@string/post_code"
                         android:textColor="@color/antiflash_white"
                         android:textSize="15sp" />
 
@@ -121,7 +121,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/custom_edit_text_box"
                         android:fontFamily="@font/alegreya_sans"
-                        android:hint="Post Code"
+                        android:hint="@string/post_code"
                         android:inputType="textPostalAddress"
                         android:maxLength="7"
                         android:padding="10dp"
@@ -143,7 +143,7 @@
                         android:layout_marginBottom="1dp"
                         android:fontFamily="@font/alegreya_sans_sc"
                         android:padding="8dp"
-                        android:text="Card Number"
+                        android:text="@string/card_number"
                         android:textColor="@color/antiflash_white"
                         android:textSize="15sp" />
 
@@ -152,7 +152,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/custom_edit_text_box"
                         android:fontFamily="@font/alegreya_sans"
-                        android:hint="Card Number"
+                        android:hint="@string/card_number"
                         android:inputType="number"
                         android:maxLength="16"
                         android:padding="10dp"
@@ -167,7 +167,7 @@
                         android:layout_marginBottom="1dp"
                         android:fontFamily="@font/alegreya_sans_sc"
                         android:padding="8dp"
-                        android:text="Expire Date"
+                        android:text="@string/expire_date"
                         android:textColor="@color/antiflash_white"
                         android:textSize="15sp" />
 
@@ -177,7 +177,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/custom_edit_text_box"
                         android:fontFamily="@font/alegreya_sans"
-                        android:hint="Expire Date"
+                        android:hint="@string/expire_date"
                         android:padding="10dp"
                         android:textColor="@color/faint_white"
                         android:textColorHint="@color/faint_black"
@@ -190,7 +190,7 @@
                         android:layout_marginBottom="1dp"
                         android:fontFamily="@font/alegreya_sans_sc"
                         android:padding="8dp"
-                        android:text="CVV"
+                        android:text="@string/cvv"
                         android:textColor="@color/antiflash_white"
                         android:textSize="15sp" />
 
@@ -199,7 +199,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/custom_edit_text_box"
                         android:fontFamily="@font/alegreya_sans"
-                        android:hint="CVV"
+                        android:hint="@string/cvv"
                         android:inputType="number"
                         android:maxLength="3"
                         android:padding="10dp"
@@ -231,7 +231,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/custom_square_layout"
             android:fontFamily="@font/alegreya_sans_sc_bold"
-            android:text="View Order Summary"
+            android:text="@string/view_order_summary"
             android:textSize="15sp" />
     </LinearLayout>
 

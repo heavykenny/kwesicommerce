@@ -42,7 +42,7 @@
                         android:layout_marginBottom="1dp"
                         android:fontFamily="@font/alegreya_sans_sc"
                         android:padding="8dp"
-                        android:text="Product Name"
+                        android:text="@string/product_name"
                         android:textColor="@color/antiflash_white"
                         android:textSize="15sp" />
 
@@ -52,7 +52,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/custom_edit_text_box"
                         android:fontFamily="@font/alegreya_sans"
-                        android:hint="Enter Product Name"
+                        android:hint="@string/enter_product_name"
                         android:inputType="text"
                         android:padding="10dp"
                         android:textColor="@color/faint_white"
@@ -66,7 +66,7 @@
                         android:layout_marginBottom="1dp"
                         android:fontFamily="@font/alegreya_sans_sc"
                         android:padding="8dp"
-                        android:text="Description"
+                        android:text="@string/description"
                         android:textColor="@color/antiflash_white"
                         android:textSize="15sp" />
 
@@ -76,7 +76,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/custom_edit_text_box"
                         android:fontFamily="@font/alegreya_sans"
-                        android:hint="Enter Description"
+                        android:hint="@string/enter_description"
                         android:inputType="text"
                         android:padding="10dp"
                         android:textColor="@color/faint_white"
@@ -91,7 +91,7 @@
                         android:layout_marginBottom="1dp"
                         android:fontFamily="@font/alegreya_sans_sc"
                         android:padding="8dp"
-                        android:text="Category"
+                        android:text="@string/category"
                         android:textColor="@color/antiflash_white"
                         android:textSize="15sp" />
 
@@ -113,7 +113,7 @@
                         android:layout_marginBottom="1dp"
                         android:fontFamily="@font/alegreya_sans_sc"
                         android:padding="8dp"
-                        android:text="Image"
+                        android:text="@string/image"
                         android:textColor="@color/antiflash_white"
                         android:textSize="15sp" />
 
@@ -134,7 +134,7 @@
                         android:background="@drawable/custom_edit_text_box"
                         android:fontFamily="@font/alegreya_sans_sc_light"
                         android:padding="10dp"
-                        android:text="Upload Product Image"
+                        android:text="@string/upload_product_image"
                         android:textColor="@color/antiflash_white" />
 
 
@@ -145,7 +145,7 @@
                         android:layout_marginBottom="1dp"
                         android:fontFamily="@font/alegreya_sans_sc"
                         android:padding="8dp"
-                        android:text="Quantity"
+                        android:text="@string/quantity"
                         android:textColor="@color/antiflash_white"
                         android:textSize="15sp" />
 
@@ -155,7 +155,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/custom_edit_text_box"
                         android:fontFamily="@font/alegreya_sans"
-                        android:hint="Enter Quantity"
+                        android:hint="@string/enter_quantity"
                         android:inputType="numberDecimal"
                         android:padding="10dp"
                         android:textColor="@color/faint_white"
@@ -169,7 +169,7 @@
                         android:layout_marginBottom="1dp"
                         android:fontFamily="@font/alegreya_sans_sc"
                         android:padding="8dp"
-                        android:text="Price"
+                        android:text="@string/price"
                         android:textColor="@color/antiflash_white"
                         android:textSize="15sp" />
 
@@ -179,7 +179,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/custom_edit_text_box"
                         android:fontFamily="@font/alegreya_sans"
-                        android:hint="Enter Price"
+                        android:hint="@string/enter_price"
                         android:inputType="numberDecimal"
                         android:padding="10dp"
                         android:textColor="@color/faint_white"
@@ -193,7 +193,7 @@
                         android:layout_marginBottom="1dp"
                         android:fontFamily="@font/alegreya_sans_sc"
                         android:padding="8dp"
-                        android:text="List Price"
+                        android:text="@string/list_price"
                         android:textColor="@color/antiflash_white"
                         android:textSize="15sp" />
 
@@ -203,7 +203,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/custom_edit_text_box"
                         android:fontFamily="@font/alegreya_sans"
-                        android:hint="Enter List Price"
+                        android:hint="@string/enter_list_price"
                         android:inputType="numberDecimal"
                         android:padding="10dp"
                         android:textColor="@color/faint_white"
@@ -217,7 +217,7 @@
                         android:layout_marginBottom="1dp"
                         android:fontFamily="@font/alegreya_sans_sc"
                         android:padding="8dp"
-                        android:text="Retail Price"
+                        android:text="@string/retail_price"
                         android:textColor="@color/antiflash_white"
                         android:textSize="15sp" />
 
@@ -227,7 +227,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/custom_edit_text_box"
                         android:fontFamily="@font/alegreya_sans"
-                        android:hint="Enter Retail Price"
+                        android:hint="@string/enter_retail_price"
                         android:inputType="numberDecimal"
                         android:padding="10dp"
                         android:textColor="@color/faint_white"
@@ -243,7 +243,7 @@
                         android:background="@drawable/custom_square_layout"
                         android:fontFamily="@font/alegreya_sans_sc_medium"
                         android:padding="17dp"
-                        android:text="Create Product"
+                        android:text="@string/create_product"
                         android:textSize="30sp" />
                 </LinearLayout>
             </ScrollView>

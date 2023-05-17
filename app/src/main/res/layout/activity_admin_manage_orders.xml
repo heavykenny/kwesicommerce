@@ -25,7 +25,7 @@
             android:fontFamily="@font/alegreya_sans_sc_bold"
             android:gravity="center"
             android:padding="30dp"
-            android:text="Sorry, no orders have been placed yet."
+            android:text="@string/manage_order_message"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:visibility="visible" />

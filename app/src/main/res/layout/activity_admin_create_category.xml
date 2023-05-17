@@ -38,7 +38,7 @@
                     android:fontFamily="@font/alegreya_sans_sc_bold"
                     android:gravity="center"
                     android:padding="8dp"
-                    android:text="Create Category"
+                    android:text="@string/create_category"
                     android:textColor="@color/antiflash_white"
                     android:textSize="20sp" />
 
@@ -49,7 +49,7 @@
                     android:layout_marginBottom="1dp"
                     android:fontFamily="@font/alegreya_sans_sc"
                     android:padding="8dp"
-                    android:text="Category Name"
+                    android:text="@string/category_name"
                     android:textColor="@color/antiflash_white"
                     android:textSize="15sp" />
 
@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/custom_edit_text_box"
                     android:fontFamily="@font/alegreya_sans"
-                    android:hint="Enter Category Name"
+                    android:hint="@string/enter_category_name"
                     android:inputType="text"
                     android:padding="10dp"
                     android:textColor="@color/faint_white"
@@ -74,7 +74,7 @@
                     android:background="@drawable/custom_square_layout"
                     android:fontFamily="@font/alegreya_sans_sc_medium"
                     android:padding="15dp"
-                    android:text="Create Category"
+                    android:text="@string/create_category"
                     android:textSize="30sp" />
             </LinearLayout>
 

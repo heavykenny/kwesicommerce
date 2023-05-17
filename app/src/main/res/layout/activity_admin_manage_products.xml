@@ -25,7 +25,7 @@
             android:fontFamily="@font/alegreya_sans_sc_bold"
             android:gravity="center"
             android:padding="30dp"
-            android:text="Sorry, we currently have no product. Since you are an admin, you can add products by clicking the plus button on the bottom right corner"
+            android:text="@string/manage_product_message"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:visibility="visible" />

@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/alegreya_sans_sc_bold"
                 android:gravity="center"
-                android:text="Order Confirmed!"
+                android:text="@string/order_confirmed"
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
@@ -40,7 +40,7 @@
                 android:layout_below="@+id/orderConfirmedTextView"
                 android:fontFamily="@font/alegreya_sans"
                 android:gravity="center"
-                android:text="Your goods are on the way!"
+                android:text="@string/your_goods_are_on_the_way"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -62,7 +62,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/alegreya_sans_sc_bold"
-                    android:text="Personal Details"
+                    android:text="@string/personal_details"
                     android:textSize="16sp" />
 
                 <TextView
@@ -108,7 +108,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/alegreya_sans_sc_bold"
-                    android:text="Payment Details"
+                    android:text="@string/payment_details"
                     android:textSize="16sp" />
 
                 <TextView
@@ -166,7 +166,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/custom_square_layout"
             android:fontFamily="@font/alegreya_sans_sc_bold"
-            android:text="Back to Shopping"
+            android:text="@string/back_to_shopping"
             android:textSize="20sp" />
     </LinearLayout>
 

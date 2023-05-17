@@ -40,7 +40,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/alegreya_sans_sc_bold"
-                    android:text="Personal Details"
+                    android:text="@string/personal_details"
                     android:textSize="16sp" />
 
                 <TextView
@@ -86,7 +86,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/alegreya_sans_sc_bold"
-                    android:text="Payment Details"
+                    android:text="@string/payment_details"
                     android:textSize="16sp" />
 
                 <TextView
@@ -144,7 +144,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/custom_square_layout"
             android:fontFamily="@font/alegreya_sans_sc_bold"
-            android:text="Place Order"
+            android:text="@string/place_order"
             android:textSize="20sp" />
     </LinearLayout>
 

@@ -35,7 +35,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/alegreya_sans_sc_bold"
-            android:text="Welcome to KwesiCommerce!"
+            android:text="@string/welcome_to_kwesicommerce"
             android:textSize="25sp" />
 
         <TextView
@@ -48,7 +48,7 @@
             android:layout_marginTop="5dp"
             android:fontFamily="@font/alegreya_sans_sc"
             android:gravity="center"
-            android:text="The place for all flower and plant needs."
+            android:text="@string/welcome_tag"
             android:textSize="15sp" />
 
         <Button
@@ -60,7 +60,7 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/custom_square_layout"
             android:fontFamily="@font/alegreya_sans_sc_light"
-            android:text="SHOP NOW!"
+            android:text="@string/shop_now"
             android:textSize="30sp" />
 
     </RelativeLayout>
