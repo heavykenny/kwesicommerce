@@ -84,6 +84,19 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
                 ")";
         db.execSQL(createUserTableQuery);
 
+        // Insert an admin
+        UserModel adminUser = new UserModel();
+        adminUser.setFullName("Admin User");
+        adminUser.setEmail("admin@kwesi.com");
+        adminUser.setPassword("admin");
+        adminUser.setHobbies("Football, Basketball, Coding");
+        adminUser.setPostcode("W1 1AA");
+        adminUser.setAddress("Northampton");
+        adminUser.setAdmin(true);
+        adminUser.setDateRegistered(FunctionUtil.getCurrentDateTime());
+        adminUser.setDateUpdated(FunctionUtil.getCurrentDateTime());
+        insertUser(adminUser);
+
         // Create the category table
         String createCategoryTableQuery = "CREATE TABLE " + TABLE_CATEGORIES + "(" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -109,6 +122,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL(createProductTableQuery);
 
+        // Create the cart table
         String createCartTableQuery = "CREATE TABLE " + TABLE_CART + "(" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COLUMN_USER_ID + " INTEGER," +
@@ -119,6 +133,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
                 ")";
         db.execSQL(createCartTableQuery);
 
+        // Create the order table
         String createOrderTableQuery = "CREATE TABLE " + TABLE_ORDERS + "(" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COLUMN_ORDER_TRACKING_ID + " TEXT," +
@@ -132,6 +147,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL(createOrderTableQuery);
 
+        // Create the order items table
         String createOrderItemsQuery = "CREATE TABLE " + TABLE_ORDER_ITEMS + "(" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COLUMN_ORDER_ID + " INTEGER," +
@@ -170,12 +186,21 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    /**
+     * Getting a user from the database by id
+     *
+     * @param userId
+     * @return UserModel
+     */
     @SuppressLint("Range")
     public UserModel getUser(int userId) {
+        // Get a readable database
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(TABLE_USERS, null, COLUMN_ID + " = ?", new String[]{String.valueOf(userId)}, null, null, null);
         UserModel userModel = null;
+        // Check if the cursor is not null and if it has a first item
         if (cursor != null && cursor.moveToFirst()) {
+            // Create a new user model object and set the values to it
             userModel = new UserModel();
             userModel.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
             userModel.setFullName(cursor.getString(cursor.getColumnIndex(COLUMN_FULL_NAME)));
@@ -196,7 +221,14 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         return userModel;
     }
 
+    /**
+     * Inserting a user into the database
+     *
+     * @param userModel
+     * @return void
+     */
     public void insertUser(UserModel userModel) {
+        // Get a writable database
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_FULL_NAME, userModel.getFullName());
@@ -205,7 +237,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_HOBBIES, userModel.getHobbies());
         values.put(COLUMN_POSTCODE, userModel.getPostcode());
         values.put(COLUMN_ADDRESS, userModel.getAddress());
-        values.put(COLUMN_IS_ADMIN, 1);
+        values.put(COLUMN_IS_ADMIN, userModel.isAdmin() ? 1 : 0);
         values.put(COLUMN_DATE_REGISTERED, FunctionUtil.getCurrentDateTime());
         values.put(COLUMN_DATE_UPDATED, FunctionUtil.getCurrentDateTime());
         values.put(COLUMN_PROFILE_PICTURE, userModel.getProfileImage());
@@ -214,6 +246,12 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         //db.close();
     }
 
+    /**
+     * Updating a user in the database
+     *
+     * @param userModel
+     * @return void
+     */
     public void updateUser(UserModel userModel) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -231,6 +269,12 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         //db.close();
     }
 
+    /**
+     * Validating a user's credentials
+     *
+     * @param email, password
+     * @return boolean
+     */
     public boolean isUserCredentialsValid(String email, String password) {
         SQLiteDatabase db = getReadableDatabase();
         String selection = COLUMN_EMAIL + " = ? AND " + COLUMN_PASSWORD + " = ?";
@@ -244,6 +288,12 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         return isValid;
     }
 
+    /**
+     * Checking if a user's email is unique
+     *
+     * @param email
+     * @return boolean
+     */
     public boolean isEmailUnique(String email) {
         SQLiteDatabase db = getReadableDatabase();
         String selection = COLUMN_EMAIL + " = ?";
@@ -258,14 +308,24 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    /**
+     * Deleting a user from the database
+     *
+     * @param userModel
+     * @return void
+     */
     public void deleteUser(UserModel userModel) {
         // Handle deleting a userModel from the database
-
         SQLiteDatabase db = getWritableDatabase();
         db.delete(TABLE_USERS, COLUMN_ID + " = ?", new String[]{String.valueOf(userModel.getId())});
         //db.close();
     }
 
+    /**
+     * Getting all the categories from the database
+     *
+     * @return List<CategoryModel>
+     */
     @SuppressLint("Range")
     public List<CategoryModel> getCategories() {
         List<CategoryModel> categoryModelList = new ArrayList<>();
@@ -286,10 +346,15 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
 
         //db.close();
 
-
         return categoryModelList;
     }
 
+    /**
+     * Getting a category from the database
+     *
+     * @param categoryId
+     * @return CategoryModel
+     */
     @SuppressLint("Range")
     public CategoryModel getCategory(int categoryId) {
         SQLiteDatabase db = getReadableDatabase();
@@ -324,6 +389,11 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         // Handle deleting a categoryModel from the database
     }
 
+    /**
+     * Getting all the products from the database
+     *
+     * @return List<ProductModel>
+     */
     @SuppressLint("Range")
     public List<ProductModel> getProducts() {
         SQLiteDatabase db = getReadableDatabase();
@@ -349,6 +419,12 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         return productModelList;
     }
 
+    /**
+     * Getting all the products from the database
+     *
+     * @param productId
+     * @return List<ProductModel>
+     */
     @SuppressLint("Range")
     public ProductModel getProduct(int productId) {
         SQLiteDatabase db = getReadableDatabase();
@@ -371,6 +447,12 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         return productModel;
     }
 
+    /**
+     * Inserting a product into the database
+     *
+     * @param productModel
+     * @return List<ProductModel>
+     */
     public int insertProduct(ProductModel productModel) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -386,10 +468,14 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_DATE_UPDATED, FunctionUtil.getCurrentDateTime());
 
         return (int) db.insert(TABLE_PRODUCTS, null, values);
-
-        //db.close();
     }
 
+    /**
+     * Updating a product in the database
+     *
+     * @param productModel
+     * @return List<ProductModel>
+     */
     public void updateProduct(ProductModel productModel) {
         // Handle updating an existing productModel in the database
         SQLiteDatabase db = getWritableDatabase();
@@ -409,6 +495,11 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         // Handle deleting a productModel from the database
     }
 
+    /**
+     * Getting all the orders from the database
+     *
+     * @return List<OrderModel>
+     */
     @SuppressLint("Range")
     public List<OrderModel> getOrders() {
         SQLiteDatabase db = getReadableDatabase();
@@ -462,6 +553,11 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         // Handle deleting an orderModel from the database
     }
 
+    /**
+     * Getting user by email from the database
+     *
+     * @return List<UserModel>
+     */
     @SuppressLint("Range")
     public UserModel getByEmail(String email) {
         SQLiteDatabase db = getReadableDatabase();
@@ -489,13 +585,16 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         return userModel;
     }
 
+    /**
+     * Adding a product to the cart
+     *
+     */
     @SuppressLint({"Recycle", "Range"})
     public void addToCart(int userId, int productId, int quantity) {
         SQLiteDatabase db = getWritableDatabase();
 
         // get the current userId and productId from the cart table
         // if the userId and productId already exist in the cart table, update the quantity
-
         // otherwise, insert a new row into the cart table
 
         String query = "SELECT * FROM " + TABLE_CART + " WHERE " + COLUMN_USER_ID + " = ? AND " + COLUMN_PRODUCT_ID + " = ?";
@@ -509,7 +608,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
             if (currentQuantity + quantity > productModel.getQuantity()) {
                 return;
             }
-            values.put("quantity", currentQuantity + quantity);
+            values.put(COLUMN_QUANTITY, currentQuantity + quantity);
             String[] args = {String.valueOf(userId), String.valueOf(productId)};
             db.update(TABLE_CART, values, COLUMN_USER_ID + " = ? AND " + COLUMN_PRODUCT_ID + " = ?", args);
         } else {

@@ -11,19 +11,9 @@ public class UserModel {
     private String hobbies;
     private String postcode;
     private String address;
-
-    public String getProfileImage() {
-        return setProfileImage;
-    }
-
-    public void setProfileImage(String setProfileImage) {
-        this.setProfileImage = setProfileImage;
-    }
-
     private String setProfileImage;
     private boolean isAdmin;
     private int id;
-
     public UserModel(String firstName, String lastName, String email, String password) {
         this.fullName = firstName + " " + lastName;
         this.email = email;
@@ -37,19 +27,6 @@ public class UserModel {
         this.setProfileImage = "";
     }
 
-    public UserModel(String firstName, String lastName, String email, String password, String hobbies, String postcode, String address, Boolean isAdmin, String setProfileImage) {
-        this.fullName = firstName + " " + lastName;
-        this.email = email;
-        this.dateRegistered = new Date().toString();
-        this.dateUpdated = new Date().toString();
-        this.password = password;
-        this.hobbies = hobbies;
-        this.postcode = postcode;
-        this.address = address;
-        this.isAdmin = isAdmin;
-        this.setProfileImage = setProfileImage;
-    }
-
     public UserModel() {
         this.fullName = "";
         this.email = "";
@@ -61,6 +38,14 @@ public class UserModel {
         this.address = "";
         this.isAdmin = false;
         this.setProfileImage = "";
+    }
+
+    public String getProfileImage() {
+        return setProfileImage;
+    }
+
+    public void setProfileImage(String setProfileImage) {
+        this.setProfileImage = setProfileImage;
     }
 
     public boolean isAdmin() {
