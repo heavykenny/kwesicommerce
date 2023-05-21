@@ -110,9 +110,15 @@ public class NavigationUtil {
         wishlistRepository = new WishlistRepository(context);
     }
 
+    /**
+     * Set navigation item click
+     *
+     */
     public void setNavigationItemClick() {
         // set wishlist count
-        txtViewWishlistCounter.setText(String.valueOf(wishlistRepository.getUserWishlistCount(userRepository.getUserId())));
+        txtViewWishlistCounter.setText(
+                String.valueOf(wishlistRepository.getUserWishlistCount(userRepository.getUserId()))
+        );
 
         if (activeNavItem != null) {
             activeNavItem.setBackgroundResource(R.color.oxford_blue_dark);
@@ -161,12 +167,16 @@ public class NavigationUtil {
 
     public void setTopNavigationItemClick() {
 
+        // set user cart count
         if (userRepository.isUserLoggedIn()) {
-            txtViewCartCounter.setText(String.valueOf(cartRepository.getCartItems(userRepository.getUserId()).size()));
+            txtViewCartCounter.setText(
+                    String.valueOf(cartRepository.getCartItems(userRepository.getUserId()).size())
+            );
         } else {
             txtViewCartCounter.setText("0");
         }
 
+        // set wishlist event listener
         imgViewShopIcon.setOnClickListener(v -> {
             v.startAnimation(clickAnimation);
             Intent intent = new Intent(context, CartActivity.class);
@@ -175,13 +185,19 @@ public class NavigationUtil {
             activity.overridePendingTransition(0, 0);
         });
 
+        // set search event listener
         imgViewSearchIcon.setOnClickListener(v -> {
             Toast.makeText(context, "Search", Toast.LENGTH_SHORT).show();
         });
     }
 
+    /**
+     * Set back navigation to previous activity
+     *
+     * @param pageTitle
+     */
     public void backNavigation(String pageTitle) {
-
+        // set back button event listener
         RelativeLayout backLayout = activity.findViewById(R.id.relLayoutBackButton);
         TextView txtViewPageTitleButton = activity.findViewById(R.id.txtViewPageTitle);
 

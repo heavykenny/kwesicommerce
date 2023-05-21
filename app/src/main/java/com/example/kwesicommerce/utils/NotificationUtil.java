@@ -12,6 +12,7 @@ import android.os.Build;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +52,7 @@ public class NotificationUtil {
     }
 
     private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT);
             NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
@@ -58,9 +60,16 @@ public class NotificationUtil {
         }
     }
 
-    public void showToast(String message) {
+    public void showToast(String message, boolean type) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View layout = inflater.inflate(R.layout.layout_toast_message, null);
+        LinearLayout linearLayoutToastMessage = layout.findViewById(R.id.linearLayoutToastMessage);
+        if (type) {
+            linearLayoutToastMessage.setBackgroundTintList(context.getColorStateList(R.color.green));
+        } else {
+            linearLayoutToastMessage.setBackgroundTintList(context.getColorStateList(R.color.red));
+        }
+
         TextView text = layout.findViewById(R.id.txtViewToastMessage);
         Typeface customFont = ResourcesCompat.getFont(context, R.font.alegreya_sans);
         text.setTypeface(customFont);

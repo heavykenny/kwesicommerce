@@ -85,6 +85,4 @@ public class OrderModel {
     public void setDateUpdated(String dateUpdated) {
         this.dateUpdated = dateUpdated;
     }
-
-
 }

@@ -25,11 +25,14 @@ public class ProductFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_product, container, false);
 
         GridView productView = view.findViewById(R.id.gridViewProduct);
 
+        // set adapter for product view
         ProductAdapter adapter = new ProductAdapter(productModelList);
         productView.setAdapter(adapter);
         return view;

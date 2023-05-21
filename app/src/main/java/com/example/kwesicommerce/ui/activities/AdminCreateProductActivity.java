@@ -49,11 +49,14 @@ public class AdminCreateProductActivity extends AppCompatActivity {
         Spinner spinnerCategoryID = findViewById(R.id.spinnerCategoryID);
         List<CategoryModel> categories = categoryRepository.getAllCategories();
 
-        ArrayAdapter<CategoryModel> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CategoryModel> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, categories);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCategoryID.setAdapter(adapter);
 
 
+        // Get the product image
         imageViewProductImage = findViewById(R.id.imageViewProductImage);
         btnUploadImage = findViewById(R.id.btnUploadImage);
         // Handle image upload button click
@@ -61,8 +64,7 @@ public class AdminCreateProductActivity extends AppCompatActivity {
         imagePickerLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(),
                 result -> {
                     if (result != null) {
-                        Uri imageUri = result;
-                        imageViewProductImage.setImageURI(imageUri);
+                        imageViewProductImage.setImageURI(result);
                         imageViewProductImage.setVisibility(View.VISIBLE);
                     }
                 });
@@ -143,9 +145,9 @@ public class AdminCreateProductActivity extends AppCompatActivity {
             ProductRepository productRepository = new ProductRepository(getBaseContext());
 
             if (productRepository.createProduct(productModel) > 0) {
-                notificationUtil.showToast("ProductModel has been created successfully");
+                notificationUtil.showToast("Product has been created successfully", true);
             } else {
-                notificationUtil.showToast("ProductModel creation failed");
+                notificationUtil.showToast("Product creation failed", false);
             }
         });
 

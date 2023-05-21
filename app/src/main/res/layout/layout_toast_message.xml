@@ -1,28 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayoutToastMessage"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@layout/layout_toast_background"
+    android:backgroundTint="@color/green"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="5dp">
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/information"
+        android:layout_height="15dp"
         android:paddingEnd="10dp"
-        app:tint="@color/black" />
+        android:src="@drawable/information"
+        app:tint="@color/black"
+        tools:ignore="RtlSymmetry" />
 
     <TextView
-        android:padding="10dp"
-        android:gravity="center"
         android:id="@+id/txtViewToastMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/alegreya_sans_sc_light"
-        android:text="Error Message"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="Success Message"
         android:textColor="@color/black"
-        android:textSize="20sp" />
+        android:textSize="15sp" />
 </LinearLayout>

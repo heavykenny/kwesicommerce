@@ -11,18 +11,20 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.kwesicommerce.R;
 import com.example.kwesicommerce.data.model.ProductModel;
 import com.example.kwesicommerce.data.repository.UserRepository;
 import com.example.kwesicommerce.data.repository.WishlistRepository;
 import com.example.kwesicommerce.ui.activities.ProductDetailsActivity;
+import com.example.kwesicommerce.utils.NotificationUtil;
 
 import java.util.List;
 
 public class ProductAdapter extends BaseAdapter implements View.OnClickListener {
     private final List<ProductModel> productModelList;
+
+    NotificationUtil notificationUtil;
 
     public ProductAdapter(List<ProductModel> productModelList) {
         this.productModelList = productModelList;
@@ -65,8 +67,9 @@ public class ProductAdapter extends BaseAdapter implements View.OnClickListener 
         TextView productPrice = convertView.findViewById(R.id.txtViewProductPrice);
         ImageView imgBtnFavorite = convertView.findViewById(R.id.imgBtnFavorite);
 
-        imgBtnFavorite.setOnClickListener(v -> {
+        notificationUtil = new NotificationUtil(convertView.getContext());
 
+        imgBtnFavorite.setOnClickListener(v -> {
             imgBtnFavorite.setColorFilter(Color.RED);
 
             Handler handler = new Handler();
@@ -79,15 +82,12 @@ public class ProductAdapter extends BaseAdapter implements View.OnClickListener 
                 WishlistRepository wishlistRepository = new WishlistRepository(v.getContext());
 
                 if (wishlistRepository.addToWishlist(productModelList.get(position).getId(), userId) > 0) {
-                    Toast.makeText(v.getContext(), "Added to Wishlist ---" + wishlistRepository.addToWishlist(productModelList.get(position).getId(), userId), Toast.LENGTH_SHORT).show();
+                    notificationUtil.showToast("Added to Wishlist", true);
                 } else {
-                    Toast.makeText(v.getContext(), "Failed to add to Wishlist == "+ wishlistRepository.addToWishlist(productModelList.get(position).getId(), userId), Toast.LENGTH_SHORT).show();
+                    notificationUtil.showToast("Failed to add to Wishlist", false);
                 }
-
-                // create toast message
-//                Toast.makeText(v.getContext(), "Added to Wishlist", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(v.getContext(), "Please login to add to wishlist", Toast.LENGTH_SHORT).show();
+                notificationUtil.showToast("Please login to add to Wishlist", false);
             }
         });
 

@@ -81,7 +81,7 @@ public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerVi
             btnIncrementCounter.setOnClickListener(v -> {
                 int counter = Integer.parseInt(btnQuantityCounter.getText().toString());
                 if (counter == cartItemModel.getProduct().getQuantity()) {
-                    notificationUtil.showToast("This product only has " + cartItemModel.getProduct().getQuantity() + " items in stock");
+                    notificationUtil.showToast("This product only has " + cartItemModel.getProduct().getQuantity() + " items in stock", false);
                     return;
                 }
                 counter++;
@@ -107,7 +107,7 @@ public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerVi
                 cartItemModelList.remove(cartItemModel);
                 notifyItemRemoved(getAdapterPosition());
 
-                notificationUtil.showToast("ProductModel removed from cart");
+                notificationUtil.showToast("Product removed from cart", true);
             });
         }
 

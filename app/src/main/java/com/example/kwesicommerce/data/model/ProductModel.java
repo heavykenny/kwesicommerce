@@ -5,12 +5,8 @@ import com.example.kwesicommerce.utils.FunctionUtil;
 public class ProductModel {
     private String name;
     private String description;
-
     private int quantity;
-
-
     private String imageUrl;
-
     public int getQuantity() {
         return quantity;
     }
@@ -18,7 +14,6 @@ public class ProductModel {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
     private double price;
     private double listPrice;
     private double retailPrice;
@@ -132,17 +127,5 @@ public class ProductModel {
 
     public void setDateUpdated(String dateUpdated) {
         this.dateUpdated = dateUpdated;
-    }
-
-    public void create() {
-        // Handle creating a new product
-    }
-
-    public void update() {
-        // Handle updating a product
-    }
-
-    public void delete() {
-        // Handle deleting a product
     }
 }

@@ -22,6 +22,7 @@ import com.example.kwesicommerce.R;
 import com.example.kwesicommerce.data.model.UserModel;
 import com.example.kwesicommerce.data.repository.UserRepository;
 import com.example.kwesicommerce.utils.NavigationUtil;
+import com.example.kwesicommerce.utils.NotificationUtil;
 
 public class EditProfileActivity extends AppCompatActivity {
 
@@ -40,6 +41,8 @@ public class EditProfileActivity extends AppCompatActivity {
         navigationUtil.setTopNavigationItemClick();
 
         navigationUtil.backNavigation("Edit Profile");
+
+        NotificationUtil notificationUtil = new NotificationUtil(getBaseContext());
 
         UserRepository userRepository = new UserRepository(getBaseContext());
 
@@ -102,9 +105,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 userModel.setProfileImage(profileImageUri);
                 userRepository.updateUser(userModel);
 
-//                Toast.makeText(this, userRepository.getUserProfileImage(), Toast.LENGTH_SHORT).show();
-
-                Toast.makeText(this, userModel.getProfileImage(), Toast.LENGTH_SHORT).show();
+                notificationUtil.showToast("Profile updated successfully", true);
                 navigationUtil.goToActivity(ProfileActivity.class);
             }
         });
@@ -114,7 +115,7 @@ public class EditProfileActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        // get image from gallery
         if (requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
             Uri imageUri = data.getData();
             profileImageUri = saveImageToFile(this, imageUri);

@@ -58,17 +58,19 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         TextView txtViewCounter = findViewById(R.id.btnQuantityCounter);
 
+        // increment counter
         Button btnIncrementCounter = findViewById(R.id.btnIncrementCounter);
         btnIncrementCounter.setOnClickListener(v -> {
             int counter = Integer.parseInt(txtViewCounter.getText().toString());
             if (counter == productModel.getQuantity()) {
-                notificationUtil.showToast("You can't add more than " + productModel.getQuantity() + " items to your cart");
+                notificationUtil.showToast("You can't add more than " + productModel.getQuantity() + " items to your cart", false);
                 return;
             }
             counter++;
             txtViewCounter.setText(String.valueOf(counter));
         });
 
+        // decrement counter
         Button btnDecrementCounter = findViewById(R.id.btnDecrementCounter);
         btnDecrementCounter.setOnClickListener(v -> {
             int counter = Integer.parseInt(txtViewCounter.getText().toString());
@@ -85,18 +87,19 @@ public class ProductDetailsActivity extends AppCompatActivity {
         btnAddToCart.setOnClickListener(v -> {
             // validate user is logged in
             if (!userRepository.isUserLoggedIn()) {
-                notificationUtil.showToast("You need to login to add items to your cart");
+                notificationUtil.showToast("You need to login to add items to your cart", false);
                 return;
             }
 
+            // validate counter is greater than 0
             int counter = Integer.parseInt(txtViewCounter.getText().toString());
             if (counter < 1) {
-                notificationUtil.showToast("You need to add at least one item to your cart");
+                notificationUtil.showToast("You need to add at least one item to your cart", false);
                 return;
             }
             cartRepository.addItemToCart(userRepository.getUserId(), productId, counter);
 
-            notificationUtil.showToast("You have added " + counter + " " + productModel.getName() + " to your cart");
+            notificationUtil.showToast("You have added " + counter + " " + productModel.getName() + " to your cart", true);
         });
 
 
@@ -104,23 +107,24 @@ public class ProductDetailsActivity extends AppCompatActivity {
         Button btnProceedToCheckout = findViewById(R.id.btnProceedToCheckout);
 
         btnContinueShopping.setOnClickListener(v -> {
-            Intent intent1 = new Intent(getBaseContext(), CategoryActivity.class);
-            intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            getBaseContext().startActivity(intent1);
+            Intent categoryIntent = new Intent(ProductDetailsActivity.this, CategoryActivity.class);
+            categoryIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(categoryIntent);
             overridePendingTransition(0, 0);
         });
 
+        // proceed to checkout
         btnProceedToCheckout.setOnClickListener(v -> {
             int counter = Integer.parseInt(txtViewCounter.getText().toString());
             if (counter < 1) {
-                notificationUtil.showToast("You need to add at least one item to your cart");
+                notificationUtil.showToast("You need to add at least one item to your cart", false);
                 return;
             }
             cartRepository.addItemToCart(userRepository.getUserId(), productId, counter);
 
-            Intent intent12 = new Intent(getBaseContext(), CartActivity.class);
-            intent12.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            getBaseContext().startActivity(intent12);
+            Intent cartIntent = new Intent(ProductDetailsActivity.this, CartActivity.class);
+            cartIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(cartIntent);
             overridePendingTransition(0, 0);
         });
     }

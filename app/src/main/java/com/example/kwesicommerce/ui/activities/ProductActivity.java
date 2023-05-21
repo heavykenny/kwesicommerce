@@ -44,7 +44,7 @@ public class ProductActivity extends AppCompatActivity {
 
         navigationUtil.backNavigation(categoryModel.getName() + "'s Product");
 
-        // Get the FragmentManager
+        // Get the FragmentManager for product
         FragmentManager fragmentManager = getSupportFragmentManager();
         RelativeLayout relLayoutProductList = findViewById(R.id.relLayoutProductList);
         FrameLayout relLayoutProductContainer = findViewById(R.id.fragProductContainer);

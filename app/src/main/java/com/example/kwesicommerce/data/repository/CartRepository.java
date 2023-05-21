@@ -44,10 +44,23 @@ public class CartRepository {
         return totalPrice;
     }
 
+
+    /**
+     * This method is used to make an order from the cart items
+     *
+     * @param userId
+     * @return orderId
+     */
     public long makeOrder(int userId) {
         List<CartItemModel> cartItemModels = getCartItems(userId);
         OrderRepository orderRepository = new OrderRepository(context);
-        OrderModel orderModel = new OrderModel(userId, "Paid",FunctionUtil.generateOrderTracking(), this.getCartTotalPrice(userId), FunctionUtil.getCurrentDateTime(), FunctionUtil.getCurrentDateTime());
+        // create an order for the user
+        OrderModel orderModel = new OrderModel(userId, "Paid",
+                FunctionUtil.generateOrderTracking(),
+                this.getCartTotalPrice(userId),
+                FunctionUtil.getCurrentDateTime(),
+                FunctionUtil.getCurrentDateTime());
+
         long orderId = orderRepository.createOrder(orderModel);
 
         for (CartItemModel item : cartItemModels) {

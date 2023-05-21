@@ -25,8 +25,8 @@ public class UserRepository {
         return dbHelper.getByEmail(email);
     }
 
-    public void createUser(UserModel userModel) {
-        dbHelper.insertUser(userModel);
+    public int createUser(UserModel userModel) {
+        return dbHelper.insertUser(userModel);
     }
 
     public boolean isEmailUnique(String email) {

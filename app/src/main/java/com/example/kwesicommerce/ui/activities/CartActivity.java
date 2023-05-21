@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,6 +17,7 @@ import com.example.kwesicommerce.data.repository.CartRepository;
 import com.example.kwesicommerce.data.repository.UserRepository;
 import com.example.kwesicommerce.ui.adapters.CartRecyclerViewAdapter;
 import com.example.kwesicommerce.utils.NavigationUtil;
+import com.example.kwesicommerce.utils.NotificationUtil;
 
 import java.util.List;
 
@@ -37,23 +37,25 @@ public class CartActivity extends AppCompatActivity {
         navigationUtil.setNavigationItemClick();
         navigationUtil.backNavigation("Your Cart");
 
+        NotificationUtil notificationUtil = new NotificationUtil(getBaseContext());
+
         cartRepository = new CartRepository(getBaseContext());
         userRepository = new UserRepository(getBaseContext());
 
-        List<CartItemModel> cartItemModels = cartRepository.getCartItems(userRepository.getUserId());
+        List<CartItemModel> userCartItems = cartRepository.getCartItems(userRepository.getUserId());
 
         RecyclerView rvCart = findViewById(R.id.rvListCartList);
         LinearLayout layoutCartList = findViewById(R.id.layoutCartList);
         LinearLayout layoutEmptyCart = findViewById(R.id.layoutEmptyCart);
 
-        if (cartItemModels.isEmpty()) {
+        if (userCartItems.isEmpty()) {
             layoutCartList.setVisibility(View.GONE);
             layoutEmptyCart.setVisibility(View.VISIBLE);
         } else {
             layoutCartList.setVisibility(View.VISIBLE);
             layoutEmptyCart.setVisibility(View.GONE);
 
-            CartRecyclerViewAdapter adapter = new CartRecyclerViewAdapter(cartItemModels, getApplicationContext(), this);
+            CartRecyclerViewAdapter adapter = new CartRecyclerViewAdapter(userCartItems, getApplicationContext(), this);
 
             rvCart.setAdapter(adapter);
             rvCart.setLayoutManager(new LinearLayoutManager(this));
@@ -63,8 +65,8 @@ public class CartActivity extends AppCompatActivity {
 
         Button btnProceedToCheckout = findViewById(R.id.btnProceedToCheckout);
         btnProceedToCheckout.setOnClickListener(v -> {
-            if (cartItemModels.isEmpty()) {
-                Toast.makeText(getApplicationContext(), "Your cart is empty", Toast.LENGTH_SHORT).show();
+            if (userCartItems.isEmpty()) {
+                notificationUtil.showToast("Your cart is empty", false);
             } else {
                 navigationUtil.goToActivity(CheckoutActivity.class);
             }

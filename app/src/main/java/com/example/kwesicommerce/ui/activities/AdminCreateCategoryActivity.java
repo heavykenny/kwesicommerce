@@ -43,10 +43,10 @@ public class AdminCreateCategoryActivity extends AppCompatActivity {
                 categoryModel.setName(edtTxtCategoryName.getText().toString());
 
                 categoryRepository.createCategory(categoryModel);
-                notificationUtil.showToast("CategoryModel created successfully");
+                notificationUtil.showToast("CategoryModel created successfully", true);
                 navigationUtil.goToActivity(AdminManageCategoriesActivity.class);
             } catch (Exception e) {
-                notificationUtil.showToast(e.getMessage());
+                notificationUtil.showToast(e.getMessage(), false);
             }
         });
     }

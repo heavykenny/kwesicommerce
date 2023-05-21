@@ -45,10 +45,10 @@ public class MenuActivity extends AppCompatActivity {
         txtViewSwitchToAdminAccount.setOnClickListener(v -> {
             try {
                 userRepository.setUserAdmin(true);
-                notificationUtil.showToast("Your account has been switched to admin account");
+                notificationUtil.showToast("Your account has been switched to admin account", true);
                 navigationUtil.goToActivity(AdminHomeActivity.class);
             } catch (Exception e) {
-                notificationUtil.showToast(e.getMessage());
+                notificationUtil.showToast(e.getMessage(),  false);
             }
         });
 
@@ -70,10 +70,10 @@ public class MenuActivity extends AppCompatActivity {
         txtViewSwitchToUserAccount.setOnClickListener(v -> {
             try {
                 userRepository.setUserAdmin(false);
-                notificationUtil.showToast("Your account has been switched to user account");
+                notificationUtil.showToast("Your account has been switched to user account", true);
                 navigationUtil.goToActivity(HomeActivity.class);
             } catch (Exception e) {
-                notificationUtil.showToast(e.getMessage());
+                notificationUtil.showToast(e.getMessage(), false);
             }
         });
 

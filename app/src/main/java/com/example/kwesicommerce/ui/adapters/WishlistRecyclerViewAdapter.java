@@ -76,7 +76,7 @@ public class WishlistRecyclerViewAdapter extends RecyclerView.Adapter<WishlistRe
                 productModelList.remove(index);
                 notifyItemRemoved(index);
 
-                notificationUtil.showToast("ProductModel removed from wishlist");
+                notificationUtil.showToast("Product removed from wishlist", true);
             });
 
             itemView.setOnClickListener(this);

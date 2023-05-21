@@ -16,6 +16,9 @@ import com.example.kwesicommerce.data.model.UserModel;
 import com.example.kwesicommerce.data.repository.UserRepository;
 import com.example.kwesicommerce.ui.activities.HomeActivity;
 import com.example.kwesicommerce.ui.activities.ProfileActivity;
+import com.example.kwesicommerce.utils.NotificationUtil;
+
+import org.mindrot.jbcrypt.BCrypt;
 
 public class AccountFragment extends Fragment {
 
@@ -26,6 +29,7 @@ public class AccountFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_auth_form, container, false);
 
+        NotificationUtil notificationUtil = new NotificationUtil(getContext());
         userRepository = new UserRepository(getContext());
 
         if (userRepository.isUserLoggedIn()) {
@@ -72,6 +76,7 @@ public class AccountFragment extends Fragment {
             String password = edtTxtPassword.getText().toString().trim();
             String confirmPassword = edtTxtConfirmPassword.getText().toString().trim();
 
+            // validate user input
             if (firstName.isEmpty()) {
                 edtTxtFirstName.setError("First name is required");
                 edtTxtFirstName.requestFocus();
@@ -114,11 +119,14 @@ public class AccountFragment extends Fragment {
                 return;
             }
 
-            UserModel newUserModel = new UserModel(firstName, lastName, email, password);
+            String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+            UserModel newUserModel = new UserModel(firstName, lastName, email, hashedPassword);
 
-            userRepository.createUser(newUserModel);
-
-            Toast.makeText(getContext(), "Registering...", Toast.LENGTH_SHORT).show();
+            if (userRepository.createUser(newUserModel) > 0) {
+                notificationUtil.showToast("Account created successfully", true);
+            } else {
+                notificationUtil.showToast("Account creation failed", false);
+            }
         });
 
         btnAccountLogin.setOnClickListener(v -> {
@@ -141,12 +149,12 @@ public class AccountFragment extends Fragment {
 
             if (isAuthenticated) {
                 userRepository.setUserDetails(userRepository.getUserByEmail(email));
-                // UserModel authentication successful
+                notificationUtil.showToast("Login successful", true);
+                // User authentication successful
                 Intent intent = new Intent(getContext(), HomeActivity.class);
                 startActivity(intent);
             } else {
-                // UserModel authentication failed
-                Toast.makeText(getContext(), "Credentials is invalid", Toast.LENGTH_SHORT).show();
+                notificationUtil.showToast("Invalid credentials", false);
             }
         });
 
