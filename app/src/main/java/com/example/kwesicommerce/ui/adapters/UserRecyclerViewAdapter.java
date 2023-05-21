@@ -65,7 +65,7 @@ public class UserRecyclerViewAdapter extends RecyclerView.Adapter<UserRecyclerVi
             txtViewUserName.setText(userModel.getFullName());
             txtViewEmail.setText(userModel.getEmail());
             txtViewDateRegistered.setText(userModel.getDateRegistered());
-            txtViewUserType.setText(userModel.isAdmin() ? "Admin" : "UserModel");
+            txtViewUserType.setText(userModel.isAdmin() ? "Admin" : "User");
         }
     }
 }

@@ -19,21 +19,6 @@ import java.nio.file.Files;
 import java.util.List;
 
 public class FileUtil {
-    public static void exportToFile(String filename, List<OrderModel> orderModels) throws IOException {
-        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), filename);
-        FileOutputStream fileOutputStream = new FileOutputStream(file);
-        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
-        BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-
-        for (OrderModel orderModel : orderModels) {
-            bufferedWriter.write("OrderModel ID: " + orderModel.getId() + ", UserModel ID: " + orderModel.getUserId() + ", Status: " + orderModel.getStatus() + ", Date Created: " + orderModel.getDateCreated() + ", Date Updated: " + orderModel.getDateUpdated());
-            bufferedWriter.newLine();
-        }
-
-        bufferedWriter.close();
-        outputStreamWriter.close();
-        fileOutputStream.close();
-    }
 
     public static String saveImageToFile(Context context, Uri imageUri) {
         try {
