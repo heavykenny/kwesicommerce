@@ -1,23 +1,32 @@
 package com.example.kwesicommerce.ui.activities;
 
+import static com.example.kwesicommerce.utils.FileUtil.saveImageToFile;
+
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.kwesicommerce.R;
 import com.example.kwesicommerce.data.model.CategoryModel;
 import com.example.kwesicommerce.data.model.ProductModel;
 import com.example.kwesicommerce.data.repository.CategoryRepository;
 import com.example.kwesicommerce.data.repository.ProductRepository;
+import com.example.kwesicommerce.ui.adapters.CustomSpinnerAdapter;
 import com.example.kwesicommerce.utils.NavigationUtil;
 import com.example.kwesicommerce.utils.NotificationUtil;
 
@@ -29,6 +38,9 @@ public class AdminCreateProductActivity extends AppCompatActivity {
 
     private Button btnCreateCategory;
     private ImageView imageViewProductImage;
+
+    private static final int GALLERY_REQUEST_CODE = 1;
+    private String productImageUri = "";
     private ActivityResultLauncher<String> imagePickerLauncher;
 
     @Override
@@ -41,7 +53,6 @@ public class AdminCreateProductActivity extends AppCompatActivity {
 
         navigationUtil.backNavigation("Create Product");
 
-
         NotificationUtil notificationUtil = new NotificationUtil(getBaseContext());
 
         CategoryRepository categoryRepository = new CategoryRepository(getApplicationContext());
@@ -50,31 +61,18 @@ public class AdminCreateProductActivity extends AppCompatActivity {
         List<CategoryModel> categories = categoryRepository.getAllCategories();
 
         // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CategoryModel> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, categories);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        CustomSpinnerAdapter adapter = new CustomSpinnerAdapter(this, categories);
         spinnerCategoryID.setAdapter(adapter);
 
 
         // Get the product image
         imageViewProductImage = findViewById(R.id.imageViewProductImage);
         btnUploadImage = findViewById(R.id.btnUploadImage);
-        // Handle image upload button click
-        // Create image picker launcher
-        imagePickerLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(),
-                result -> {
-                    if (result != null) {
-                        imageViewProductImage.setImageURI(result);
-                        imageViewProductImage.setVisibility(View.VISIBLE);
-                    }
-                });
 
-        // Handle image upload button click
         btnUploadImage.setOnClickListener(v -> {
-            // Open image selection dialog or gallery
-            imagePickerLauncher.launch("image/*");
+            Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE);
         });
-
 
         btnCreateCategory = findViewById(R.id.btnCreateCategory);
         btnCreateCategory.setOnClickListener(v -> {
@@ -83,7 +81,6 @@ public class AdminCreateProductActivity extends AppCompatActivity {
             // Get the category ID
             int categoryID = selectedCategoryModel.getId();
             // Get the productModel image
-            String productImage = imageViewProductImage.toString();
 
             TextView edtTxtProductName = findViewById(R.id.edtTxtProductName);
             TextView edtTxtProductDescription = findViewById(R.id.edtTxtDescription);
@@ -101,25 +98,25 @@ public class AdminCreateProductActivity extends AppCompatActivity {
             String retailPrice = edtTxtRetailPrice.getText().toString();
 
             if (productName.isEmpty()) {
-                edtTxtProductName.setError("ProductModel name is required");
+                edtTxtProductName.setError("Product name is required");
                 edtTxtProductName.requestFocus();
                 return;
             }
 
             if (productDescription.isEmpty()) {
-                edtTxtProductDescription.setError("ProductModel description is required");
+                edtTxtProductDescription.setError("Product description is required");
                 edtTxtProductDescription.requestFocus();
                 return;
             }
 
             if (productPrice.isEmpty()) {
-                edtTxtProductPrice.setError("ProductModel price is required");
+                edtTxtProductPrice.setError("Product price is required");
                 edtTxtProductPrice.requestFocus();
                 return;
             }
 
             if (productQuantity.isEmpty()) {
-                edtTxtProductQuantity.setError("ProductModel quantity is required");
+                edtTxtProductQuantity.setError("Product quantity is required");
                 edtTxtProductQuantity.requestFocus();
                 return;
             }
@@ -137,7 +134,7 @@ public class AdminCreateProductActivity extends AppCompatActivity {
 
             ProductModel productModel = new ProductModel(
                     0, productName, productDescription,
-                    productImage,
+                    productImageUri,
                     Integer.parseInt(productQuantity),
                     Double.parseDouble(productPrice), Double.parseDouble(listPrice),
                     Double.parseDouble(retailPrice), categoryID);
@@ -146,10 +143,28 @@ public class AdminCreateProductActivity extends AppCompatActivity {
 
             if (productRepository.createProduct(productModel) > 0) {
                 notificationUtil.showToast("Product has been created successfully", true);
+                navigationUtil.goToActivity(AdminCreateProductActivity.class);
             } else {
                 notificationUtil.showToast("Product creation failed", false);
             }
         });
 
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // get image from gallery
+        if (requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            Uri imageUri = data.getData();
+            productImageUri = saveImageToFile(this, imageUri);
+
+            Glide.with(this)
+                    .load(productImageUri)
+                    .override(150, 150)
+                    .centerCrop()
+                    .into(imageViewProductImage);
+        }
     }
 }

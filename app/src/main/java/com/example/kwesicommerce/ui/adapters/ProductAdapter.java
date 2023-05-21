@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.kwesicommerce.R;
 import com.example.kwesicommerce.data.model.ProductModel;
 import com.example.kwesicommerce.data.repository.UserRepository;
@@ -66,6 +67,7 @@ public class ProductAdapter extends BaseAdapter implements View.OnClickListener 
         TextView productTitle = convertView.findViewById(R.id.txtViewProductListTitle);
         TextView productPrice = convertView.findViewById(R.id.txtViewProductPrice);
         ImageView imgBtnFavorite = convertView.findViewById(R.id.imgBtnFavorite);
+        ImageView imgViewProductListImage = convertView.findViewById(R.id.imgViewProductListImage);
 
         notificationUtil = new NotificationUtil(convertView.getContext());
 
@@ -84,7 +86,7 @@ public class ProductAdapter extends BaseAdapter implements View.OnClickListener 
                 if (wishlistRepository.addToWishlist(productModelList.get(position).getId(), userId) > 0) {
                     notificationUtil.showToast("Added to Wishlist", true);
                 } else {
-                    notificationUtil.showToast("Failed to add to Wishlist", false);
+                    notificationUtil.showToast("Product already in Wishlist", false);
                 }
             } else {
                 notificationUtil.showToast("Please login to add to Wishlist", false);
@@ -93,6 +95,12 @@ public class ProductAdapter extends BaseAdapter implements View.OnClickListener 
 
         productTitle.setText(productModelList.get(position).getName());
         productPrice.setText(String.format("£%.2f", productModelList.get(position).getPrice()));
+
+        Glide.with(convertView)
+                .load(productModelList.get(position).getImageUrl())
+                .override(150, 150)
+                .centerCrop()
+                .into(imgViewProductListImage);
 
         convertView.setTag(position);
         convertView.setOnClickListener(this);

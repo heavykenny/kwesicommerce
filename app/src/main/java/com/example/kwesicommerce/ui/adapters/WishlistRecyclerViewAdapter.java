@@ -6,12 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.kwesicommerce.R;
 import com.example.kwesicommerce.data.model.ProductModel;
 import com.example.kwesicommerce.data.repository.UserRepository;
@@ -51,6 +53,11 @@ public class WishlistRecyclerViewAdapter extends RecyclerView.Adapter<WishlistRe
     public void onBindViewHolder(@NonNull WishlistRecyclerViewAdapter.ViewHolder holder, int index) {
         holder.txtTitle.setText(productModelList.get(index).getName());
         holder.txtViewProductPrice.setText("£ " + productModelList.get(index).getPrice());
+        Glide.with(holder.itemView)
+                .load(productModelList.get(index).getImageUrl())
+                .override(150, 150)
+                .centerCrop()
+                .into(holder.imgViewProductListImage);
     }
 
     @Override
@@ -63,21 +70,23 @@ public class WishlistRecyclerViewAdapter extends RecyclerView.Adapter<WishlistRe
         public TextView txtViewProductPrice;
         public Button btnWishListRemoveCart;
 
+        public ImageView imgViewProductListImage;
+
         public ViewHolder(View itemView) {
             super(itemView);
             txtTitle = itemView.findViewById(R.id.txtViewProductListTitle);
             txtViewProductPrice = itemView.findViewById(R.id.txtViewProductPrice);
             btnWishListRemoveCart = itemView.findViewById(R.id.btnWishListRemoveCart);
-
             btnWishListRemoveCart.setOnClickListener(v -> {
                 int index = getAdapterPosition();
-                Toast.makeText(appContext, "" + productModelList.get(index).getName(), Toast.LENGTH_SHORT).show();
                 wishlistRepository.removeProductFromWishlist(productModelList.get(index).getId(), userRepository.getUserId());
                 productModelList.remove(index);
                 notifyItemRemoved(index);
 
                 notificationUtil.showToast("Product removed from wishlist", true);
             });
+
+            imgViewProductListImage = itemView.findViewById(R.id.imgViewProductListImage);
 
             itemView.setOnClickListener(this);
         }

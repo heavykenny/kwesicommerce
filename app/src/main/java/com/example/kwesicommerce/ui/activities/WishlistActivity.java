@@ -16,6 +16,7 @@ import com.example.kwesicommerce.data.repository.WishlistRepository;
 import com.example.kwesicommerce.ui.adapters.WishlistRecyclerViewAdapter;
 import com.example.kwesicommerce.utils.NavigationUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class WishlistActivity extends AppCompatActivity {
@@ -36,7 +37,11 @@ public class WishlistActivity extends AppCompatActivity {
         WishlistRepository wishlistRepository = new WishlistRepository(getApplicationContext());
         UserRepository userRepository = new UserRepository(getApplicationContext());
 
-        List<ProductModel> wishilistList = wishlistRepository.getUserWishlist(userRepository.getUserId());
+        List<ProductModel> wishilistList = new ArrayList<>();
+
+        if (userRepository.isUserLoggedIn()) {
+            wishilistList = wishlistRepository.getUserWishlist(userRepository.getUserId());
+        }
 
         RelativeLayout relLayoutWishList = findViewById(R.id.relLayoutWishList);
         RelativeLayout relLayoutWishListEmpty = findViewById(R.id.relLayoutWishListEmpty);

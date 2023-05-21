@@ -45,7 +45,7 @@ public class UserRecyclerViewAdapter extends RecyclerView.Adapter<UserRecyclerVi
         return userModelList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView txtViewUserName;
         private final TextView txtViewEmail;
         private final TextView txtViewDateRegistered;

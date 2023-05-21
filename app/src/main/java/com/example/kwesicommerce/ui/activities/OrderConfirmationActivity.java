@@ -15,6 +15,7 @@ import com.example.kwesicommerce.data.repository.OrderRepository;
 import com.example.kwesicommerce.data.repository.UserRepository;
 import com.example.kwesicommerce.ui.adapters.OrderRecyclerViewAdapter;
 import com.example.kwesicommerce.utils.NavigationUtil;
+import com.example.kwesicommerce.utils.NotificationUtil;
 
 import java.util.List;
 
@@ -33,6 +34,9 @@ public class OrderConfirmationActivity extends AppCompatActivity {
         NavigationUtil navigationUtil = new NavigationUtil(getBaseContext(), this);
         navigationUtil.setTopNavigationItemClick();
         navigationUtil.backNavigation("Order Confirmation");
+
+        NotificationUtil notificationUtil = new NotificationUtil(getBaseContext());
+        notificationUtil.showNotification("Order Confirmation", "Your order has been placed successfully");
 
         UserRepository userRepository = new UserRepository(getBaseContext());
 

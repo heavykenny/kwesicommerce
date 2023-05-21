@@ -33,7 +33,7 @@ public class AdminCreateCategoryActivity extends AppCompatActivity {
             EditText edtTxtCategoryName = findViewById(R.id.edtTxtCategoryName);
 
             if (edtTxtCategoryName.getText().toString().isEmpty()) {
-                edtTxtCategoryName.setError("CategoryModel name is required");
+                edtTxtCategoryName.setError("Category name is required");
                 edtTxtCategoryName.requestFocus();
                 return;
             }
@@ -43,7 +43,7 @@ public class AdminCreateCategoryActivity extends AppCompatActivity {
                 categoryModel.setName(edtTxtCategoryName.getText().toString());
 
                 categoryRepository.createCategory(categoryModel);
-                notificationUtil.showToast("CategoryModel created successfully", true);
+                notificationUtil.showToast("Category created successfully", true);
                 navigationUtil.goToActivity(AdminManageCategoriesActivity.class);
             } catch (Exception e) {
                 notificationUtil.showToast(e.getMessage(), false);

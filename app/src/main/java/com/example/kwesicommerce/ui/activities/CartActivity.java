@@ -19,6 +19,7 @@ import com.example.kwesicommerce.ui.adapters.CartRecyclerViewAdapter;
 import com.example.kwesicommerce.utils.NavigationUtil;
 import com.example.kwesicommerce.utils.NotificationUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartActivity extends AppCompatActivity {
@@ -42,7 +43,11 @@ public class CartActivity extends AppCompatActivity {
         cartRepository = new CartRepository(getBaseContext());
         userRepository = new UserRepository(getBaseContext());
 
-        List<CartItemModel> userCartItems = cartRepository.getCartItems(userRepository.getUserId());
+        List<CartItemModel> userCartItems = new ArrayList<>();
+
+        if (userRepository.isUserLoggedIn()) {
+            userCartItems = cartRepository.getCartItems(userRepository.getUserId());
+        }
 
         RecyclerView rvCart = findViewById(R.id.rvListCartList);
         LinearLayout layoutCartList = findViewById(R.id.layoutCartList);
@@ -64,8 +69,10 @@ public class CartActivity extends AppCompatActivity {
         updateTotalPrice();
 
         Button btnProceedToCheckout = findViewById(R.id.btnProceedToCheckout);
+        List<CartItemModel> finalUserCartItems = userCartItems;
+
         btnProceedToCheckout.setOnClickListener(v -> {
-            if (userCartItems.isEmpty()) {
+            if (finalUserCartItems.isEmpty()) {
                 notificationUtil.showToast("Your cart is empty", false);
             } else {
                 navigationUtil.goToActivity(CheckoutActivity.class);

@@ -35,9 +35,11 @@ public class NotificationUtil {
     }
 
     public void showNotification(String title, String notification) {
-        if (ActivityCompat.checkSelfPermission(context, POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(context, POST_NOTIFICATIONS) !=
+                PackageManager.PERMISSION_GRANTED) {
             // Permission has not been granted yet. Request it.
-            ActivityCompat.requestPermissions((Activity) context, new String[]{POST_NOTIFICATIONS}, PERMISSION_REQUEST_CODE);
+            ActivityCompat.requestPermissions((Activity) context,
+                    new String[]{POST_NOTIFICATIONS}, PERMISSION_REQUEST_CODE);
         } else {
             // Permission has already been granted. Show the notification.
             createNotificationChannel();

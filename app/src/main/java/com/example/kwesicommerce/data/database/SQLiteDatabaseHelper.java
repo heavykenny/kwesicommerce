@@ -86,18 +86,35 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
                 ")";
         db.execSQL(createUserTableQuery);
 
-        // Insert an admin
-        UserModel adminUser = new UserModel();
-        adminUser.setFullName("Admin User");
-        adminUser.setEmail("admin@kwesi.com");
-        adminUser.setPassword("admin");
-        adminUser.setHobbies("Football, Basketball, Coding");
-        adminUser.setPostcode("W1 1AA");
-        adminUser.setAddress("Northampton");
-        adminUser.setAdmin(true);
-        adminUser.setDateRegistered(FunctionUtil.getCurrentDateTime());
-        adminUser.setDateUpdated(FunctionUtil.getCurrentDateTime());
-        insertUser(adminUser);
+        String plainPassword = "password123";
+        String hashedPassword = BCrypt.hashpw(plainPassword, BCrypt.gensalt());
+
+// Insert seed data
+        String insertDataQuery = "INSERT INTO " + TABLE_USERS + "(" +
+                COLUMN_FULL_NAME + "," +
+                COLUMN_EMAIL + "," +
+                COLUMN_DATE_REGISTERED + "," +
+                COLUMN_DATE_UPDATED + "," +
+                COLUMN_PASSWORD + "," +
+                COLUMN_HOBBIES + "," +
+                COLUMN_POSTCODE + "," +
+                COLUMN_PROFILE_PICTURE + "," +
+                COLUMN_ADDRESS + "," +
+                COLUMN_IS_ADMIN +
+                ") VALUES (" +
+                "'John Doe'," +
+                "'john@example.com'," +
+                "'2023-01-01'," +
+                "'2023-01-01'," +
+                "'" + hashedPassword + "'," + // Use the hashed password
+                "'Reading, Swimming'," +
+                "'12345'," +
+                "''," +
+                "'123 Main St'," +
+                "1" +
+                ")";
+
+        db.execSQL(insertDataQuery);
 
         // Create the category table
         String createCategoryTableQuery = "CREATE TABLE " + TABLE_CATEGORIES + "(" +
@@ -219,7 +236,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         if (cursor != null) {
             cursor.close();
         }
-        //db.close();
+        db.close();
         return userModel;
     }
 
@@ -244,7 +261,9 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_DATE_UPDATED, FunctionUtil.getCurrentDateTime());
         values.put(COLUMN_PROFILE_PICTURE, userModel.getProfileImage());
 
-        return (int) db.insert(TABLE_USERS, null, values);
+        int id = (int) db.insert(TABLE_USERS, null, values);
+        db.close();
+        return id;
     }
 
     /**
@@ -887,7 +906,8 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_USER_ID, userId);
 
         // check if product already exists in wishlist
-        String query = "SELECT * FROM " + TABLE_WISHLIST + " WHERE " + COLUMN_PRODUCT_ID + " = ? AND " + COLUMN_USER_ID + " = ?";
+        String query = "SELECT * FROM " + TABLE_WISHLIST + " WHERE "
+                + COLUMN_PRODUCT_ID + " = ? AND " + COLUMN_USER_ID + " = ?";
         String[] args = {String.valueOf(productId), String.valueOf(userId)};
         Cursor cursor = db.rawQuery(query, args);
 
@@ -910,7 +930,7 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
 
         // Handle getting all products in the wishlist from the database
-        String query = "SELECT products.id, products.name, products.description, products.price, products.categoryId, products.imageUrl " +
+        String query = "SELECT products.* " +
                 "FROM wishlist " +
                 "JOIN products ON wishlist.productId = products.id " +
                 "WHERE wishlist.userId = ?";

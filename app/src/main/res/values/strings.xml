@@ -50,13 +50,13 @@
     <string name="retail_price">Retail Price</string>
     <string name="enter_retail_price">Enter Retail Price</string>
     <string name="create_product">Create Product</string>
-    <string name="manage_category_message">Sorry, there\'s no categoryModel! Since you are an admin, you can add categories by clicking the plus button on the bottom right corner</string>
-    <string name="manage_order_message">Sorry, no orderModels have been placed yet.</string>
-    <string name="manage_product_message">Sorry, we currently have no productModel. Since you are an admin, you can add productModels by clicking the plus button on the bottom right corner</string>
+    <string name="manage_category_message">Sorry, there\'s no category! Since you are an admin, you can add categories by clicking the plus button on the bottom right corner</string>
+    <string name="manage_order_message">Sorry, no orders have been placed yet.</string>
+    <string name="manage_product_message">Sorry, we currently have no product. Since you are an admin, you can add products by clicking the plus button on the bottom right corner</string>
     <string name="continue_shopping">Continue Shopping</string>
     <string name="proceed_to_checkout">Proceed to Checkout</string>
     <string name="manage_cart_message">oh no! your cart is empty!</string>
-    <string name="manage_category_user_message">Sorry, we currently have no categoryModel.! Please check back later.</string>
+    <string name="manage_category_user_message">Sorry, we currently have no category.! Please check back later.</string>
     <string name="name">Name</string>
     <string name="address">Address</string>
     <string name="required_address">Enter your Address</string>
@@ -96,7 +96,7 @@
     <string name="payment_details">Payment Details</string>
     <string name="back_to_shopping">Back to Shopping</string>
     <string name="place_order">Place Order</string>
-    <string name="user_previous_order">Sorry, you have no orderModels yet.</string>
-    <string name="user_category_message">Sorry, we currently have no productModel for this categoryModel Please check back later.</string>
+    <string name="user_previous_order">Sorry, you have no orders yet.</string>
+    <string name="user_category_message">Sorry, we currently have no product for this category Please check back later.</string>
     <string name="user_wishlist_message">Sorry, you have no items in your wishlist.</string>
 </resources>

@@ -17,10 +17,10 @@ import com.example.kwesicommerce.data.repository.UserRepository;
 import com.example.kwesicommerce.data.repository.WishlistRepository;
 import com.example.kwesicommerce.ui.activities.AccountActivity;
 import com.example.kwesicommerce.ui.activities.AdminHomeActivity;
-import com.example.kwesicommerce.ui.activities.AdminManageOrdersActivity;
-import com.example.kwesicommerce.ui.activities.AdminManageUserActivity;
 import com.example.kwesicommerce.ui.activities.AdminManageCategoriesActivity;
+import com.example.kwesicommerce.ui.activities.AdminManageOrdersActivity;
 import com.example.kwesicommerce.ui.activities.AdminManageProductsActivity;
+import com.example.kwesicommerce.ui.activities.AdminManageUserActivity;
 import com.example.kwesicommerce.ui.activities.CartActivity;
 import com.example.kwesicommerce.ui.activities.CategoryActivity;
 import com.example.kwesicommerce.ui.activities.HomeActivity;
@@ -112,13 +112,16 @@ public class NavigationUtil {
 
     /**
      * Set navigation item click
-     *
      */
     public void setNavigationItemClick() {
         // set wishlist count
-        txtViewWishlistCounter.setText(
-                String.valueOf(wishlistRepository.getUserWishlistCount(userRepository.getUserId()))
-        );
+        if (userRepository.isUserLoggedIn()) {
+            txtViewWishlistCounter.setText(
+                    String.valueOf(wishlistRepository.getUserWishlistCount(userRepository.getUserId()))
+            );
+        } else {
+            txtViewWishlistCounter.setText("0");
+        }
 
         if (activeNavItem != null) {
             activeNavItem.setBackgroundResource(R.color.oxford_blue_dark);
