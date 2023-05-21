@@ -5,11 +5,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.kwesicommerce.R;
 import com.example.kwesicommerce.data.model.CartItemModel;
 
@@ -39,6 +41,12 @@ public class OrderRecyclerViewAdapter extends RecyclerView.Adapter<OrderRecycler
         holder.txtViewProductPrice.setText(String.format("£%,.2f", cartItemModelList.get(index).getProduct().getPrice()));
         holder.txtViewQuantity.setText(String.format("Quantity: %d", cartItemModelList.get(index).getQuantity()));
         holder.txtViewProductTotalPrice.setText(String.format("Total: £%,.2f", cartItemModelList.get(index).getProduct().getPrice() * cartItemModelList.get(index).getQuantity()));
+
+        Glide.with(holder.itemView)
+                .load(cartItemModelList.get(index).getProduct().getImageUrl())
+                .override(150, 150)
+                .centerCrop()
+                .into(holder.imgViewProductListImage);
     }
 
     @Override
@@ -51,6 +59,7 @@ public class OrderRecyclerViewAdapter extends RecyclerView.Adapter<OrderRecycler
         public TextView txtViewProductPrice;
         public TextView txtViewQuantity;
         public TextView txtViewProductTotalPrice;
+        public ImageView imgViewProductListImage;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -58,6 +67,7 @@ public class OrderRecyclerViewAdapter extends RecyclerView.Adapter<OrderRecycler
             txtViewProductPrice = itemView.findViewById(R.id.txtViewProductPrice);
             txtViewQuantity = itemView.findViewById(R.id.txtViewQuantity);
             txtViewProductTotalPrice = itemView.findViewById(R.id.txtViewProductTotalPrice);
+            imgViewProductListImage = itemView.findViewById(R.id.imgViewProductListImage);
 
             itemView.setOnClickListener(this);
         }
